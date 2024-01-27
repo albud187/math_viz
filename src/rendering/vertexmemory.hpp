@@ -1,7 +1,7 @@
 #ifndef VERTEXMEMORY_HPP
 #define VERTEXMEMORY_HPP
 
-#include <glad/glad.h>
+#include <../glad/glad.h>
 #include <GLFW/glfw3.h>
 
 #include <map>

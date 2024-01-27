@@ -1,4 +1,5 @@
-#include "Shader.h"
+#include "shader.h"
+#include <unistd.h>
 
 #include <stdio.h>
 #include <fstream>
@@ -144,36 +145,38 @@ void Shader::clearDefault() {
 // load string from file
 char* Shader::loadShaderSrc(bool includeDefaultHeader, const char* filePath) {
     std::string fullPath = Shader::defaultDirectory + '/' + filePath;
-
-    FILE* file = NULL;
-    fopen_s(&file, fullPath.c_str(), "rb");
+    std::cout<<fullPath<<std::endl;
+    FILE* file = fopen64(fullPath.c_str(), "rb");
     if (!file) {
         std::cout << "Could not open " << filePath << std::endl;
         return NULL;
     }
 
-    // move cursor to the end
+    // Move cursor to the end
     fseek(file, 0L, SEEK_END);
-    // get length
+    // Get length
     int len = ftell(file);
-    // return to beginning
+    // Return to beginning
     fseek(file, 0, SEEK_SET);
 
-    // read
-    char* ret = NULL;
-    int cursor = 0;
+    // Allocate memory
+    char* ret;
+    int headerSize = 0;
     if (includeDefaultHeader) {
-        // copy header and advance cursor to read into space after default header
-        cursor = Shader::defaultHeaders.str().size();
-        ret = (char*)malloc(cursor + len + 1);
-        memcpy_s(ret, cursor + len + 1, Shader::defaultHeaders.str().c_str(), cursor);
-    }
-    else {
+        std::string header = Shader::defaultHeaders.str();
+        headerSize = header.size();
+        ret = (char*)malloc(headerSize + len + 1);
+        // Copy header
+        memcpy(ret, header.c_str(), headerSize);
+    } else {
         ret = (char*)malloc(len + 1);
     }
-    // read from file
-    fread(ret + cursor, 1, len, file);
-    ret[cursor + len] = 0; // terminator
 
+    // Read from file
+    fread(ret + headerSize, 1, len, file);
+    ret[headerSize + len] = 0; // Null-terminator
+
+    fclose(file);
     return ret;
 }
+

@@ -5,8 +5,8 @@
 #include <GLFW/glfw3.h>
 
 #include "rendering/shader.h"
-
-std::string Shader::defaultDirectory = "assets/shader";
+#include "programs/rectangle.hpp"
+std::string Shader::defaultDirectory = "/home/alfab/experiments/math_viz/src/assets/shaders";
 
 // initialization methods
 void initGLFW(unsigned int versionMajor, unsigned int versionMinor);
@@ -25,12 +25,16 @@ void processInput();
 int scr_width = 800, scr_height = 800;
 GLFWwindow* window = nullptr;
 
+//GLOBAL PROGRAMS
+Rectangle rect;
+
 //MAIN
 int main() {
     std::cout<<"hello world"<<std::endl;
     std::cout<<"includes done"<<std::endl;
 
     initGLFW(3,3);
+    
     createWindow(window, "GLMathViz", scr_width, scr_height, framebufferSizeCallback);
 
     if (!window){
@@ -54,26 +58,36 @@ int main() {
     glEnable(GL_DEPTH_TEST);
     glViewport(0,0, scr_width, scr_height);
 
+    //setup programs
+    rect.load();
+
     //timing variables
     double dt = 0.0;
     double lastFrame = 0.0;
     
     while (!glfwWindowShouldClose(window)) {
+        glfwPollEvents();
         //update time
         dt = glfwGetTime() - lastFrame;
         lastFrame += dt;
-
+        
         //input
         glfwWaitEventsTimeout(0.001);
         processInput();
-
+        
         //rendering
-        glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+        glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
+        
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
+        rect.render(dt);
+        //move rendered buffer to screen
         glfwSwapBuffers(window);
 
     }
+
+    //cleanup programs
+
+    rect.cleanup();
 
     glfwTerminate();
 
@@ -114,17 +128,3 @@ void processInput(){
     }
 }
 
-// void updateCameraMatrices() {
-// 	view = cam.getViewMatrix();
-// 	projection = glm::perspective(
-// 		glm::radians(cam.getZoom()),			// FOV
-// 		(float)scr_width / (float)scr_height,	// aspect ratio
-// 		0.1f, 100.0f							// near/far bounds
-// 	);
-
-// 	re_render = true;
-
-// 	for (Program* program : programs) {
-// 		program->updateCameraMatrices(projection * view, cam.cameraPos);
-// 	}
-// }

@@ -5,13 +5,13 @@
 # compile CXX with /usr/bin/c++
 C_DEFINES = 
 
-C_INCLUDES = -I/home/alfab/experiments/math_viz/src/glad -I/home/alfab/experiments/math_viz/src/rendering
+C_INCLUDES = -I/home/alfab/experiments/math_viz/src/glad -I/home/alfab/experiments/math_viz/src/rendering -I/home/alfab/experiments/math_viz/src/programs
 
 C_FLAGS = 
 
 CXX_DEFINES = 
 
-CXX_INCLUDES = -I/home/alfab/experiments/math_viz/src/glad -I/home/alfab/experiments/math_viz/src/rendering
+CXX_INCLUDES = -I/home/alfab/experiments/math_viz/src/glad -I/home/alfab/experiments/math_viz/src/rendering -I/home/alfab/experiments/math_viz/src/programs
 
 CXX_FLAGS = -std=gnu++11
 
