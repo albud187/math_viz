@@ -1,0 +1,8 @@
+#mkdir build
+#cd build
+#cmake ..
+#cmake --build .
+
+
+https://www.youtube.com/watch?v=kfqsHwxTcmI&list=PLysLvOneEETMjDJ2VTkT7bRekXf7RtoHm&index=2
+19:27
