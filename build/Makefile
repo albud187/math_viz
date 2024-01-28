@@ -117,89 +117,105 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named main
+# Target rules for targets named T4
 
 # Build rule for target.
-main: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 main
-.PHONY : main
+T4: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 T4
+.PHONY : T4
 
 # fast build rule for target.
-main/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/build
-.PHONY : main/fast
+T4/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4.dir/build.make CMakeFiles/T4.dir/build
+.PHONY : T4/fast
 
-src/glad/glad.o: src/glad/glad.c.o
-.PHONY : src/glad/glad.o
+#=============================================================================
+# Target rules for targets named T4_multi
 
-# target to build an object file
-src/glad/glad.c.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/glad/glad.c.o
-.PHONY : src/glad/glad.c.o
+# Build rule for target.
+T4_multi: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 T4_multi
+.PHONY : T4_multi
 
-src/glad/glad.i: src/glad/glad.c.i
-.PHONY : src/glad/glad.i
+# fast build rule for target.
+T4_multi/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/build
+.PHONY : T4_multi/fast
 
-# target to preprocess a source file
-src/glad/glad.c.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/glad/glad.c.i
-.PHONY : src/glad/glad.c.i
-
-src/glad/glad.s: src/glad/glad.c.s
-.PHONY : src/glad/glad.s
-
-# target to generate assembly for a file
-src/glad/glad.c.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/glad/glad.c.s
-.PHONY : src/glad/glad.c.s
-
-src/main.o: src/main.cpp.o
-.PHONY : src/main.o
+src/T4_shaders.o: src/T4_shaders.cpp.o
+.PHONY : src/T4_shaders.o
 
 # target to build an object file
-src/main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.o
-.PHONY : src/main.cpp.o
+src/T4_shaders.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4.dir/build.make CMakeFiles/T4.dir/src/T4_shaders.cpp.o
+.PHONY : src/T4_shaders.cpp.o
 
-src/main.i: src/main.cpp.i
-.PHONY : src/main.i
+src/T4_shaders.i: src/T4_shaders.cpp.i
+.PHONY : src/T4_shaders.i
 
 # target to preprocess a source file
-src/main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.i
-.PHONY : src/main.cpp.i
+src/T4_shaders.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4.dir/build.make CMakeFiles/T4.dir/src/T4_shaders.cpp.i
+.PHONY : src/T4_shaders.cpp.i
 
-src/main.s: src/main.cpp.s
-.PHONY : src/main.s
+src/T4_shaders.s: src/T4_shaders.cpp.s
+.PHONY : src/T4_shaders.s
 
 # target to generate assembly for a file
-src/main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/main.cpp.s
-.PHONY : src/main.cpp.s
+src/T4_shaders.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4.dir/build.make CMakeFiles/T4.dir/src/T4_shaders.cpp.s
+.PHONY : src/T4_shaders.cpp.s
 
-src/rendering/shader.o: src/rendering/shader.cpp.o
-.PHONY : src/rendering/shader.o
+src/T4_shaders_multi.o: src/T4_shaders_multi.cpp.o
+.PHONY : src/T4_shaders_multi.o
 
 # target to build an object file
-src/rendering/shader.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/rendering/shader.cpp.o
-.PHONY : src/rendering/shader.cpp.o
+src/T4_shaders_multi.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/T4_shaders_multi.cpp.o
+.PHONY : src/T4_shaders_multi.cpp.o
 
-src/rendering/shader.i: src/rendering/shader.cpp.i
-.PHONY : src/rendering/shader.i
+src/T4_shaders_multi.i: src/T4_shaders_multi.cpp.i
+.PHONY : src/T4_shaders_multi.i
 
 # target to preprocess a source file
-src/rendering/shader.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/rendering/shader.cpp.i
-.PHONY : src/rendering/shader.cpp.i
+src/T4_shaders_multi.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/T4_shaders_multi.cpp.i
+.PHONY : src/T4_shaders_multi.cpp.i
 
-src/rendering/shader.s: src/rendering/shader.cpp.s
-.PHONY : src/rendering/shader.s
+src/T4_shaders_multi.s: src/T4_shaders_multi.cpp.s
+.PHONY : src/T4_shaders_multi.s
 
 # target to generate assembly for a file
-src/rendering/shader.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/main.dir/build.make CMakeFiles/main.dir/src/rendering/shader.cpp.s
-.PHONY : src/rendering/shader.cpp.s
+src/T4_shaders_multi.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/T4_shaders_multi.cpp.s
+.PHONY : src/T4_shaders_multi.cpp.s
+
+src/ogl_utils/ogldev_util.o: src/ogl_utils/ogldev_util.cpp.o
+.PHONY : src/ogl_utils/ogldev_util.o
+
+# target to build an object file
+src/ogl_utils/ogldev_util.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4.dir/build.make CMakeFiles/T4.dir/src/ogl_utils/ogldev_util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/ogl_utils/ogldev_util.cpp.o
+.PHONY : src/ogl_utils/ogldev_util.cpp.o
+
+src/ogl_utils/ogldev_util.i: src/ogl_utils/ogldev_util.cpp.i
+.PHONY : src/ogl_utils/ogldev_util.i
+
+# target to preprocess a source file
+src/ogl_utils/ogldev_util.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4.dir/build.make CMakeFiles/T4.dir/src/ogl_utils/ogldev_util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/ogl_utils/ogldev_util.cpp.i
+.PHONY : src/ogl_utils/ogldev_util.cpp.i
+
+src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
+.PHONY : src/ogl_utils/ogldev_util.s
+
+# target to generate assembly for a file
+src/ogl_utils/ogldev_util.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4.dir/build.make CMakeFiles/T4.dir/src/ogl_utils/ogldev_util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/ogl_utils/ogldev_util.cpp.s
+.PHONY : src/ogl_utils/ogldev_util.cpp.s
 
 # Help Target
 help:
@@ -209,16 +225,17 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... main"
-	@echo "... src/glad/glad.o"
-	@echo "... src/glad/glad.i"
-	@echo "... src/glad/glad.s"
-	@echo "... src/main.o"
-	@echo "... src/main.i"
-	@echo "... src/main.s"
-	@echo "... src/rendering/shader.o"
-	@echo "... src/rendering/shader.i"
-	@echo "... src/rendering/shader.s"
+	@echo "... T4"
+	@echo "... T4_multi"
+	@echo "... src/T4_shaders.o"
+	@echo "... src/T4_shaders.i"
+	@echo "... src/T4_shaders.s"
+	@echo "... src/T4_shaders_multi.o"
+	@echo "... src/T4_shaders_multi.i"
+	@echo "... src/T4_shaders_multi.s"
+	@echo "... src/ogl_utils/ogldev_util.o"
+	@echo "... src/ogl_utils/ogldev_util.i"
+	@echo "... src/ogl_utils/ogldev_util.s"
 .PHONY : help
 
 

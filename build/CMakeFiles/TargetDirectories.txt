@@ -1,3 +1,4 @@
-/home/alfab/experiments/math_viz/build/CMakeFiles/main.dir
+/home/alfab/experiments/math_viz/build/CMakeFiles/T4.dir
+/home/alfab/experiments/math_viz/build/CMakeFiles/T4_multi.dir
 /home/alfab/experiments/math_viz/build/CMakeFiles/edit_cache.dir
 /home/alfab/experiments/math_viz/build/CMakeFiles/rebuild_cache.dir

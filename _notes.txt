@@ -4,5 +4,16 @@
 #cmake --build .
 
 
-https://www.youtube.com/watch?v=kfqsHwxTcmI&list=PLysLvOneEETMjDJ2VTkT7bRekXf7RtoHm&index=2
-19:27
+https://ogldev.org/
+#GLEW opengl loading library 
+#GLAD is an opengl loading library
+#check GLEW web page
+#https://glew.sourceforge.net/basic.html
+
+working tutorials:
+0 to 18
+19 to 28
+
+assignments:
+
+T4: add button to teleport vertices

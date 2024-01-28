@@ -1,0 +1,1 @@
+/usr/bin/c++ CMakeFiles/T5.dir/src/T5_uniforms.cpp.o CMakeFiles/T5.dir/src/ogl_utils/ogldev_util.cpp.o -o T5  /usr/lib/x86_64-linux-gnu/libGL.so /usr/lib/x86_64-linux-gnu/libGLU.so /usr/lib/x86_64-linux-gnu/libglut.so /usr/lib/x86_64-linux-gnu/libXmu.so /usr/lib/x86_64-linux-gnu/libXi.so /usr/lib/x86_64-linux-gnu/libGLEW.so /usr/lib/x86_64-linux-gnu/libglfw.so.3.3 
