@@ -5,13 +5,9 @@
 #include <vector>
 #include "ogl_utils/ogldev_math_3d.h"
 
-
-
-
 //GLuint VBOs[3];
 
 std::vector<GLuint> VBOs;
-
 
 static void createTriangle(Vector3f vertices[3]) {
     GLuint VBO;

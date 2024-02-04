@@ -16,4 +16,5 @@ working tutorials:
 
 assignments:
 
-T4: add button to teleport vertices
+T4: multiple triangles?
+assign shader to multipl triangles?
