@@ -15,6 +15,21 @@ working tutorials:
 19 to 28
 
 assignments:
+T15 
+- move the cube
+- create up and down movement
+- only pan camera when holding right click
+- create another cube and move them seperately
 
-T4: multiple triangles?
-assign shader to multipl triangles?
+#object
+create gameObject class with:
+- vertex
+- shader
+- position
+- orientation
+
+#multi object manager
+create scene class with:
+- vertex buffer
+- index buffer
+- addobject class

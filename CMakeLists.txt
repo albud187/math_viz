@@ -10,19 +10,19 @@ find_package(OpenGL REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(GLEW REQUIRED)
 # Include directories
+
 include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 
-# add_executable(T3 src/T3_triangle.cpp )
-# target_link_libraries(T3 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
 
-add_executable(T4_multi src/T4_shaders_multi.cpp src/ogl_utils/ogldev_util.cpp)
-target_link_libraries(T4_multi ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
+# add_executable(T4_multi src/T4_shaders_multi.cpp src/ogl_utils/ogldev_util.cpp)
+# target_link_libraries(T4_multi ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
 
-# add_executable(T5 src/T5_uniforms.cpp src/ogl_utils/ogldev_util.cpp)
-# target_link_libraries(T5 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
-
-# add_executable(T6 src/T6_translation.cpp src/ogl_utils/ogldev_util.cpp)
-# target_link_libraries(T6 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
-
-# add_executable(T7 src/T7_rotation.cpp src/ogl_utils/ogldev_util.cpp)
-# target_link_libraries(T7 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
+add_executable(T15 src/T15_camera.cpp 
+    src/ogl_utils/ogldev_util.cpp
+    src/ogl_utils/ogldev_math_3d.cpp
+    src/programs/T15/camera.cpp 
+    src/programs/T15/world_transform.cpp
+    src/programs/T15/shaders.cpp
+    )
+    
+target_link_libraries(T15 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)

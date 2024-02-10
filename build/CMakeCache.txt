@@ -272,17 +272,8 @@ PKG_CONFIG_ARGN:STRING=
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
-//Value Computed by CMake
-Tutorial04_BINARY_DIR:STATIC=/home/alfab/experiments/math_viz/build
-
-//Value Computed by CMake
-Tutorial04_IS_TOP_LEVEL:STATIC=ON
-
-//Value Computed by CMake
-Tutorial04_SOURCE_DIR:STATIC=/home/alfab/experiments/math_viz
-
 //The directory containing a CMake configuration file for glfw3.
-glfw3_DIR:PATH=glfw3_DIR-NOTFOUND
+glfw3_DIR:PATH=/usr/lib/x86_64-linux-gnu/cmake/glfw3
 
 //Value Computed by CMake
 math_viz_BINARY_DIR:STATIC=/home/alfab/experiments/math_viz/build

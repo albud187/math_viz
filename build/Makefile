@@ -117,48 +117,72 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named T4_multi
+# Target rules for targets named T15
 
 # Build rule for target.
-T4_multi: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 T4_multi
-.PHONY : T4_multi
+T15: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 T15
+.PHONY : T15
 
 # fast build rule for target.
-T4_multi/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/build
-.PHONY : T4_multi/fast
+T15/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/build
+.PHONY : T15/fast
 
-src/T4_shaders_multi.o: src/T4_shaders_multi.cpp.o
-.PHONY : src/T4_shaders_multi.o
+src/T15_camera.o: src/T15_camera.cpp.o
+.PHONY : src/T15_camera.o
 
 # target to build an object file
-src/T4_shaders_multi.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/T4_shaders_multi.cpp.o
-.PHONY : src/T4_shaders_multi.cpp.o
+src/T15_camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/T15_camera.cpp.o
+.PHONY : src/T15_camera.cpp.o
 
-src/T4_shaders_multi.i: src/T4_shaders_multi.cpp.i
-.PHONY : src/T4_shaders_multi.i
+src/T15_camera.i: src/T15_camera.cpp.i
+.PHONY : src/T15_camera.i
 
 # target to preprocess a source file
-src/T4_shaders_multi.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/T4_shaders_multi.cpp.i
-.PHONY : src/T4_shaders_multi.cpp.i
+src/T15_camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/T15_camera.cpp.i
+.PHONY : src/T15_camera.cpp.i
 
-src/T4_shaders_multi.s: src/T4_shaders_multi.cpp.s
-.PHONY : src/T4_shaders_multi.s
+src/T15_camera.s: src/T15_camera.cpp.s
+.PHONY : src/T15_camera.s
 
 # target to generate assembly for a file
-src/T4_shaders_multi.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/T4_shaders_multi.cpp.s
-.PHONY : src/T4_shaders_multi.cpp.s
+src/T15_camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/T15_camera.cpp.s
+.PHONY : src/T15_camera.cpp.s
+
+src/ogl_utils/ogldev_math_3d.o: src/ogl_utils/ogldev_math_3d.cpp.o
+.PHONY : src/ogl_utils/ogldev_math_3d.o
+
+# target to build an object file
+src/ogl_utils/ogldev_math_3d.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_math_3d.cpp.o
+.PHONY : src/ogl_utils/ogldev_math_3d.cpp.o
+
+src/ogl_utils/ogldev_math_3d.i: src/ogl_utils/ogldev_math_3d.cpp.i
+.PHONY : src/ogl_utils/ogldev_math_3d.i
+
+# target to preprocess a source file
+src/ogl_utils/ogldev_math_3d.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_math_3d.cpp.i
+.PHONY : src/ogl_utils/ogldev_math_3d.cpp.i
+
+src/ogl_utils/ogldev_math_3d.s: src/ogl_utils/ogldev_math_3d.cpp.s
+.PHONY : src/ogl_utils/ogldev_math_3d.s
+
+# target to generate assembly for a file
+src/ogl_utils/ogldev_math_3d.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_math_3d.cpp.s
+.PHONY : src/ogl_utils/ogldev_math_3d.cpp.s
 
 src/ogl_utils/ogldev_util.o: src/ogl_utils/ogldev_util.cpp.o
 .PHONY : src/ogl_utils/ogldev_util.o
 
 # target to build an object file
 src/ogl_utils/ogldev_util.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/ogl_utils/ogldev_util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_util.cpp.o
 .PHONY : src/ogl_utils/ogldev_util.cpp.o
 
 src/ogl_utils/ogldev_util.i: src/ogl_utils/ogldev_util.cpp.i
@@ -166,7 +190,7 @@ src/ogl_utils/ogldev_util.i: src/ogl_utils/ogldev_util.cpp.i
 
 # target to preprocess a source file
 src/ogl_utils/ogldev_util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/ogl_utils/ogldev_util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_util.cpp.i
 .PHONY : src/ogl_utils/ogldev_util.cpp.i
 
 src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
@@ -174,8 +198,80 @@ src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
 
 # target to generate assembly for a file
 src/ogl_utils/ogldev_util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T4_multi.dir/build.make CMakeFiles/T4_multi.dir/src/ogl_utils/ogldev_util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_util.cpp.s
 .PHONY : src/ogl_utils/ogldev_util.cpp.s
+
+src/programs/T15/camera.o: src/programs/T15/camera.cpp.o
+.PHONY : src/programs/T15/camera.o
+
+# target to build an object file
+src/programs/T15/camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/camera.cpp.o
+.PHONY : src/programs/T15/camera.cpp.o
+
+src/programs/T15/camera.i: src/programs/T15/camera.cpp.i
+.PHONY : src/programs/T15/camera.i
+
+# target to preprocess a source file
+src/programs/T15/camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/camera.cpp.i
+.PHONY : src/programs/T15/camera.cpp.i
+
+src/programs/T15/camera.s: src/programs/T15/camera.cpp.s
+.PHONY : src/programs/T15/camera.s
+
+# target to generate assembly for a file
+src/programs/T15/camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/camera.cpp.s
+.PHONY : src/programs/T15/camera.cpp.s
+
+src/programs/T15/shaders.o: src/programs/T15/shaders.cpp.o
+.PHONY : src/programs/T15/shaders.o
+
+# target to build an object file
+src/programs/T15/shaders.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/shaders.cpp.o
+.PHONY : src/programs/T15/shaders.cpp.o
+
+src/programs/T15/shaders.i: src/programs/T15/shaders.cpp.i
+.PHONY : src/programs/T15/shaders.i
+
+# target to preprocess a source file
+src/programs/T15/shaders.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/shaders.cpp.i
+.PHONY : src/programs/T15/shaders.cpp.i
+
+src/programs/T15/shaders.s: src/programs/T15/shaders.cpp.s
+.PHONY : src/programs/T15/shaders.s
+
+# target to generate assembly for a file
+src/programs/T15/shaders.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/shaders.cpp.s
+.PHONY : src/programs/T15/shaders.cpp.s
+
+src/programs/T15/world_transform.o: src/programs/T15/world_transform.cpp.o
+.PHONY : src/programs/T15/world_transform.o
+
+# target to build an object file
+src/programs/T15/world_transform.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/world_transform.cpp.o
+.PHONY : src/programs/T15/world_transform.cpp.o
+
+src/programs/T15/world_transform.i: src/programs/T15/world_transform.cpp.i
+.PHONY : src/programs/T15/world_transform.i
+
+# target to preprocess a source file
+src/programs/T15/world_transform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/world_transform.cpp.i
+.PHONY : src/programs/T15/world_transform.cpp.i
+
+src/programs/T15/world_transform.s: src/programs/T15/world_transform.cpp.s
+.PHONY : src/programs/T15/world_transform.s
+
+# target to generate assembly for a file
+src/programs/T15/world_transform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/world_transform.cpp.s
+.PHONY : src/programs/T15/world_transform.cpp.s
 
 # Help Target
 help:
@@ -185,13 +281,25 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... T4_multi"
-	@echo "... src/T4_shaders_multi.o"
-	@echo "... src/T4_shaders_multi.i"
-	@echo "... src/T4_shaders_multi.s"
+	@echo "... T15"
+	@echo "... src/T15_camera.o"
+	@echo "... src/T15_camera.i"
+	@echo "... src/T15_camera.s"
+	@echo "... src/ogl_utils/ogldev_math_3d.o"
+	@echo "... src/ogl_utils/ogldev_math_3d.i"
+	@echo "... src/ogl_utils/ogldev_math_3d.s"
 	@echo "... src/ogl_utils/ogldev_util.o"
 	@echo "... src/ogl_utils/ogldev_util.i"
 	@echo "... src/ogl_utils/ogldev_util.s"
+	@echo "... src/programs/T15/camera.o"
+	@echo "... src/programs/T15/camera.i"
+	@echo "... src/programs/T15/camera.s"
+	@echo "... src/programs/T15/shaders.o"
+	@echo "... src/programs/T15/shaders.i"
+	@echo "... src/programs/T15/shaders.s"
+	@echo "... src/programs/T15/world_transform.o"
+	@echo "... src/programs/T15/world_transform.i"
+	@echo "... src/programs/T15/world_transform.s"
 .PHONY : help
 
 
