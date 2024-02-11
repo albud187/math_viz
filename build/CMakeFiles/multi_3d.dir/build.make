@@ -111,19 +111,19 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alfab/experiments/math_viz/src/ogl_utils/ogldev_math_3d.cpp -o CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.s
 
-CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o: CMakeFiles/multi_3d.dir/flags.make
-CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o: ../src/programs/T15/camera.cpp
-CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o: CMakeFiles/multi_3d.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o -MF CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o.d -o CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o -c /home/alfab/experiments/math_viz/src/programs/T15/camera.cpp
+CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o: CMakeFiles/multi_3d.dir/flags.make
+CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o: ../src/multi_utils/camera.cpp
+CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o: CMakeFiles/multi_3d.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o -MF CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o.d -o CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o -c /home/alfab/experiments/math_viz/src/multi_utils/camera.cpp
 
-CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alfab/experiments/math_viz/src/programs/T15/camera.cpp > CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.i
+CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alfab/experiments/math_viz/src/multi_utils/camera.cpp > CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.i
 
-CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alfab/experiments/math_viz/src/programs/T15/camera.cpp -o CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.s
+CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alfab/experiments/math_viz/src/multi_utils/camera.cpp -o CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.s
 
 CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.o: CMakeFiles/multi_3d.dir/flags.make
 CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.o: ../src/programs/T15/world_transform.cpp
@@ -153,29 +153,29 @@ CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.s"
 	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alfab/experiments/math_viz/src/programs/T15/shaders.cpp -o CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.s
 
-CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o: CMakeFiles/multi_3d.dir/flags.make
-CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o: ../src/multi_utils/cube.cpp
-CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o: CMakeFiles/multi_3d.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o -MF CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o.d -o CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o -c /home/alfab/experiments/math_viz/src/multi_utils/cube.cpp
+CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o: CMakeFiles/multi_3d.dir/flags.make
+CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o: ../src/multi_utils/mesh.cpp
+CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o: CMakeFiles/multi_3d.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Building CXX object CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o -MF CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o.d -o CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o -c /home/alfab/experiments/math_viz/src/multi_utils/mesh.cpp
 
-CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.i"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alfab/experiments/math_viz/src/multi_utils/cube.cpp > CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.i
+CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.i"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/alfab/experiments/math_viz/src/multi_utils/mesh.cpp > CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.i
 
-CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.s"
-	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alfab/experiments/math_viz/src/multi_utils/cube.cpp -o CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.s
+CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.s"
+	/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/alfab/experiments/math_viz/src/multi_utils/mesh.cpp -o CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.s
 
 # Object files for target multi_3d
 multi_3d_OBJECTS = \
 "CMakeFiles/multi_3d.dir/src/multi_3d.cpp.o" \
 "CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o" \
 "CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.o" \
-"CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o" \
+"CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o" \
 "CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.o" \
 "CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.o" \
-"CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o"
+"CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o"
 
 # External object files for target multi_3d
 multi_3d_EXTERNAL_OBJECTS =
@@ -183,10 +183,10 @@ multi_3d_EXTERNAL_OBJECTS =
 multi_3d: CMakeFiles/multi_3d.dir/src/multi_3d.cpp.o
 multi_3d: CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o
 multi_3d: CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.o
-multi_3d: CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o
+multi_3d: CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o
 multi_3d: CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.o
 multi_3d: CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.o
-multi_3d: CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o
+multi_3d: CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o
 multi_3d: CMakeFiles/multi_3d.dir/build.make
 multi_3d: /usr/lib/x86_64-linux-gnu/libGL.so
 multi_3d: /usr/lib/x86_64-linux-gnu/libGLU.so

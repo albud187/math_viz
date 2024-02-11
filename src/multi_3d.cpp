@@ -1,39 +1,36 @@
 
 #include <stdio.h>
 #include <string.h>
-
+#include <iostream>
 #include <math.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-
+#include <unordered_map>
 #include "ogl_utils/ogldev_math_3d.h"
-#include "programs/T15/camera.h"
-#include "programs/T15/world_transform.h"
+#include "multi_utils/camera.h"
+#include "multi_utils/world_transform.h"
 #include "multi_utils/constants.h"
-#include "programs/T15/shaders.h"
-#include "multi_utils/cube.h"
+#include "multi_utils/shaders.h"
+#include "multi_utils/mesh.h"
+
 GLuint VBO;
 GLuint IBO;
 GLuint gWVPLocation;
 
-unsigned int numVertices = sizeof(CUBE_VERTICES) / sizeof(CUBE_VERTICES[0]);
-unsigned int numIndices = sizeof(CUBE_INDICES) / sizeof(CUBE_INDICES[0]);
+unsigned int n_v_pyramid3 = sizeof(PYRAMID3_VERTICES) / sizeof(PYRAMID3_VERTICES[0]);
+unsigned int n_i_pyramid3 = sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]);
 
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
-int TEST = 0;
-
-
-float dx = 0.001f;
+std::unordered_map<std::string, Mesh> game_objects;
 
 // Global or static rotation angles
 static float rotationAngle1 = 0.0f;
 static float rotationAngle2 = 0.0f;
 static float rotationAngle3 = 0.0f;
 static float px = -1.0f;
-
 
 static void RenderSceneCB()
 {
@@ -45,9 +42,9 @@ static void RenderSceneCB()
     Matrix4f View = GameCamera.GetMatrix();
     Projection.InitPersProjTransform(persProjInfo);
 
-    Cube cube1(CUBE_VERTICES, numVertices, CUBE_INDICES, numIndices);
-    Cube cube2(CUBE_VERTICES, numVertices, CUBE_INDICES, numIndices);
-    Cube cube3(CUBE_VERTICES, numVertices, CUBE_INDICES, numIndices);
+    Mesh cube1(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    Mesh cube2(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    Mesh cube3(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
 
     // Set initial positions (could be moved outside and made static if they don't change)
     cube1.SetPosition(-1.0f, 0.0f, 3.0f);
@@ -99,7 +96,6 @@ static void MouseCB(int button, int state, int x, int y) {
 
 int main(int argc, char** argv)
 {
-
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);

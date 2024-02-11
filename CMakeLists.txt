@@ -29,10 +29,10 @@ include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 add_executable(multi_3d src/multi_3d.cpp 
     src/ogl_utils/ogldev_util.cpp
     src/ogl_utils/ogldev_math_3d.cpp
-    src/programs/T15/camera.cpp 
+    src/multi_utils/camera.cpp 
     src/programs/T15/world_transform.cpp
     src/programs/T15/shaders.cpp
-    src/multi_utils/cube.cpp
+    src/multi_utils/mesh.cpp
     )
     
 target_link_libraries(multi_3d ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)

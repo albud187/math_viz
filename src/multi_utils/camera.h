@@ -2,7 +2,7 @@
 #ifndef CAMERA_H
 #define CAMERA_H
 
-#include "../../ogl_utils/ogldev_math_3d.h"
+#include "../ogl_utils/ogldev_math_3d.h"
 class Camera
 {
 public:

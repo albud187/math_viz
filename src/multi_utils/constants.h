@@ -43,4 +43,20 @@ VT CUBE_VERTICES[8] = {
     VT(-0.1f, -0.1f, 0.1f)
     };
 
+// Define the vertices for a triangular-based pyramid
+VT PYRAMID3_VERTICES[] = {
+    VT(0.0f, 0.5f, 0.0f),    // Tip of the pyramid
+    VT(-0.5f, -0.5f, 0.5f),  // Base vertex 1
+    VT(0.5f, -0.5f, 0.5f),   // Base vertex 2
+    VT(0.0f, -0.5f, -0.7f)   // Base vertex 3
+};
+
+// Define the indices for the faces of the pyramid
+unsigned int PYRAMID3_INDICES[] = {
+    0, 1, 2,  // Side 1
+    0, 2, 3,  // Side 2
+    0, 3, 1,  // Side 3
+    1, 3, 2   // Base
+};
+
 #endif

@@ -153,29 +153,53 @@ src/multi_3d.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_3d.cpp.s
 .PHONY : src/multi_3d.cpp.s
 
-src/multi_utils/cube.o: src/multi_utils/cube.cpp.o
-.PHONY : src/multi_utils/cube.o
+src/multi_utils/camera.o: src/multi_utils/camera.cpp.o
+.PHONY : src/multi_utils/camera.o
 
 # target to build an object file
-src/multi_utils/cube.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o
-.PHONY : src/multi_utils/cube.cpp.o
+src/multi_utils/camera.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o
+.PHONY : src/multi_utils/camera.cpp.o
 
-src/multi_utils/cube.i: src/multi_utils/cube.cpp.i
-.PHONY : src/multi_utils/cube.i
+src/multi_utils/camera.i: src/multi_utils/camera.cpp.i
+.PHONY : src/multi_utils/camera.i
 
 # target to preprocess a source file
-src/multi_utils/cube.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.i
-.PHONY : src/multi_utils/cube.cpp.i
+src/multi_utils/camera.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.i
+.PHONY : src/multi_utils/camera.cpp.i
 
-src/multi_utils/cube.s: src/multi_utils/cube.cpp.s
-.PHONY : src/multi_utils/cube.s
+src/multi_utils/camera.s: src/multi_utils/camera.cpp.s
+.PHONY : src/multi_utils/camera.s
 
 # target to generate assembly for a file
-src/multi_utils/cube.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.s
-.PHONY : src/multi_utils/cube.cpp.s
+src/multi_utils/camera.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.s
+.PHONY : src/multi_utils/camera.cpp.s
+
+src/multi_utils/mesh.o: src/multi_utils/mesh.cpp.o
+.PHONY : src/multi_utils/mesh.o
+
+# target to build an object file
+src/multi_utils/mesh.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o
+.PHONY : src/multi_utils/mesh.cpp.o
+
+src/multi_utils/mesh.i: src/multi_utils/mesh.cpp.i
+.PHONY : src/multi_utils/mesh.i
+
+# target to preprocess a source file
+src/multi_utils/mesh.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.i
+.PHONY : src/multi_utils/mesh.cpp.i
+
+src/multi_utils/mesh.s: src/multi_utils/mesh.cpp.s
+.PHONY : src/multi_utils/mesh.s
+
+# target to generate assembly for a file
+src/multi_utils/mesh.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.s
+.PHONY : src/multi_utils/mesh.cpp.s
 
 src/ogl_utils/ogldev_math_3d.o: src/ogl_utils/ogldev_math_3d.cpp.o
 .PHONY : src/ogl_utils/ogldev_math_3d.o
@@ -224,30 +248,6 @@ src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
 src/ogl_utils/ogldev_util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.s
 .PHONY : src/ogl_utils/ogldev_util.cpp.s
-
-src/programs/T15/camera.o: src/programs/T15/camera.cpp.o
-.PHONY : src/programs/T15/camera.o
-
-# target to build an object file
-src/programs/T15/camera.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o
-.PHONY : src/programs/T15/camera.cpp.o
-
-src/programs/T15/camera.i: src/programs/T15/camera.cpp.i
-.PHONY : src/programs/T15/camera.i
-
-# target to preprocess a source file
-src/programs/T15/camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.i
-.PHONY : src/programs/T15/camera.cpp.i
-
-src/programs/T15/camera.s: src/programs/T15/camera.cpp.s
-.PHONY : src/programs/T15/camera.s
-
-# target to generate assembly for a file
-src/programs/T15/camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.s
-.PHONY : src/programs/T15/camera.cpp.s
 
 src/programs/T15/shaders.o: src/programs/T15/shaders.cpp.o
 .PHONY : src/programs/T15/shaders.o
@@ -309,18 +309,18 @@ help:
 	@echo "... src/multi_3d.o"
 	@echo "... src/multi_3d.i"
 	@echo "... src/multi_3d.s"
-	@echo "... src/multi_utils/cube.o"
-	@echo "... src/multi_utils/cube.i"
-	@echo "... src/multi_utils/cube.s"
+	@echo "... src/multi_utils/camera.o"
+	@echo "... src/multi_utils/camera.i"
+	@echo "... src/multi_utils/camera.s"
+	@echo "... src/multi_utils/mesh.o"
+	@echo "... src/multi_utils/mesh.i"
+	@echo "... src/multi_utils/mesh.s"
 	@echo "... src/ogl_utils/ogldev_math_3d.o"
 	@echo "... src/ogl_utils/ogldev_math_3d.i"
 	@echo "... src/ogl_utils/ogldev_math_3d.s"
 	@echo "... src/ogl_utils/ogldev_util.o"
 	@echo "... src/ogl_utils/ogldev_util.i"
 	@echo "... src/ogl_utils/ogldev_util.s"
-	@echo "... src/programs/T15/camera.o"
-	@echo "... src/programs/T15/camera.i"
-	@echo "... src/programs/T15/camera.s"
 	@echo "... src/programs/T15/shaders.o"
 	@echo "... src/programs/T15/shaders.i"
 	@echo "... src/programs/T15/shaders.s"

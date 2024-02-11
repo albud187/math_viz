@@ -2,14 +2,14 @@
 #define CUBE_H
 
 #include <GL/glew.h>
-#include "../ogl_utils/ogldev_math_3d.h" // Assuming this is where WorldTrans and Matrix4f are defined
+#include "../ogl_utils/ogldev_math_3d.h" 
 #include "world_transform.h"
-class Cube {
+class Mesh {
 public:
-    WorldTrans transform; // Transformation data for the cube
+    WorldTrans transform; // Transformation data for the mesh
 
-    Cube(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices);
-    ~Cube();
+    Mesh(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices);
+    ~Mesh();
     
     void SetPosition(float x, float y, float z);
     void setRotation(float rx, float ry, float rz);
