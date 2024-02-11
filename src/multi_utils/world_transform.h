@@ -1,7 +1,7 @@
 #ifndef WORLD_TRANSFORM_H
 #define WORLD_TRANSFORM_H
 
-#include "../../ogl_utils/ogldev_math_3d.h"
+#include "../ogl_utils/ogldev_math_3d.h"
 
 class WorldTrans {
  public:

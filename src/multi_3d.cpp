@@ -7,70 +7,72 @@
 #include <GL/freeglut.h>
 
 #include "ogl_utils/ogldev_math_3d.h"
-#include "multi_utils/camera.h"
-#include "multi_utils/world_transform.h"
+#include "programs/T15/camera.h"
+#include "programs/T15/world_transform.h"
 #include "multi_utils/constants.h"
-#include "multi_utils/shaders.h"
-
+#include "programs/T15/shaders.h"
+#include "multi_utils/cube.h"
 GLuint VBO;
 GLuint IBO;
 GLuint gWVPLocation;
 
-WorldTrans CubeWorldTransform;
+unsigned int numVertices = sizeof(CUBE_VERTICES) / sizeof(CUBE_VERTICES[0]);
+unsigned int numIndices = sizeof(CUBE_INDICES) / sizeof(CUBE_INDICES[0]);
 
-WorldTrans CubeWorldTransform2;
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
-int TEST =0;
+int TEST = 0;
+
+
+float dx = 0.001f;
+
+// Global or static rotation angles
+static float rotationAngle1 = 0.0f;
+static float rotationAngle2 = 0.0f;
+static float rotationAngle3 = 0.0f;
+static float px = -1.0f;
+
+
 static void RenderSceneCB()
 {
-    glClear(GL_COLOR_BUFFER_BIT);
-    GameCamera.OnRender();
-    float YRotationAngle = 0.1f;
-    float dx = 0.001f;
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 
-    if (TEST ==0 ){
-        CubeWorldTransform.SetPosition(0.0f, 0.0f, 2.0f);
-        CubeWorldTransform2.SetPosition(0.0f, 2.0f, 0.0f);
-        TEST = 1;
-    }
-    
-    CubeWorldTransform.Rotate(0.0f, YRotationAngle, 0.0f);
-    CubeWorldTransform.Translate(0, 0, 5*dx);
-    //pose of object
-    Matrix4f World = CubeWorldTransform.GetMatrix();
-   
-    Matrix4f View = GameCamera.GetMatrix();
-    
+    // Camera setup
+    GameCamera.OnRender();
     Matrix4f Projection;
+    Matrix4f View = GameCamera.GetMatrix();
     Projection.InitPersProjTransform(persProjInfo);
 
-    Matrix4f WVP = Projection * View * World;
+    Cube cube1(CUBE_VERTICES, numVertices, CUBE_INDICES, numIndices);
+    Cube cube2(CUBE_VERTICES, numVertices, CUBE_INDICES, numIndices);
+    Cube cube3(CUBE_VERTICES, numVertices, CUBE_INDICES, numIndices);
 
-    glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, &WVP.m[0][0]);
+    // Set initial positions (could be moved outside and made static if they don't change)
+    cube1.SetPosition(-1.0f, 0.0f, 3.0f);
+    cube2.SetPosition(1.0f, 0.0f, 3.0f);
+    cube3.SetPosition(2.0f, 0.0f, 3.0f);
+    
+    // Increment rotation angles
+    rotationAngle1 += 0.05f;
+    rotationAngle2 += 0.10f;
+    rotationAngle3 += 0.20f;
 
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
+    // Apply rotations
+    cube1.setRotation(rotationAngle1, rotationAngle1, 5.0f);
+    cube2.setRotation(rotationAngle2, rotationAngle2, 5.0f);
+    cube3.setRotation(rotationAngle3, rotationAngle3, 5.0f);
 
-    // position
-    glEnableVertexAttribArray(0);
-    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), 0);
-
-    // color
-    glEnableVertexAttribArray(1);
-    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 6 * sizeof(float), (void*)(3 * sizeof(float)));
-
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
-
-    glDisableVertexAttribArray(0);
-    glDisableVertexAttribArray(1);
+    // Draw cubes
+    cube1.Draw(Projection, View, gWVPLocation);
+    cube2.Draw(Projection, View, gWVPLocation);
+    cube3.Draw(Projection, View, gWVPLocation);
 
     glutPostRedisplay();
-
     glutSwapBuffers();
 }
+
 
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 {
@@ -121,6 +123,7 @@ int main(int argc, char** argv)
     glEnable(GL_CULL_FACE);
     glFrontFace(GL_CW);
     glCullFace(GL_BACK);
+
 
     CompileShaders(VS_FILE_NAME, FS_FILE_NAME, gWVPLocation);
 

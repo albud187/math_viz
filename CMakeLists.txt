@@ -17,12 +17,22 @@ include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 # add_executable(T4_multi src/T4_shaders_multi.cpp src/ogl_utils/ogldev_util.cpp)
 # target_link_libraries(T4_multi ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
 
-add_executable(T15 src/T15_camera.cpp 
+# add_executable(T15 src/T15_camera.cpp 
+#     src/ogl_utils/ogldev_util.cpp
+#     src/ogl_utils/ogldev_math_3d.cpp
+#     src/programs/T15/camera.cpp 
+#     src/programs/T15/world_transform.cpp
+#     src/programs/T15/shaders.cpp
+#     )
+#target_link_libraries(T15 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
+
+add_executable(multi_3d src/multi_3d.cpp 
     src/ogl_utils/ogldev_util.cpp
     src/ogl_utils/ogldev_math_3d.cpp
     src/programs/T15/camera.cpp 
     src/programs/T15/world_transform.cpp
     src/programs/T15/shaders.cpp
+    src/multi_utils/cube.cpp
     )
     
-target_link_libraries(T15 ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
+target_link_libraries(multi_3d ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)

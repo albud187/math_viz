@@ -17,8 +17,8 @@ GLuint IBO;
 GLuint gWVPLocation;
 
 WorldTrans CubeWorldTransform;
-
 WorldTrans CubeWorldTransform2;
+WorldTrans CubeWorldTransform3;
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
@@ -43,9 +43,9 @@ void DrawCube() {
 }
 static void RenderSceneCB()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Also clear the depth buffer
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 
-    // Initialize and use the camera
+    // Camera setup
     GameCamera.OnRender();
     Matrix4f Projection;
     Matrix4f View = GameCamera.GetMatrix();
@@ -53,29 +53,38 @@ static void RenderSceneCB()
 
     // First Cube Transformations
     if (TEST == 0) {
-        CubeWorldTransform.SetPosition(-1.0f, 0.0f, 3.0f); // Position the first cube
-        CubeWorldTransform2.SetPosition(1.0f, 0.0f, 3.0f); // Initial position for the second cube
+        CubeWorldTransform.SetPosition(-2.0f, 0.0f, 3.0f); // Reposition for clear visibility
+        CubeWorldTransform2.SetPosition(0.0f, 0.0f, 3.0f); // Initial position for the second cube
+        CubeWorldTransform3.SetPosition(2.0f, 0.0f, 3.0f); // Initial position for the third cube
         TEST = 1;
     }
+
     CubeWorldTransform.Rotate(0.1f, 0.1f, 0.0f); // Rotate the first cube
-    // No need to translate in this example, but you can add if desired
 
     // Set and use the first cube's WVP matrix
     Matrix4f World1 = CubeWorldTransform.GetMatrix();
     Matrix4f WVP1 = Projection * View * World1;
     glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, &WVP1.m[0][0]);
-    DrawCube(); // Assuming a function to encapsulate draw calls
+    DrawCube(); // Draw the first cube
 
     // Second Cube Transformations
     CubeWorldTransform2.Rotate(-0.1f, 0.1f, 0.0f); // Rotate the second cube differently
-    // Apply other transformations to CubeWorldTransform2 as needed
 
     // Set and use the second cube's WVP matrix
     Matrix4f World2 = CubeWorldTransform2.GetMatrix();
     Matrix4f WVP2 = Projection * View * World2;
     glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, &WVP2.m[0][0]);
-    DrawCube(); 
-    CubeWorldTransform.Translate(0, 0, 5*dx);
+    DrawCube(); // Draw the second cube
+
+    // Third Cube Transformations
+    CubeWorldTransform3.Rotate(0.1f, -0.1f, 0.0f); // Rotate the third cube differently
+
+    // Set and use the third cube's WVP matrix
+    Matrix4f World3 = CubeWorldTransform3.GetMatrix();
+    Matrix4f WVP3 = Projection * View * World3;
+    glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, &WVP3.m[0][0]);
+    DrawCube(); // Draw the third cube
+
     glutPostRedisplay();
     glutSwapBuffers();
 }

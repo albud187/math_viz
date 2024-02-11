@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/alfab/experiments/math_viz/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/T15.dir/all
+all: CMakeFiles/multi_3d.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/T15.dir/clean
+clean: CMakeFiles/multi_3d.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/T15.dir
+# Target rules for target CMakeFiles/multi_3d.dir
 
 # All Build rule for target.
-CMakeFiles/T15.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=1,2,3,4,5,6,7 "Built target T15"
-.PHONY : CMakeFiles/T15.dir/all
+CMakeFiles/multi_3d.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target multi_3d"
+.PHONY : CMakeFiles/multi_3d.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/T15.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start /home/alfab/experiments/math_viz/build/CMakeFiles 7
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/T15.dir/all
+CMakeFiles/multi_3d.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /home/alfab/experiments/math_viz/build/CMakeFiles 8
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/multi_3d.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alfab/experiments/math_viz/build/CMakeFiles 0
-.PHONY : CMakeFiles/T15.dir/rule
+.PHONY : CMakeFiles/multi_3d.dir/rule
 
 # Convenience name for target.
-T15: CMakeFiles/T15.dir/rule
-.PHONY : T15
+multi_3d: CMakeFiles/multi_3d.dir/rule
+.PHONY : multi_3d
 
 # clean rule for target.
-CMakeFiles/T15.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/clean
-.PHONY : CMakeFiles/T15.dir/clean
+CMakeFiles/multi_3d.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/clean
+.PHONY : CMakeFiles/multi_3d.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

@@ -117,48 +117,72 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named T15
+# Target rules for targets named multi_3d
 
 # Build rule for target.
-T15: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 T15
-.PHONY : T15
+multi_3d: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 multi_3d
+.PHONY : multi_3d
 
 # fast build rule for target.
-T15/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/build
-.PHONY : T15/fast
+multi_3d/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/build
+.PHONY : multi_3d/fast
 
-src/T15_camera.o: src/T15_camera.cpp.o
-.PHONY : src/T15_camera.o
+src/multi_3d.o: src/multi_3d.cpp.o
+.PHONY : src/multi_3d.o
 
 # target to build an object file
-src/T15_camera.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/T15_camera.cpp.o
-.PHONY : src/T15_camera.cpp.o
+src/multi_3d.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_3d.cpp.o
+.PHONY : src/multi_3d.cpp.o
 
-src/T15_camera.i: src/T15_camera.cpp.i
-.PHONY : src/T15_camera.i
+src/multi_3d.i: src/multi_3d.cpp.i
+.PHONY : src/multi_3d.i
 
 # target to preprocess a source file
-src/T15_camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/T15_camera.cpp.i
-.PHONY : src/T15_camera.cpp.i
+src/multi_3d.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_3d.cpp.i
+.PHONY : src/multi_3d.cpp.i
 
-src/T15_camera.s: src/T15_camera.cpp.s
-.PHONY : src/T15_camera.s
+src/multi_3d.s: src/multi_3d.cpp.s
+.PHONY : src/multi_3d.s
 
 # target to generate assembly for a file
-src/T15_camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/T15_camera.cpp.s
-.PHONY : src/T15_camera.cpp.s
+src/multi_3d.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_3d.cpp.s
+.PHONY : src/multi_3d.cpp.s
+
+src/multi_utils/cube.o: src/multi_utils/cube.cpp.o
+.PHONY : src/multi_utils/cube.o
+
+# target to build an object file
+src/multi_utils/cube.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.o
+.PHONY : src/multi_utils/cube.cpp.o
+
+src/multi_utils/cube.i: src/multi_utils/cube.cpp.i
+.PHONY : src/multi_utils/cube.i
+
+# target to preprocess a source file
+src/multi_utils/cube.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.i
+.PHONY : src/multi_utils/cube.cpp.i
+
+src/multi_utils/cube.s: src/multi_utils/cube.cpp.s
+.PHONY : src/multi_utils/cube.s
+
+# target to generate assembly for a file
+src/multi_utils/cube.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/cube.cpp.s
+.PHONY : src/multi_utils/cube.cpp.s
 
 src/ogl_utils/ogldev_math_3d.o: src/ogl_utils/ogldev_math_3d.cpp.o
 .PHONY : src/ogl_utils/ogldev_math_3d.o
 
 # target to build an object file
 src/ogl_utils/ogldev_math_3d.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_math_3d.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.o
 .PHONY : src/ogl_utils/ogldev_math_3d.cpp.o
 
 src/ogl_utils/ogldev_math_3d.i: src/ogl_utils/ogldev_math_3d.cpp.i
@@ -166,7 +190,7 @@ src/ogl_utils/ogldev_math_3d.i: src/ogl_utils/ogldev_math_3d.cpp.i
 
 # target to preprocess a source file
 src/ogl_utils/ogldev_math_3d.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_math_3d.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.i
 .PHONY : src/ogl_utils/ogldev_math_3d.cpp.i
 
 src/ogl_utils/ogldev_math_3d.s: src/ogl_utils/ogldev_math_3d.cpp.s
@@ -174,7 +198,7 @@ src/ogl_utils/ogldev_math_3d.s: src/ogl_utils/ogldev_math_3d.cpp.s
 
 # target to generate assembly for a file
 src/ogl_utils/ogldev_math_3d.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_math_3d.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.s
 .PHONY : src/ogl_utils/ogldev_math_3d.cpp.s
 
 src/ogl_utils/ogldev_util.o: src/ogl_utils/ogldev_util.cpp.o
@@ -182,7 +206,7 @@ src/ogl_utils/ogldev_util.o: src/ogl_utils/ogldev_util.cpp.o
 
 # target to build an object file
 src/ogl_utils/ogldev_util.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o
 .PHONY : src/ogl_utils/ogldev_util.cpp.o
 
 src/ogl_utils/ogldev_util.i: src/ogl_utils/ogldev_util.cpp.i
@@ -190,7 +214,7 @@ src/ogl_utils/ogldev_util.i: src/ogl_utils/ogldev_util.cpp.i
 
 # target to preprocess a source file
 src/ogl_utils/ogldev_util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.i
 .PHONY : src/ogl_utils/ogldev_util.cpp.i
 
 src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
@@ -198,7 +222,7 @@ src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
 
 # target to generate assembly for a file
 src/ogl_utils/ogldev_util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/ogl_utils/ogldev_util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.s
 .PHONY : src/ogl_utils/ogldev_util.cpp.s
 
 src/programs/T15/camera.o: src/programs/T15/camera.cpp.o
@@ -206,7 +230,7 @@ src/programs/T15/camera.o: src/programs/T15/camera.cpp.o
 
 # target to build an object file
 src/programs/T15/camera.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/camera.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.o
 .PHONY : src/programs/T15/camera.cpp.o
 
 src/programs/T15/camera.i: src/programs/T15/camera.cpp.i
@@ -214,7 +238,7 @@ src/programs/T15/camera.i: src/programs/T15/camera.cpp.i
 
 # target to preprocess a source file
 src/programs/T15/camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/camera.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.i
 .PHONY : src/programs/T15/camera.cpp.i
 
 src/programs/T15/camera.s: src/programs/T15/camera.cpp.s
@@ -222,7 +246,7 @@ src/programs/T15/camera.s: src/programs/T15/camera.cpp.s
 
 # target to generate assembly for a file
 src/programs/T15/camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/camera.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/camera.cpp.s
 .PHONY : src/programs/T15/camera.cpp.s
 
 src/programs/T15/shaders.o: src/programs/T15/shaders.cpp.o
@@ -230,7 +254,7 @@ src/programs/T15/shaders.o: src/programs/T15/shaders.cpp.o
 
 # target to build an object file
 src/programs/T15/shaders.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/shaders.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.o
 .PHONY : src/programs/T15/shaders.cpp.o
 
 src/programs/T15/shaders.i: src/programs/T15/shaders.cpp.i
@@ -238,7 +262,7 @@ src/programs/T15/shaders.i: src/programs/T15/shaders.cpp.i
 
 # target to preprocess a source file
 src/programs/T15/shaders.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/shaders.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.i
 .PHONY : src/programs/T15/shaders.cpp.i
 
 src/programs/T15/shaders.s: src/programs/T15/shaders.cpp.s
@@ -246,7 +270,7 @@ src/programs/T15/shaders.s: src/programs/T15/shaders.cpp.s
 
 # target to generate assembly for a file
 src/programs/T15/shaders.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/shaders.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.s
 .PHONY : src/programs/T15/shaders.cpp.s
 
 src/programs/T15/world_transform.o: src/programs/T15/world_transform.cpp.o
@@ -254,7 +278,7 @@ src/programs/T15/world_transform.o: src/programs/T15/world_transform.cpp.o
 
 # target to build an object file
 src/programs/T15/world_transform.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/world_transform.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.o
 .PHONY : src/programs/T15/world_transform.cpp.o
 
 src/programs/T15/world_transform.i: src/programs/T15/world_transform.cpp.i
@@ -262,7 +286,7 @@ src/programs/T15/world_transform.i: src/programs/T15/world_transform.cpp.i
 
 # target to preprocess a source file
 src/programs/T15/world_transform.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/world_transform.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.i
 .PHONY : src/programs/T15/world_transform.cpp.i
 
 src/programs/T15/world_transform.s: src/programs/T15/world_transform.cpp.s
@@ -270,7 +294,7 @@ src/programs/T15/world_transform.s: src/programs/T15/world_transform.cpp.s
 
 # target to generate assembly for a file
 src/programs/T15/world_transform.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/T15.dir/build.make CMakeFiles/T15.dir/src/programs/T15/world_transform.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.s
 .PHONY : src/programs/T15/world_transform.cpp.s
 
 # Help Target
@@ -281,10 +305,13 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... T15"
-	@echo "... src/T15_camera.o"
-	@echo "... src/T15_camera.i"
-	@echo "... src/T15_camera.s"
+	@echo "... multi_3d"
+	@echo "... src/multi_3d.o"
+	@echo "... src/multi_3d.i"
+	@echo "... src/multi_3d.s"
+	@echo "... src/multi_utils/cube.o"
+	@echo "... src/multi_utils/cube.i"
+	@echo "... src/multi_utils/cube.s"
 	@echo "... src/ogl_utils/ogldev_math_3d.o"
 	@echo "... src/ogl_utils/ogldev_math_3d.i"
 	@echo "... src/ogl_utils/ogldev_math_3d.s"
