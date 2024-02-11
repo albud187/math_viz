@@ -7,10 +7,10 @@
 #include <GL/freeglut.h>
 
 #include "ogl_utils/ogldev_math_3d.h"
-#include "programs/T15/camera.h"
-#include "programs/T15/world_transform.h"
-#include "programs/T15/constants.h"
-#include "programs/T15/shaders.h"
+#include "multi_utils/camera.h"
+#include "multi_utils/world_transform.h"
+#include "multi_utils/constants.h"
+#include "multi_utils/shaders.h"
 
 GLuint VBO;
 GLuint IBO;
@@ -23,30 +23,32 @@ Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
-int TEST = 0;
+int TEST =0;
 static void RenderSceneCB()
 {
     glClear(GL_COLOR_BUFFER_BIT);
-    //game camera
     GameCamera.OnRender();
-    Matrix4f Projection;
-    Matrix4f View = GameCamera.GetMatrix();
-    Projection.InitPersProjTransform(persProjInfo);
-
-    //object
     float YRotationAngle = 0.1f;
     float dx = 0.001f;
+
     if (TEST ==0 ){
-        CubeWorldTransform.SetPosition(0.0f, 1.0f, 1.0f);
+        CubeWorldTransform.SetPosition(0.0f, 0.0f, 2.0f);
+        CubeWorldTransform2.SetPosition(0.0f, 2.0f, 0.0f);
         TEST = 1;
     }
     
-    CubeWorldTransform.Rotate(YRotationAngle, YRotationAngle, 0.0f);
+    CubeWorldTransform.Rotate(0.0f, YRotationAngle, 0.0f);
     CubeWorldTransform.Translate(0, 0, 5*dx);
-
     //pose of object
     Matrix4f World = CubeWorldTransform.GetMatrix();
+   
+    Matrix4f View = GameCamera.GetMatrix();
+    
+    Matrix4f Projection;
+    Projection.InitPersProjTransform(persProjInfo);
+
     Matrix4f WVP = Projection * View * World;
+
     glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, &WVP.m[0][0]);
 
     glBindBuffer(GL_ARRAY_BUFFER, VBO);
@@ -93,46 +95,6 @@ static void MouseCB(int button, int state, int x, int y) {
     }
 }
 
-static void CreateVertexBuffer()
-{
-    VT Vertices[8];
-
-    Vertices[0] = VT(0.1f, 0.1f, 0.1f);
-    Vertices[1] = VT(-0.1f, 0.1f, -0.1f);
-    Vertices[2] = VT(-0.1f, 0.1f, 0.1f);
-    Vertices[3] = VT(0.1f, -0.1f, -0.1f);
-    Vertices[4] = VT(-0.1f, -0.1f, -0.1f);
-    Vertices[5] = VT(0.1f, 0.1f, -0.1f);
-    Vertices[6] = VT(0.1f, -0.1f, 0.1f);
-    Vertices[7] = VT(-0.1f, -0.1f, 0.1f);
-
-    glGenBuffers(1, &VBO);
-    glBindBuffer(GL_ARRAY_BUFFER, VBO);
-    glBufferData(GL_ARRAY_BUFFER, sizeof(Vertices), Vertices, GL_STATIC_DRAW);
-}
-
-static void CreateIndexBuffer()
-{
-    unsigned int Indices[] = {
-                              0, 1, 2,
-                              1, 3, 4,
-                              5, 6, 3,
-                              7, 3, 6,
-                              2, 4, 7,
-                              0, 7, 6,
-                              0, 5, 1,
-                              1, 5, 3,
-                              5, 0, 6,
-                              7, 4, 3,
-                              2, 1, 4,
-                              0, 2, 7
-    };
-
-    glGenBuffers(1, &IBO);
-    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IBO);
-    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(Indices), Indices, GL_STATIC_DRAW);
-}
-
 int main(int argc, char** argv)
 {
 
@@ -159,9 +121,6 @@ int main(int argc, char** argv)
     glEnable(GL_CULL_FACE);
     glFrontFace(GL_CW);
     glCullFace(GL_BACK);
-
-    CreateVertexBuffer();
-    CreateIndexBuffer();
 
     CompileShaders(VS_FILE_NAME, FS_FILE_NAME, gWVPLocation);
 

@@ -1,11 +1,11 @@
-#ifndef GAME_OBJECT_H
-#define GAME_OBJECT_H
+#ifndef WORLD_TRANSFORM_H
+#define WORLD_TRANSFORM_H
 
 #include "../../ogl_utils/ogldev_math_3d.h"
 
-class GameObject {
+class WorldTrans {
  public:
-    GameObject() {}
+    WorldTrans() {}
 
     void SetScale(float scale);
     void SetRotation(float x, float y, float z);
@@ -20,6 +20,12 @@ class GameObject {
     Vector3f m_rotation = Vector3f(0.0f, 0.0f, 0.0f);
     Vector3f m_pos      = Vector3f(0.0f, 0.0f, 0.0f);
 };
+struct VT {
+    Vector3f pos;
+    Vector3f color;
 
+    VT(); // Default constructor
+    VT(float x, float y, float z); // Parameterized constructor
+};
 
 #endif

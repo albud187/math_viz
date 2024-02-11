@@ -35,7 +35,10 @@ void WorldTrans::Translate(float x, float y, float z)
     m_pos.x += x;
     m_pos.y += y;
     m_pos.z += z;
-
+    std::cout<<m_pos.x<<std::endl;
+    std::cout<<m_pos.y<<std::endl;
+    std::cout<<m_pos.z<<std::endl;
+    std::cout<<" "<<std::endl;
 }
 Matrix4f WorldTrans::GetMatrix()
 {
