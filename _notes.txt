@@ -15,19 +15,9 @@ working tutorials:
 19 to 28
 
 assignments:
-T15 
-- move the cube
-- create up and down movement
-- only pan camera when holding right click
-    - fix camera movement
-- create another cube and move them seperately
 
-#object
-create gameObject class with:
-- vertex
+create Mesh class with:
 - shader
-- position
-- orientation
 
 #multi object manager
 create scene class with:
@@ -36,3 +26,4 @@ create scene class with:
 - addobject class
 - drawallobjects
 
+create surface (grid)

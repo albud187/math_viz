@@ -34,7 +34,7 @@ void init_game_objects() {
     cube2->SetPosition(1.0f, 0.0f, 3.0f);
     cube3->SetPosition(2.0f, 0.0f, 3.0f);
 
-    cube1->setRotation(300, 300, 50);
+    cube1->setRotation(0, 0, 5);
     cube2->setRotation(0, 0, 5.0f);
     cube3->setRotation(0, 0, 5.0f);
 
@@ -47,21 +47,16 @@ static void RenderSceneCB()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
 
-    // Camera setup
     GameCamera.OnRender();
     Matrix4f Projection;
     Matrix4f View = GameCamera.GetMatrix();
     Projection.InitPersProjTransform(persProjInfo);
 
-    //gam
-    // auto c4 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    // c4->SetPosition(5.0f, 0.0f, 3.0f);
-    // c4->setRotation(0, 200, 5.0f);
-    // game_objects.push_back(c4);
-    // x = x+1;
-    // game_objects[0]->rotate(x,0,0);
-    // game_objects[0]->translate(0.02,0,0);
     draw_all(game_objects, Projection, View, gWVPLocation);
+
+    for (auto &game_obj : game_objects){
+        game_obj->rotate(0.25,0.0,0.0);
+    }
 
     glutPostRedisplay();
     glutSwapBuffers();
@@ -69,7 +64,11 @@ static void RenderSceneCB()
 
 float pos = 0;
 static void spawn_object(){
-    auto c_obj = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+  
+    //auto c_obj = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+ 
+    auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, n_v_cube, CUBE_INDICES, n_i_cube);
+
     c_obj->SetPosition(pos,pos,pos);
     c_obj->setRotation(-20,50,90);
     game_objects.push_back(c_obj);
@@ -83,7 +82,7 @@ static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
     if (std::find(CAM_KEYS.begin(), CAM_KEYS.end(), key)!=CAM_KEYS.end()){
         GameCamera.OnKeyboard(key);
     }
-    if (std::find(OTHER_KEYS.begin(), OTHER_KEYS.end(), key)!=OTHER_KEYS.end()){
+    if (std::find(WORK_KEYS.begin(), WORK_KEYS.end(), key)!=WORK_KEYS.end()){
         spawn_object();
     }
 

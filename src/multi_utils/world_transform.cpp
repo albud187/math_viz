@@ -61,5 +61,9 @@ VT::VT(float x, float y, float z) {
     float red   = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
     float green = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
     float blue  = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+    std::cout<<red<<endl;
+    //float red   = 1.0;
+    // float green = 0;
+    // float blue  = 0.15;
     color = Vector3f(red, green, blue);
 }

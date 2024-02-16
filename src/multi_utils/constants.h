@@ -5,14 +5,14 @@
 #define CONSTANTS_H
 
 std::vector<unsigned char> CAM_KEYS ={'a', 'A', 's', 'S', 'd', 'D', 'w', 'W', 'q', 'Q', 'z','Z'};
-std::vector<unsigned char> OTHER_KEYS ={'e', 'E'};
+std::vector<unsigned char> WORK_KEYS ={'e', 'E'};
 
 
 float WINDOW_WIDTH = 1500;
 float WINDOW_HEIGHT = 900;
 
-Vector3f CAMERA_POS(1.0f, 1.0f, 0.0f);
-Vector3f CAMERA_TARGET(0.0f, 0.0f, 1.0f);
+Vector3f CAMERA_POS(1.0f, 1.0f, -2.0f);
+Vector3f CAMERA_TARGET(-0.15f, -0.25f, 1.0f);
 Vector3f CAMERA_UP(0.0f, 1.0f, 0.0f);
 
 float FOV = 45.0f;
@@ -22,6 +22,18 @@ float Z_FAR = 1000.0f;
 const char* VS_FILE_NAME= "/home/alfab/experiments/math_viz/src/shaders/T15/shader.vs";
 const char* FS_FILE_NAME = "/home/alfab/experiments/math_viz/src/shaders/T15/shader.fs";
 
+
+VT CUBE_VERTICES[] = {
+    VT(0.1f, 0.1f, 0.1f),
+    VT(-0.1f, 0.1f, -0.1f),
+    VT(-0.1f, 0.1f, 0.1f),
+    VT(0.1f, -0.1f, -0.1f),
+    VT(-0.1f, -0.1f, -0.1f),
+    VT(0.1f, 0.1f, -0.1f),
+    VT(0.1f, -0.1f, 0.1f),
+    VT(-0.1f, -0.1f, 0.1f)
+    };
+    
 unsigned int CUBE_INDICES[] = {
                               0, 1, 2,
                               1, 3, 4,
@@ -36,23 +48,12 @@ unsigned int CUBE_INDICES[] = {
                               2, 1, 4,
                               0, 2, 7
     };
-VT CUBE_VERTICES[8] = {
-    VT(0.1f, 0.1f, 0.1f),
-    VT(-0.1f, 0.1f, -0.1f),
-    VT(-0.1f, 0.1f, 0.1f),
-    VT(0.1f, -0.1f, -0.1f),
-    VT(-0.1f, -0.1f, -0.1f),
-    VT(0.1f, 0.1f, -0.1f),
-    VT(0.1f, -0.1f, 0.1f),
-    VT(-0.1f, -0.1f, 0.1f)
-    };
-
 // Define the vertices for a triangular-based pyramid
 VT PYRAMID3_VERTICES[] = {
-    VT(0.0f, 0.5f, 0.0f),    // Tip of the pyramid
-    VT(-0.5f, -0.5f, 0.5f),  // Base vertex 1
-    VT(0.5f, -0.5f, 0.5f),   // Base vertex 2
-    VT(0.0f, -0.5f, -0.7f)   // Base vertex 3
+    VT(0.0f, 0.18f, -0.15f),    // Tip of the pyramid
+    VT(-0.2f, -0.2f, 0.22f),  // Base vertex 1
+    VT(0.18f, -0.18f, 0.18f),   // Base vertex 2
+    VT(0.0f, -0.18f, -0.3f)   // Base vertex 3
 };
 
 // Define the indices for the faces of the pyramid
@@ -65,4 +66,6 @@ unsigned int PYRAMID3_INDICES[] = {
 
 unsigned int n_v_pyramid3 = sizeof(PYRAMID3_VERTICES) / sizeof(PYRAMID3_VERTICES[0]);
 unsigned int n_i_pyramid3 = sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]);
+unsigned int n_v_cube = sizeof(CUBE_VERTICES) / sizeof(CUBE_VERTICES[0]);
+unsigned int n_i_cube = sizeof(CUBE_INDICES) / sizeof(CUBE_INDICES[0]);
 #endif
