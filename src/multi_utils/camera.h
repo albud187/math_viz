@@ -15,16 +15,20 @@ public:
 
     void OnKeyboard(unsigned char key);
 
-    void OnMouseDown(int button);
+    void OnMouseDown(int button, int x, int y);
     void OnMouseUp(int button);
     void OnMouse(int x, int y);
 
     void OnRender();
 
     Matrix4f GetMatrix();
-
-private:
     bool m_LeftButtonDown = false;
+    int X0;
+    int Y0;
+private:
+
+    int CHECK;
+    
     void Init();
     void Update();
 

@@ -136,62 +136,48 @@ void Camera::OnKeyboard(unsigned char Key)
     }
 }
 
-void Camera::OnMouseDown(int button) {
-        std::cout<<button<<std::endl;
-        m_LeftButtonDown = true;
+void Camera::OnMouseDown(int button, int x, int y) {
+    m_LeftButtonDown = true;
+    X0 = x;
+    Y0 = y;
+    std::cout << "mouse down at: " << x << ", " << y << std::endl;
 }
 void Camera::OnMouseUp(int button) {
-    std::cout<<button<<std::endl;
-        m_LeftButtonDown = false;
-}
-void Camera::OnMouse(int x, int y)
-{
-    if (!m_LeftButtonDown) {
-        return; // Do nothing if the left mouse button is not pressed
-    }
-    int DeltaX = x - m_mousePos.x;
-    int DeltaY = y - m_mousePos.y;
-
-    m_mousePos.x = x;
-    m_mousePos.y = y;
-
-    m_AngleH += (float)DeltaX / 20.0f;
-    m_AngleV += (float)DeltaY / 50.0f;
-
-    if (DeltaX == 0) {
-        if (x <= MARGIN) {
-            m_OnLeftEdge = true;
-        }
-        else if (x >= (m_windowWidth - MARGIN)) {
-            m_OnRightEdge = true;
-        }
-    }
-    else {
-        m_OnLeftEdge = false;
-        m_OnRightEdge = false;
-    }
-
-    if (DeltaY == 0) {
-        if (y <= MARGIN) {
-            m_OnUpperEdge = true;
-        }
-        else if (y >= (m_windowHeight - MARGIN)) {
-            m_OnLowerEdge = true;
-        }
-    }
-    else {
-        m_OnUpperEdge = false;
-        m_OnLowerEdge = false;
-    }
-
-    Update();
+   
+    m_LeftButtonDown = false;
+   
 }
 
+void Camera::OnMouse(int x, int y) {
+    if (m_LeftButtonDown) {
+        // Calculate the deltas from the initial position (X0, Y0)
+        int DeltaX = x - X0;
+        int DeltaY = y - Y0;
+        
+        // Update camera angles based on deltas
+        m_AngleH += (float)DeltaX / 200.0f;
+        m_AngleV += (float)DeltaY / 500.0f;
+
+        // Normalize angles to be within 0 to 360 degrees
+        m_AngleH = fmod(m_AngleH, 360.0f);
+        if (m_AngleH < 0) m_AngleH += 360.0f; // Ensure positive rotation angle
+
+        m_AngleV = fmod(m_AngleV, 360.0f);
+        if (m_AngleV < 0) m_AngleV += 360.0f; // Ensure positive rotation angle
+
+        std::cout << m_AngleH << std::endl;
+
+
+        Update();
+    }
+}
 
 void Camera::OnRender()
 {
     bool ShouldUpdate = false;
-
+    // std::cout<<"x :";
+    // std::cout<<m_mousePos.x<<std::endl;
+   
     if (m_OnLeftEdge) {
         m_AngleH -= EDGE_STEP;
         ShouldUpdate = true;
@@ -216,6 +202,8 @@ void Camera::OnRender()
 
     if (ShouldUpdate) {
         Update();
+
+   
     }
 }
 
@@ -238,6 +226,7 @@ void Camera::Update()
 
     m_up = m_target.Cross(U);
     m_up.Normalize();
+
 }
 
 

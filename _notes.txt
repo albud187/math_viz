@@ -19,6 +19,7 @@ T15
 - move the cube
 - create up and down movement
 - only pan camera when holding right click
+    - fix camera movement
 - create another cube and move them seperately
 
 #object
@@ -34,3 +35,4 @@ create scene class with:
 - index buffer
 - addobject class
 - drawallobjects
+

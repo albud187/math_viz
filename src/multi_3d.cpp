@@ -18,8 +18,6 @@ GLuint VBO;
 GLuint IBO;
 GLuint gWVPLocation;
 
-
-
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
@@ -76,14 +74,13 @@ static void SpecialKeyboardCB(int key, int mouse_x, int mouse_y)
     GameCamera.OnKeyboard(key);
 }
 
-static void PassiveMouseCB(int x, int y)
-{
+static void MotionCB(int x, int y) {
     GameCamera.OnMouse(x, y);
 }
 
 static void MouseCB(int button, int state, int x, int y) {
     if (state == GLUT_DOWN) {
-        GameCamera.OnMouseDown(button);
+        GameCamera.OnMouseDown(button, x, y); // Pass x and y coordinates
     } else if (state == GLUT_UP) {
         GameCamera.OnMouseUp(button);
     }
@@ -102,7 +99,7 @@ int main(int argc, char** argv)
     int win = glutCreateWindow("Tutorial 14");
     printf("window id: %d\n", win);
 
-    // Must be done after glut is initialized!
+    
     GLenum res = glewInit();
     if (res != GLEW_OK) {
         fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
@@ -122,7 +119,9 @@ int main(int argc, char** argv)
     init_game_objects();
     glutKeyboardFunc(KeyboardCB);
     glutSpecialFunc(SpecialKeyboardCB);
-    glutMotionFunc(PassiveMouseCB);
+    
+    glutMouseFunc(MouseCB);
+    glutMotionFunc(MotionCB);
     glutMouseFunc(MouseCB);
     glutMainLoop();
 
