@@ -30,8 +30,8 @@ add_executable(multi_3d src/multi_3d.cpp
     src/ogl_utils/ogldev_util.cpp
     src/ogl_utils/ogldev_math_3d.cpp
     src/multi_utils/camera.cpp 
-    src/programs/T15/world_transform.cpp
-    src/programs/T15/shaders.cpp
+    src/multi_utils/world_transform.cpp
+    src/multi_utils/shaders.cpp
     src/multi_utils/mesh.cpp
     )
     

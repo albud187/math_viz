@@ -201,6 +201,54 @@ src/multi_utils/mesh.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.s
 .PHONY : src/multi_utils/mesh.cpp.s
 
+src/multi_utils/shaders.o: src/multi_utils/shaders.cpp.o
+.PHONY : src/multi_utils/shaders.o
+
+# target to build an object file
+src/multi_utils/shaders.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/shaders.cpp.o
+.PHONY : src/multi_utils/shaders.cpp.o
+
+src/multi_utils/shaders.i: src/multi_utils/shaders.cpp.i
+.PHONY : src/multi_utils/shaders.i
+
+# target to preprocess a source file
+src/multi_utils/shaders.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/shaders.cpp.i
+.PHONY : src/multi_utils/shaders.cpp.i
+
+src/multi_utils/shaders.s: src/multi_utils/shaders.cpp.s
+.PHONY : src/multi_utils/shaders.s
+
+# target to generate assembly for a file
+src/multi_utils/shaders.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/shaders.cpp.s
+.PHONY : src/multi_utils/shaders.cpp.s
+
+src/multi_utils/world_transform.o: src/multi_utils/world_transform.cpp.o
+.PHONY : src/multi_utils/world_transform.o
+
+# target to build an object file
+src/multi_utils/world_transform.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/world_transform.cpp.o
+.PHONY : src/multi_utils/world_transform.cpp.o
+
+src/multi_utils/world_transform.i: src/multi_utils/world_transform.cpp.i
+.PHONY : src/multi_utils/world_transform.i
+
+# target to preprocess a source file
+src/multi_utils/world_transform.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/world_transform.cpp.i
+.PHONY : src/multi_utils/world_transform.cpp.i
+
+src/multi_utils/world_transform.s: src/multi_utils/world_transform.cpp.s
+.PHONY : src/multi_utils/world_transform.s
+
+# target to generate assembly for a file
+src/multi_utils/world_transform.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/world_transform.cpp.s
+.PHONY : src/multi_utils/world_transform.cpp.s
+
 src/ogl_utils/ogldev_math_3d.o: src/ogl_utils/ogldev_math_3d.cpp.o
 .PHONY : src/ogl_utils/ogldev_math_3d.o
 
@@ -249,54 +297,6 @@ src/ogl_utils/ogldev_util.cpp.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.s
 .PHONY : src/ogl_utils/ogldev_util.cpp.s
 
-src/programs/T15/shaders.o: src/programs/T15/shaders.cpp.o
-.PHONY : src/programs/T15/shaders.o
-
-# target to build an object file
-src/programs/T15/shaders.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.o
-.PHONY : src/programs/T15/shaders.cpp.o
-
-src/programs/T15/shaders.i: src/programs/T15/shaders.cpp.i
-.PHONY : src/programs/T15/shaders.i
-
-# target to preprocess a source file
-src/programs/T15/shaders.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.i
-.PHONY : src/programs/T15/shaders.cpp.i
-
-src/programs/T15/shaders.s: src/programs/T15/shaders.cpp.s
-.PHONY : src/programs/T15/shaders.s
-
-# target to generate assembly for a file
-src/programs/T15/shaders.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/shaders.cpp.s
-.PHONY : src/programs/T15/shaders.cpp.s
-
-src/programs/T15/world_transform.o: src/programs/T15/world_transform.cpp.o
-.PHONY : src/programs/T15/world_transform.o
-
-# target to build an object file
-src/programs/T15/world_transform.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.o
-.PHONY : src/programs/T15/world_transform.cpp.o
-
-src/programs/T15/world_transform.i: src/programs/T15/world_transform.cpp.i
-.PHONY : src/programs/T15/world_transform.i
-
-# target to preprocess a source file
-src/programs/T15/world_transform.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.i
-.PHONY : src/programs/T15/world_transform.cpp.i
-
-src/programs/T15/world_transform.s: src/programs/T15/world_transform.cpp.s
-.PHONY : src/programs/T15/world_transform.s
-
-# target to generate assembly for a file
-src/programs/T15/world_transform.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/programs/T15/world_transform.cpp.s
-.PHONY : src/programs/T15/world_transform.cpp.s
-
 # Help Target
 help:
 	@echo "The following are some of the valid targets for this Makefile:"
@@ -315,18 +315,18 @@ help:
 	@echo "... src/multi_utils/mesh.o"
 	@echo "... src/multi_utils/mesh.i"
 	@echo "... src/multi_utils/mesh.s"
+	@echo "... src/multi_utils/shaders.o"
+	@echo "... src/multi_utils/shaders.i"
+	@echo "... src/multi_utils/shaders.s"
+	@echo "... src/multi_utils/world_transform.o"
+	@echo "... src/multi_utils/world_transform.i"
+	@echo "... src/multi_utils/world_transform.s"
 	@echo "... src/ogl_utils/ogldev_math_3d.o"
 	@echo "... src/ogl_utils/ogldev_math_3d.i"
 	@echo "... src/ogl_utils/ogldev_math_3d.s"
 	@echo "... src/ogl_utils/ogldev_util.o"
 	@echo "... src/ogl_utils/ogldev_util.i"
 	@echo "... src/ogl_utils/ogldev_util.s"
-	@echo "... src/programs/T15/shaders.o"
-	@echo "... src/programs/T15/shaders.i"
-	@echo "... src/programs/T15/shaders.s"
-	@echo "... src/programs/T15/world_transform.o"
-	@echo "... src/programs/T15/world_transform.i"
-	@echo "... src/programs/T15/world_transform.s"
 .PHONY : help
 
 

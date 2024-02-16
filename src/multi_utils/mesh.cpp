@@ -1,6 +1,7 @@
 #include "mesh.h"
 //    unsigned int n_v = numVertices;
 //     unsigned int n_i = numIndices;
+
 Mesh::Mesh(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices)
     : numIndices(numIndices) {
 
@@ -53,3 +54,10 @@ void Mesh::Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLoc
     glDisableVertexAttribArray(1);
 }
 
+void draw_all(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation) {
+    for (const auto& meshPtr : game_objects) {
+        if (meshPtr) { // Check if the shared_ptr is not null
+            meshPtr->Draw(Projection, View, gWVPLocation);
+        }
+    }
+}

@@ -1,9 +1,12 @@
-#ifndef CUBE_H
-#define CUBE_H
+#ifndef MESH_H
+#define MESH_H
+
 
 #include <GL/glew.h>
+#include <GL/freeglut.h>
 #include "../ogl_utils/ogldev_math_3d.h" 
 #include "world_transform.h"
+#include <memory>
 class Mesh {
 public:
     WorldTrans transform; // Transformation data for the mesh
@@ -24,4 +27,5 @@ private:
     void createIndexBuffer(const unsigned int* indices, unsigned int numIndices);
 };
 
-#endif // CUBE_H
+void draw_all(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation);
+#endif

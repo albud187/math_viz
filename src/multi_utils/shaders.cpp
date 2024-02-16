@@ -1,11 +1,11 @@
 #include "shaders.h"
 #include <stdio.h>
 #include <string.h>
-
+#include <iostream>
 #include <math.h>
 #include <GL/glew.h>
 #include <GL/freeglut.h>
-#include "../../ogl_utils/ogldev_math_3d.h"
+#include "../ogl_utils/ogldev_math_3d.h"
 
 void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType)
 {

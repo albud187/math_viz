@@ -33,3 +33,4 @@ create scene class with:
 - vertex buffer
 - index buffer
 - addobject class
+- drawallobjects

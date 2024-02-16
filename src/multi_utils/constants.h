@@ -59,4 +59,6 @@ unsigned int PYRAMID3_INDICES[] = {
     1, 3, 2   // Base
 };
 
+unsigned int n_v_pyramid3 = sizeof(PYRAMID3_VERTICES) / sizeof(PYRAMID3_VERTICES[0]);
+unsigned int n_i_pyramid3 = sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]);
 #endif

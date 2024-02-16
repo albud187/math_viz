@@ -6,6 +6,7 @@
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include <unordered_map>
+#include <memory>
 #include "ogl_utils/ogldev_math_3d.h"
 #include "multi_utils/camera.h"
 #include "multi_utils/world_transform.h"
@@ -17,21 +18,33 @@ GLuint VBO;
 GLuint IBO;
 GLuint gWVPLocation;
 
-unsigned int n_v_pyramid3 = sizeof(PYRAMID3_VERTICES) / sizeof(PYRAMID3_VERTICES[0]);
-unsigned int n_i_pyramid3 = sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]);
+
 
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
-std::unordered_map<std::string, Mesh> game_objects;
+//std::unordered_map<std::string, Mesh> game_objects;
+std::vector<std::shared_ptr<Mesh>> game_objects;
 
-// Global or static rotation angles
-static float rotationAngle1 = 0.0f;
-static float rotationAngle2 = 0.0f;
-static float rotationAngle3 = 0.0f;
-static float px = -1.0f;
+void init_game_objects() {
+    auto cube1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    auto cube2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    auto cube3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    // Set positions and rotations
+    cube1->SetPosition(-1.0f, 0.0f, 3.0f);
+    cube2->SetPosition(1.0f, 0.0f, 3.0f);
+    cube3->SetPosition(2.0f, 0.0f, 3.0f);
 
+    cube1->setRotation(0, 0, 5.0f);
+    cube2->setRotation(0, 0, 5.0f);
+    cube3->setRotation(0, 0, 5.0f);
+
+    game_objects.push_back(cube1);
+    game_objects.push_back(cube2);
+    game_objects.push_back(cube3);
+}
+float x = 0;
 static void RenderSceneCB()
 {
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
@@ -41,35 +54,17 @@ static void RenderSceneCB()
     Matrix4f Projection;
     Matrix4f View = GameCamera.GetMatrix();
     Projection.InitPersProjTransform(persProjInfo);
-
-    Mesh cube1(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    Mesh cube2(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    Mesh cube3(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-
-    // Set initial positions (could be moved outside and made static if they don't change)
-    cube1.SetPosition(-1.0f, 0.0f, 3.0f);
-    cube2.SetPosition(1.0f, 0.0f, 3.0f);
-    cube3.SetPosition(2.0f, 0.0f, 3.0f);
-    
-    // Increment rotation angles
-    rotationAngle1 += 0.05f;
-    rotationAngle2 += 0.10f;
-    rotationAngle3 += 0.20f;
-
-    // Apply rotations
-    cube1.setRotation(rotationAngle1, rotationAngle1, 5.0f);
-    cube2.setRotation(rotationAngle2, rotationAngle2, 5.0f);
-    cube3.setRotation(rotationAngle3, rotationAngle3, 5.0f);
-
-    // Draw cubes
-    cube1.Draw(Projection, View, gWVPLocation);
-    cube2.Draw(Projection, View, gWVPLocation);
-    cube3.Draw(Projection, View, gWVPLocation);
+    // auto c4 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    // c4->SetPosition(5.0f, 0.0f, 3.0f);
+    // c4->setRotation(0, 200, 5.0f);
+    // game_objects.push_back(c4);
+    // x = x+1;
+    game_objects[0]->setRotation(x,0,0);
+    draw_all(game_objects, Projection, View, gWVPLocation);
 
     glutPostRedisplay();
     glutSwapBuffers();
 }
-
 
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 {
@@ -96,10 +91,11 @@ static void MouseCB(int button, int state, int x, int y) {
 
 int main(int argc, char** argv)
 {
+    
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
-
+    
     int x = 200;
     int y = 100;
     glutInitWindowPosition(x, y);
@@ -120,11 +116,10 @@ int main(int argc, char** argv)
     glFrontFace(GL_CW);
     glCullFace(GL_BACK);
 
-
     CompileShaders(VS_FILE_NAME, FS_FILE_NAME, gWVPLocation);
-
+    
     glutDisplayFunc(RenderSceneCB);
-
+    init_game_objects();
     glutKeyboardFunc(KeyboardCB);
     glutSpecialFunc(SpecialKeyboardCB);
     glutMotionFunc(PassiveMouseCB);
