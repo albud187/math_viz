@@ -34,6 +34,13 @@ void Mesh::setRotation(float rx, float ry, float rz) {
     transform.SetRotation(rx, ry, rz);
 }
 
+void Mesh::translate(float x, float y, float z){
+    transform.Translate(x,y,z);
+}
+void Mesh::rotate(float rx, float ry, float rz){
+    transform.Rotate(rx, ry, rz);
+}
+
 void Mesh::Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation) {
     Matrix4f world_pose = transform.GetMatrix();
     Matrix4f wvp = projection * view * world_pose;

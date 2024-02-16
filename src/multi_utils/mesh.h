@@ -7,6 +7,7 @@
 #include "../ogl_utils/ogldev_math_3d.h" 
 #include "world_transform.h"
 #include <memory>
+
 class Mesh {
 public:
     WorldTrans transform; // Transformation data for the mesh
@@ -16,6 +17,8 @@ public:
     
     void SetPosition(float x, float y, float z);
     void setRotation(float rx, float ry, float rz);
+    void translate(float x, float y, float z);
+    void rotate(float rx, float ry, float rz);
     void Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
 
 private:

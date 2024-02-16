@@ -86,16 +86,36 @@ void Camera::SetPosition(float x, float y, float z)
 void Camera::OnKeyboard(unsigned char Key)
 {
     switch (Key) {
+    case 'Q':
+    case 'q':
 
-    case GLUT_KEY_UP:
+        m_up.Normalize();
+        m_up *= m_speed;
+        m_pos += m_up;
+         //m_pos.y += m_speed;
+        break;
+    case 'Z':
+    case 'z':
+
+        m_up.Normalize();
+        m_up *= m_speed;
+        m_pos -= m_up;
+       
+        //m_pos.y -= m_speed;
+        break;
+
+    case 'W':
+    case 'w':
         m_pos += (m_target * m_speed);
         break;
 
-    case GLUT_KEY_DOWN:
+    case 'S':
+    case 's':
         m_pos -= (m_target * m_speed);
         break;
 
-    case GLUT_KEY_LEFT:
+    case 'A':
+    case 'a':
         {
             Vector3f Left = m_target.Cross(m_up);
             Left.Normalize();
@@ -104,7 +124,8 @@ void Camera::OnKeyboard(unsigned char Key)
         }
         break;
 
-    case GLUT_KEY_RIGHT:
+    case 'D':
+    case 'd':
         {
             Vector3f Right = m_up.Cross(m_target);
             Right.Normalize();
@@ -112,15 +133,6 @@ void Camera::OnKeyboard(unsigned char Key)
             m_pos += Right;
         }
         break;
-
-    case GLUT_KEY_PAGE_UP:
-        m_pos.y += m_speed;
-        break;
-
-    case GLUT_KEY_PAGE_DOWN:
-        m_pos.y -= m_speed;
-        break;
-
     case '+':
         m_speed += 0.1f;
         printf("Speed changed to %f\n", m_speed);

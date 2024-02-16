@@ -4,6 +4,10 @@
 #ifndef CONSTANTS_H
 #define CONSTANTS_H
 
+std::vector<unsigned char> CAM_KEYS ={'a', 'A', 's', 'S', 'd', 'D', 'w', 'W', 'q', 'Q', 'z','Z'};
+std::vector<unsigned char> OTHER_KEYS ={'e', 'E'};
+
+
 float WINDOW_WIDTH = 1500;
 float WINDOW_HEIGHT = 900;
 

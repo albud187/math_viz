@@ -7,6 +7,7 @@
 #include <GL/freeglut.h>
 #include <unordered_map>
 #include <memory>
+#include <algorithm>
 #include "ogl_utils/ogldev_math_3d.h"
 #include "multi_utils/camera.h"
 #include "multi_utils/world_transform.h"
@@ -22,19 +23,18 @@ Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
-//std::unordered_map<std::string, Mesh> game_objects;
 std::vector<std::shared_ptr<Mesh>> game_objects;
 
 void init_game_objects() {
     auto cube1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
     auto cube2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
     auto cube3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    // Set positions and rotations
+    
     cube1->SetPosition(-1.0f, 0.0f, 3.0f);
     cube2->SetPosition(1.0f, 0.0f, 3.0f);
     cube3->SetPosition(2.0f, 0.0f, 3.0f);
 
-    cube1->setRotation(0, 0, 5.0f);
+    cube1->setRotation(300, 300, 50);
     cube2->setRotation(0, 0, 5.0f);
     cube3->setRotation(0, 0, 5.0f);
 
@@ -52,26 +52,48 @@ static void RenderSceneCB()
     Matrix4f Projection;
     Matrix4f View = GameCamera.GetMatrix();
     Projection.InitPersProjTransform(persProjInfo);
+
+    //gam
     // auto c4 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
     // c4->SetPosition(5.0f, 0.0f, 3.0f);
     // c4->setRotation(0, 200, 5.0f);
     // game_objects.push_back(c4);
     // x = x+1;
-    game_objects[0]->setRotation(x,0,0);
+    // game_objects[0]->rotate(x,0,0);
+    // game_objects[0]->translate(0.02,0,0);
     draw_all(game_objects, Projection, View, gWVPLocation);
 
     glutPostRedisplay();
     glutSwapBuffers();
 }
 
+float pos = 0;
+static void spawn_object(){
+    auto c_obj = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    c_obj->SetPosition(pos,pos,pos);
+    c_obj->setRotation(-20,50,90);
+    game_objects.push_back(c_obj);
+    pos = pos+2;
+}
+
+
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 {
-    GameCamera.OnKeyboard(key);
+    std::cout<<key<<std::endl;
+    if (std::find(CAM_KEYS.begin(), CAM_KEYS.end(), key)!=CAM_KEYS.end()){
+        GameCamera.OnKeyboard(key);
+    }
+    if (std::find(OTHER_KEYS.begin(), OTHER_KEYS.end(), key)!=OTHER_KEYS.end()){
+        spawn_object();
+    }
+
+   
 }
 
 static void SpecialKeyboardCB(int key, int mouse_x, int mouse_y)
 {
     GameCamera.OnKeyboard(key);
+   
 }
 
 static void MotionCB(int x, int y) {
@@ -118,7 +140,7 @@ int main(int argc, char** argv)
     glutDisplayFunc(RenderSceneCB);
     init_game_objects();
     glutKeyboardFunc(KeyboardCB);
-    glutSpecialFunc(SpecialKeyboardCB);
+    //glutSpecialFunc(SpecialKeyboardCB);
     
     glutMouseFunc(MouseCB);
     glutMotionFunc(MotionCB);
