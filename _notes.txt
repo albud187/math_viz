@@ -14,16 +14,7 @@ working tutorials:
 0 to 18
 19 to 28
 
-assignments:
-
-create Mesh class with:
-- shader
-
-#multi object manager
-create scene class with:
-- vertex buffer
-- index buffer
-- addobject class
-- drawallobjects
-
-create surface (grid)
+to do
+- link different shader to different mesh instances
+- frame rate  / time
+- create surface (grid)

@@ -152,7 +152,6 @@ void Camera::OnMouseDown(int button, int x, int y) {
     m_LeftButtonDown = true;
     X0 = x;
     Y0 = y;
-    std::cout << "mouse down at: " << x << ", " << y << std::endl;
 }
 void Camera::OnMouseUp(int button) {
    
@@ -162,23 +161,17 @@ void Camera::OnMouseUp(int button) {
 
 void Camera::OnMouse(int x, int y) {
     if (m_LeftButtonDown) {
-        // Calculate the deltas from the initial position (X0, Y0)
         int DeltaX = x - X0;
         int DeltaY = y - Y0;
         
-        // Update camera angles based on deltas
         m_AngleH += (float)DeltaX / 200.0f;
         m_AngleV += (float)DeltaY / 500.0f;
 
-        // Normalize angles to be within 0 to 360 degrees
         m_AngleH = fmod(m_AngleH, 360.0f);
-        if (m_AngleH < 0) m_AngleH += 360.0f; // Ensure positive rotation angle
+        if (m_AngleH < 0) m_AngleH += 360.0f; 
 
         m_AngleV = fmod(m_AngleV, 360.0f);
-        if (m_AngleV < 0) m_AngleV += 360.0f; // Ensure positive rotation angle
-
-        std::cout << m_AngleH << std::endl;
-
+        if (m_AngleV < 0) m_AngleV += 360.0f;
 
         Update();
     }
@@ -187,9 +180,7 @@ void Camera::OnMouse(int x, int y) {
 void Camera::OnRender()
 {
     bool ShouldUpdate = false;
-    // std::cout<<"x :";
-    // std::cout<<m_mousePos.x<<std::endl;
-   
+
     if (m_OnLeftEdge) {
         m_AngleH -= EDGE_STEP;
         ShouldUpdate = true;

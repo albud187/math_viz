@@ -42,6 +42,7 @@ void Mesh::rotate(float rx, float ry, float rz){
 }
 
 void Mesh::Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation) {
+    glUseProgram(shaderProgramID);
     Matrix4f world_pose = transform.GetMatrix();
     Matrix4f wvp = projection * view * world_pose;
     glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, &wvp.m[0][0]);
@@ -59,6 +60,10 @@ void Mesh::Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLoc
 
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
+}
+
+void Mesh::SetShaderProgram(GLuint programID) {
+    shaderProgramID = programID;
 }
 
 void draw_all(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation) {

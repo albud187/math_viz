@@ -12,6 +12,6 @@
 
 void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType);
 
-void CompileShaders(const char* pVSFileName, const char* pFSFileName, GLuint gWVPLocation);
+GLuint CompileShaders(const char* pVSFileName, const char* pFSFileName);
 
 #endif

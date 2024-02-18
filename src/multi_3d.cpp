@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <string.h>
 #include <iostream>
@@ -8,6 +7,8 @@
 #include <unordered_map>
 #include <memory>
 #include <algorithm>
+#include <chrono>
+#include <thread>
 #include "ogl_utils/ogldev_math_3d.h"
 #include "multi_utils/camera.h"
 #include "multi_utils/world_transform.h"
@@ -17,35 +18,47 @@
 
 GLuint VBO;
 GLuint IBO;
-GLuint gWVPLocation;
+GLuint gWVPLocation = 0;
 
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
 std::vector<std::shared_ptr<Mesh>> game_objects;
-
+std::vector<GLuint> shaders; 
 void init_game_objects() {
-    auto cube1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    auto cube2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    auto cube3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+ 
+    GLuint shader1 = CompileShaders(VS_FILE_NAME, FS_FILE_NAME);
+    GLuint shader2 = CompileShaders(VS2_FILE_NAME, FS2_FILE_NAME);
+    shaders.push_back(shader1);
+    shaders.push_back(shader2);
+
+    auto s1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    auto s2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+    auto s3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
     
-    cube1->SetPosition(-1.0f, 0.0f, 3.0f);
-    cube2->SetPosition(1.0f, 0.0f, 3.0f);
-    cube3->SetPosition(2.0f, 0.0f, 3.0f);
+    s1->SetShaderProgram(shader1);
+    s2->SetShaderProgram(shader2);
+    s3->SetShaderProgram(shader1);
+    s1->SetPosition(-1.0f, 0.0f, 3.0f);
+    s2->SetPosition(1.0f, 0.0f, 3.0f);
+    s3->SetPosition(2.0f, 0.0f, 3.0f);
 
-    cube1->setRotation(0, 0, 5);
-    cube2->setRotation(0, 0, 5.0f);
-    cube3->setRotation(0, 0, 5.0f);
+    s1->setRotation(0, 0, 5);
+    s2->setRotation(0, 0, 5.0f);
+    s3->setRotation(0, 0, 5.0f);
 
-    game_objects.push_back(cube1);
-    game_objects.push_back(cube2);
-    game_objects.push_back(cube3);
+    game_objects.push_back(s1);
+    game_objects.push_back(s2);
+    game_objects.push_back(s3);
 }
-float x = 0;
+
 static void RenderSceneCB()
 {
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); // Clear color and depth buffers
+    static auto lastFrameTime = std::chrono::high_resolution_clock::now();
+    auto startFrameTime = std::chrono::high_resolution_clock::now();
+    
+    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
 
     GameCamera.OnRender();
     Matrix4f Projection;
@@ -55,20 +68,28 @@ static void RenderSceneCB()
     draw_all(game_objects, Projection, View, gWVPLocation);
 
     for (auto &game_obj : game_objects){
-        game_obj->rotate(0.25,0.0,0.0);
+        game_obj->rotate(360/TARGET_FPS_DELAY_MS,0.0,0.0);
     }
-
     glutPostRedisplay();
     glutSwapBuffers();
+
+    auto endFrameTime = std::chrono::high_resolution_clock::now();
+    auto frameDuration = std::chrono::duration_cast<std::chrono::milliseconds>(endFrameTime - startFrameTime);
+    auto targetFrameTime = std::chrono::milliseconds(TARGET_FPS_DELAY_MS); // Approximately for 30 FPS
+
+    if (frameDuration < targetFrameTime) {
+        auto sleepDuration = targetFrameTime - frameDuration;
+        std::this_thread::sleep_for(targetFrameTime - frameDuration);
+    }
+    lastFrameTime = std::chrono::high_resolution_clock::now();
+    
 }
 
 float pos = 0;
 static void spawn_object(){
-  
-    //auto c_obj = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
- 
-    auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, n_v_cube, CUBE_INDICES, n_i_cube);
 
+    auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, n_v_cube, CUBE_INDICES, n_i_cube);
+    c_obj->SetShaderProgram(shaders[0]);
     c_obj->SetPosition(pos,pos,pos);
     c_obj->setRotation(-20,50,90);
     game_objects.push_back(c_obj);
@@ -85,14 +106,6 @@ static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
     if (std::find(WORK_KEYS.begin(), WORK_KEYS.end(), key)!=WORK_KEYS.end()){
         spawn_object();
     }
-
-   
-}
-
-static void SpecialKeyboardCB(int key, int mouse_x, int mouse_y)
-{
-    GameCamera.OnKeyboard(key);
-   
 }
 
 static void MotionCB(int x, int y) {
@@ -120,30 +133,24 @@ int main(int argc, char** argv)
     int win = glutCreateWindow("Tutorial 14");
     printf("window id: %d\n", win);
 
-    
     GLenum res = glewInit();
     if (res != GLEW_OK) {
         fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
         return 1;
     }
 
-    GLclampf Red = 0.2f, Green = 0.2f, Blue = 0.2f, Alpha = 0.0f;
+    GLclampf Red = 0.2f, Green = 0.2f, Blue = 0.2f, Alpha = 0.9f;
     glClearColor(Red, Green, Blue, Alpha);
 
     glEnable(GL_CULL_FACE);
     glFrontFace(GL_CW);
     glCullFace(GL_BACK);
 
-    CompileShaders(VS_FILE_NAME, FS_FILE_NAME, gWVPLocation);
-    
     glutDisplayFunc(RenderSceneCB);
     init_game_objects();
     glutKeyboardFunc(KeyboardCB);
-    //glutSpecialFunc(SpecialKeyboardCB);
-    
     glutMouseFunc(MouseCB);
     glutMotionFunc(MotionCB);
-    glutMouseFunc(MouseCB);
     glutMainLoop();
 
     return 0;

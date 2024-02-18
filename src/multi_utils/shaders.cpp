@@ -40,10 +40,10 @@ void AddShader(GLuint ShaderProgram, const char* pShaderText, GLenum ShaderType)
 }
 
 
-void CompileShaders(const char* pVSFileName, const char* pFSFileName, GLuint gWVPLocation)
+GLuint CompileShaders(const char* pVSFileName, const char* pFSFileName)
 {
     GLuint ShaderProgram = glCreateProgram();
-
+    //GLuint ShaderProgram = program_id;
     if (ShaderProgram == 0) {
         fprintf(stderr, "Error creating shader program\n");
         exit(1);
@@ -75,12 +75,6 @@ void CompileShaders(const char* pVSFileName, const char* pFSFileName, GLuint gWV
         exit(1);
     }
 
-    gWVPLocation = glGetUniformLocation(ShaderProgram, "gWVP");
-    if (gWVPLocation == -1) {
-        printf("Error getting uniform location of 'gWVP'\n");
-        exit(1);
-    }
-
     glValidateProgram(ShaderProgram);
     glGetProgramiv(ShaderProgram, GL_VALIDATE_STATUS, &Success);
     if (!Success) {
@@ -89,5 +83,5 @@ void CompileShaders(const char* pVSFileName, const char* pFSFileName, GLuint gWV
         exit(1);
     }
 
-    glUseProgram(ShaderProgram);
+    return ShaderProgram;
 }

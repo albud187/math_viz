@@ -234,6 +234,14 @@ CMakeFiles/multi_3d.dir/src/multi_3d.cpp.o: ../src/multi_3d.cpp \
   /usr/include/c++/11/bits/algorithmfwd.h \
   /usr/include/c++/11/bits/stl_heap.h \
   /usr/include/c++/11/bits/uniform_int_dist.h \
+  /usr/include/c++/11/chrono \
+  /usr/include/c++/11/ratio \
+  /usr/include/c++/11/limits \
+  /usr/include/c++/11/ctime \
+  /usr/include/c++/11/bits/parse_numbers.h \
+  /usr/include/c++/11/thread \
+  /usr/include/c++/11/bits/std_thread.h \
+  /usr/include/c++/11/bits/this_thread_sleep.h \
   ../src/ogl_utils/ogldev_math_3d.h \
   /usr/include/c++/11/cfloat \
   /usr/lib/gcc/x86_64-linux-gnu/11/include/float.h \
@@ -1663,6 +1671,16 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 ../src/multi_utils/world_transform.h:
 
+/usr/include/assimp/matrix4x4.h:
+
+/usr/include/assimp/matrix3x3.h:
+
+/usr/include/assimp/defs.h:
+
+../src/ogl_utils/ogldev_types.h:
+
+/usr/include/assert.h:
+
 /usr/include/x86_64-linux-gnu/asm/bitsperlong.h:
 
 /usr/include/c++/11/backward/binders.h:
@@ -1743,10 +1761,6 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 /usr/include/ctype.h:
 
-/usr/include/c++/11/bits/cpp_type_traits.h:
-
-/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
-
 /usr/include/c++/11/ext/type_traits.h:
 
 /usr/include/x86_64-linux-gnu/c++/11/bits/gthr.h:
@@ -1764,6 +1778,10 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 /usr/include/c++/11/bits/shared_ptr_base.h:
 
 /usr/include/c++/11/bits/basic_string.h:
+
+/usr/include/assimp/config.h:
+
+/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
 
 /usr/include/c++/11/bits/ios_base.h:
 
@@ -1805,11 +1823,21 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 /usr/include/features.h:
 
+../src/multi_utils/camera.h:
+
+/usr/include/c++/11/cmath:
+
+/usr/include/c++/11/bits/allocator.h:
+
 /usr/include/c++/11/bits/char_traits.h:
 
 /usr/include/asm-generic/errno-base.h:
 
 /usr/include/x86_64-linux-gnu/bits/types/clock_t.h:
+
+/usr/include/assimp/vector3.h:
+
+/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
 
 /usr/include/x86_64-linux-gnu/bits/statx.h:
 
@@ -1830,8 +1858,6 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 /usr/include/c++/11/cstdlib:
 
 /usr/include/c++/11/bit:
-
-/usr/include/assert.h:
 
 /usr/include/c++/11/bits/predefined_ops.h:
 
@@ -1877,8 +1903,6 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 /usr/include/x86_64-linux-gnu/bits/wctype-wchar.h:
 
-/usr/include/x86_64-linux-gnu/bits/wordsize.h:
-
 /usr/include/x86_64-linux-gnu/bits/types/__sigset_t.h:
 
 /usr/include/x86_64-linux-gnu/bits/long-double.h:
@@ -1914,6 +1938,8 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 ../src/multi_utils/world_transform.cpp:
 
 /usr/include/x86_64-linux-gnu/bits/time64.h:
+
+/usr/include/c++/11/ctime:
 
 /usr/include/wchar.h:
 
@@ -1987,9 +2013,11 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 /usr/include/alloca.h:
 
-/usr/include/assimp/defs.h:
-
 /usr/include/c++/11/cstdio:
+
+/usr/include/x86_64-linux-gnu/bits/wordsize.h:
+
+/usr/include/c++/11/chrono:
 
 /usr/include/x86_64-linux-gnu/bits/types/cookie_io_functions_t.h:
 
@@ -2069,6 +2097,8 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 /usr/include/x86_64-linux-gnu/bits/types/struct_tm.h:
 
+/usr/include/c++/11/bits/this_thread_sleep.h:
+
 /usr/include/c++/11/bits/locale_facets.tcc:
 
 /usr/include/c++/11/istream:
@@ -2113,10 +2143,6 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 /usr/include/c++/11/bits/hashtable_policy.h:
 
-/usr/lib/gcc/x86_64-linux-gnu/11/include/stdint.h:
-
-/usr/include/assimp/vector3.h:
-
 /usr/include/c++/11/bits/stl_relops.h:
 
 /usr/include/c++/11/array:
@@ -2157,11 +2183,25 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 
 /usr/include/c++/11/bits/shared_ptr_atomic.h:
 
+/usr/include/c++/11/bits/parse_numbers.h:
+
 /usr/include/c++/11/bits/algorithmfwd.h:
 
 /usr/include/c++/11/bits/std_abs.h:
 
 /usr/include/c++/11/bits/stl_heap.h:
+
+/usr/include/c++/11/thread:
+
+/usr/include/c++/11/ratio:
+
+/usr/include/c++/11/limits:
+
+/usr/include/c++/11/bits/cpp_type_traits.h:
+
+/usr/include/c++/11/bits/stl_iterator_base_funcs.h:
+
+/usr/include/c++/11/bits/std_thread.h:
 
 ../src/ogl_utils/ogldev_math_3d.h:
 
@@ -2194,19 +2234,3 @@ CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o: ../src/ogl_utils/ogldev
 /usr/include/c++/11/bits/stl_bvector.h:
 
 /usr/include/c++/11/bits/vector.tcc:
-
-../src/ogl_utils/ogldev_types.h:
-
-/usr/include/x86_64-linux-gnu/gnu/stubs-64.h:
-
-/usr/include/assimp/config.h:
-
-/usr/include/assimp/matrix3x3.h:
-
-/usr/include/assimp/matrix4x4.h:
-
-/usr/include/c++/11/cmath:
-
-/usr/include/c++/11/bits/allocator.h:
-
-../src/multi_utils/camera.h:
