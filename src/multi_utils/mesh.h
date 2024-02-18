@@ -20,6 +20,8 @@ public:
     void translate(float x, float y, float z);
     void rotate(float rx, float ry, float rz);
     void Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
+    void DrawLines(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
+
     void SetShaderProgram(GLuint programID);
 
 private:

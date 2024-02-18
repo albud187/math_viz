@@ -15,6 +15,6 @@ working tutorials:
 19 to 28
 
 to do
-- link different shader to different mesh instances
-- frame rate  / time
+- put shaders in constructor
+
 - create surface (grid)

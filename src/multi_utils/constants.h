@@ -50,8 +50,7 @@ unsigned int CUBE_INDICES[] = {
                               5, 0, 6,
                               7, 4, 3,
                               2, 1, 4,
-                              0, 2, 7
-    };
+                              0, 2, 7};
 
 // Define the vertices for a triangular-based pyramid
 VT PYRAMID3_VERTICES[] = {
@@ -69,9 +68,31 @@ unsigned int PYRAMID3_INDICES[] = {
     1, 3, 2   // Base
 };
 
-unsigned int n_v_pyramid3 = sizeof(PYRAMID3_VERTICES) / sizeof(PYRAMID3_VERTICES[0]);
-unsigned int n_i_pyramid3 = sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]);
-unsigned int n_v_cube = sizeof(CUBE_VERTICES) / sizeof(CUBE_VERTICES[0]);
-unsigned int n_i_cube = sizeof(CUBE_INDICES) / sizeof(CUBE_INDICES[0]);
+VT SQUARE_VERTICES[] ={
+    
+    VT(-0.1f, 0.0f, 0.1f),  // Vertex 0: Bottom Left
+    VT(0.1f, 0.0f, 0.1f),   // Vertex 1: Bottom Right
+    VT(-0.1f, 0.0f, -0.1f), // Vertex 2: Top Left
+    VT(0.1f, 0.0f, -0.1f)   // Vertex 3: Top Right
 
+};
+
+unsigned int SQUARE_INDICES[] = {
+    0, 1, // Bottom edge
+    1, 3, // Right edge
+    3, 2, // Top edge
+    2, 0  // Left edge
+};
+
+unsigned int NV_PYRAMID3 = sizeof(PYRAMID3_VERTICES) / sizeof(PYRAMID3_VERTICES[0]);
+unsigned int NI_PYRAMID3 = sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]);
+unsigned int NV_CUBE= sizeof(CUBE_VERTICES) / sizeof(CUBE_VERTICES[0]);
+unsigned int NI_CUBE = sizeof(CUBE_INDICES) / sizeof(CUBE_INDICES[0]);
+unsigned int NV_SQ = sizeof(SQUARE_VERTICES) / sizeof(SQUARE_VERTICES[0]);
+unsigned int NI_SQ = sizeof(SQUARE_INDICES) / sizeof(SQUARE_INDICES[0]);
+
+
+const int GRID_SIZE = 10; // The total size of the grid
+const int GRID_LINES_SPACING = 1; // Spacing between lines
+const Vector3f GRID_COLOR = Vector3f(0.9f, 0.9f, 0.9f); // Grey color
 #endif

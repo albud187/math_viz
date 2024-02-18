@@ -56,11 +56,33 @@ void Mesh::Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLoc
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(3 * sizeof(float)));
 
-    glDrawElements(GL_TRIANGLES, 36, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_LINES,8, GL_UNSIGNED_INT, 0);
 
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 }
+
+void Mesh::DrawLines(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation) {
+    glUseProgram(shaderProgramID);
+    Matrix4f world_pose = transform.GetMatrix();
+    Matrix4f wvp = projection * view * world_pose;
+    glUniformMatrix4fv(gWVPLocation, 1, GL_TRUE, &wvp.m[0][0]);
+
+    glBindBuffer(GL_ARRAY_BUFFER, vbo);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ibo);
+
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, 0);
+
+    glEnableVertexAttribArray(1);
+    glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(3 * sizeof(float)));
+
+    glDrawElements(GL_LINES, 12, GL_UNSIGNED_INT, 0);
+
+    glDisableVertexAttribArray(0);
+    glDisableVertexAttribArray(1);
+}
+
 
 void Mesh::SetShaderProgram(GLuint programID) {
     shaderProgramID = programID;

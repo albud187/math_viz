@@ -16,37 +16,38 @@
 #include "multi_utils/shaders.h"
 #include "multi_utils/mesh.h"
 
-GLuint VBO;
-GLuint IBO;
-GLuint gWVPLocation = 0;
-
+GLuint gWVPLocation;
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
-
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
 std::vector<std::shared_ptr<Mesh>> game_objects;
 std::vector<GLuint> shaders; 
-void init_game_objects() {
- 
+
+GLuint gridVAO, gridVBO;
+
+void init_shaders(){
     GLuint shader1 = CompileShaders(VS_FILE_NAME, FS_FILE_NAME);
     GLuint shader2 = CompileShaders(VS2_FILE_NAME, FS2_FILE_NAME);
     shaders.push_back(shader1);
     shaders.push_back(shader2);
+}
 
-    auto s1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    auto s2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
-    auto s3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, n_v_pyramid3, PYRAMID3_INDICES, n_i_pyramid3);
+void init_game_objects() {
+
+    auto s1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
+    auto s2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
+    auto s3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
     
-    s1->SetShaderProgram(shader1);
-    s2->SetShaderProgram(shader2);
-    s3->SetShaderProgram(shader1);
+    s1->SetShaderProgram(shaders[0]);
+    s2->SetShaderProgram(shaders[1]);
+    s3->SetShaderProgram(shaders[1]);
     s1->SetPosition(-1.0f, 0.0f, 3.0f);
     s2->SetPosition(1.0f, 0.0f, 3.0f);
     s3->SetPosition(2.0f, 0.0f, 3.0f);
 
-    s1->setRotation(0, 0, 5);
-    s2->setRotation(0, 0, 5.0f);
-    s3->setRotation(0, 0, 5.0f);
+    s1->setRotation(0, 0, 0);
+    s2->setRotation(0, 0, 0);
+    s3->setRotation(0, 0, 0);
 
     game_objects.push_back(s1);
     game_objects.push_back(s2);
@@ -55,20 +56,21 @@ void init_game_objects() {
 
 static void RenderSceneCB()
 {
+
     static auto lastFrameTime = std::chrono::high_resolution_clock::now();
     auto startFrameTime = std::chrono::high_resolution_clock::now();
-    
+   
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-
+    
     GameCamera.OnRender();
     Matrix4f Projection;
     Matrix4f View = GameCamera.GetMatrix();
     Projection.InitPersProjTransform(persProjInfo);
 
     draw_all(game_objects, Projection, View, gWVPLocation);
-
+    game_objects[0]->Draw(Projection, View, gWVPLocation);
     for (auto &game_obj : game_objects){
-        game_obj->rotate(360/TARGET_FPS_DELAY_MS,0.0,0.0);
+        game_obj->rotate(180.0/TARGET_FPS_DELAY_MS,0.0,0.0);
     }
     glutPostRedisplay();
     glutSwapBuffers();
@@ -88,14 +90,15 @@ static void RenderSceneCB()
 float pos = 0;
 static void spawn_object(){
 
-    auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, n_v_cube, CUBE_INDICES, n_i_cube);
+    //auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, NV_CUBE, CUBE_INDICES, NI_CUBE);
+    auto c_obj = std::make_shared<Mesh>(SQUARE_VERTICES, NV_SQ, SQUARE_INDICES, NI_SQ);
+
     c_obj->SetShaderProgram(shaders[0]);
     c_obj->SetPosition(pos,pos,pos);
-    c_obj->setRotation(-20,50,90);
+    c_obj->setRotation(0,0,0);
     game_objects.push_back(c_obj);
     pos = pos+2;
 }
-
 
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 {
@@ -122,32 +125,28 @@ static void MouseCB(int button, int state, int x, int y) {
 
 int main(int argc, char** argv)
 {
-    
     glutInit(&argc, argv);
+    
     glutInitDisplayMode(GLUT_DOUBLE|GLUT_RGBA|GLUT_DEPTH);
     glutInitWindowSize(WINDOW_WIDTH, WINDOW_HEIGHT);
     
-    int x = 200;
-    int y = 100;
-    glutInitWindowPosition(x, y);
-    int win = glutCreateWindow("Tutorial 14");
+    glutInitWindowPosition(0, 0);
+    int win = glutCreateWindow("Multi 3D");
     printf("window id: %d\n", win);
 
     GLenum res = glewInit();
-    if (res != GLEW_OK) {
-        fprintf(stderr, "Error: '%s'\n", glewGetErrorString(res));
-        return 1;
-    }
 
-    GLclampf Red = 0.2f, Green = 0.2f, Blue = 0.2f, Alpha = 0.9f;
+    GLclampf Red = 0.025f, Green = 0.025f, Blue = 0.025f, Alpha = 0.0f;
     glClearColor(Red, Green, Blue, Alpha);
 
     glEnable(GL_CULL_FACE);
     glFrontFace(GL_CW);
     glCullFace(GL_BACK);
 
+    init_shaders();
     glutDisplayFunc(RenderSceneCB);
     init_game_objects();
+    
     glutKeyboardFunc(KeyboardCB);
     glutMouseFunc(MouseCB);
     glutMotionFunc(MotionCB);
