@@ -22,6 +22,7 @@ PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
 std::vector<std::shared_ptr<Mesh>> game_objects;
 std::vector<GLuint> shaders; 
+std::vector<std::shared_ptr<Mesh>> grid_objects;
 
 GLuint gridVAO, gridVBO;
 
@@ -67,7 +68,9 @@ static void RenderSceneCB()
     Matrix4f View = GameCamera.GetMatrix();
     Projection.InitPersProjTransform(persProjInfo);
 
-    draw_all(game_objects, Projection, View, gWVPLocation);
+    draw_triangles(game_objects, Projection, View, gWVPLocation);
+    draw_lines(grid_objects, Projection, View, gWVPLocation);
+
     game_objects[0]->Draw(Projection, View, gWVPLocation);
     for (auto &game_obj : game_objects){
         game_obj->rotate(180.0/TARGET_FPS_DELAY_MS,0.0,0.0);
@@ -91,13 +94,15 @@ float pos = 0;
 static void spawn_object(){
 
     //auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, NV_CUBE, CUBE_INDICES, NI_CUBE);
-    auto c_obj = std::make_shared<Mesh>(SQUARE_VERTICES, NV_SQ, SQUARE_INDICES, NI_SQ);
+    VT* custom_vertices = generateSquareVertices(1.0);
+    unsigned int* square_indices = generateSquareIndices();
+    auto c_obj = std::make_shared<Mesh>(custom_vertices, NV_SQ, square_indices, NI_SQ);
 
     c_obj->SetShaderProgram(shaders[0]);
-    c_obj->SetPosition(pos,pos,pos);
+    c_obj->SetPosition(pos,0,0);
     c_obj->setRotation(0,0,0);
-    game_objects.push_back(c_obj);
-    pos = pos+2;
+    grid_objects.push_back(c_obj);
+    pos = pos+1;
 }
 
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)

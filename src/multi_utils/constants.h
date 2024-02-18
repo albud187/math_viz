@@ -68,28 +68,66 @@ unsigned int PYRAMID3_INDICES[] = {
     1, 3, 2   // Base
 };
 
+// VT SQUARE_VERTICES[] ={
+    
+//     VT(0.0, 0.0, 0.0),  // Vertex 0: Bottom Left
+//     VT(0.0, 0.0f, 1.0),   // Vertex 1: Bottom Right
+//     VT(1.0, 0.0f, 0.0), // Vertex 2: Top Left
+//     VT(1.0, 0.0f, 1.0)   // Vertex 3: Top Right
+
+// };
+
 VT SQUARE_VERTICES[] ={
     
-    VT(-0.1f, 0.0f, 0.1f),  // Vertex 0: Bottom Left
-    VT(0.1f, 0.0f, 0.1f),   // Vertex 1: Bottom Right
-    VT(-0.1f, 0.0f, -0.1f), // Vertex 2: Top Left
-    VT(0.1f, 0.0f, -0.1f)   // Vertex 3: Top Right
-
+    VT(0.0, 0.0, 0.0),  // Vertex 0: Bottom Left
+    VT(0.0, 0.0, 1.0),   // Vertex 1: Bottom Right
+    VT(1.0, 0.0, 1.0),   // Vertex 2: Top Right
+    VT(1.0, 0.0, 0.0), // Vertex 3: Top Left
+   
 };
 
 unsigned int SQUARE_INDICES[] = {
-    0, 1, // Bottom edge
-    1, 3, // Right edge
-    3, 2, // Top edge
-    2, 0  // Left edge
+    0, 1,
+    1, 2,
+    2, 3,
+    3, 0
+
 };
+
+VT GRID_VERTICES[] = {
+     // Outer Square
+    VT(-0.5f, 0.0f, -0.5f), // Vertex 0: Bottom Left
+    VT(-0.5f, 0.0f, 0.5f),  // Vertex 1: Top Left
+    VT(0.5f, 0.0f, -0.5f),  // Vertex 2: Bottom Right
+    VT(0.5f, 0.0f, 0.5f),   // Vertex 3: Top Right
+    // Inner Squares Dividing Lines
+    VT(0.0f, 0.0f, -0.5f),  // Vertex 4: Middle Bottom
+    VT(0.0f, 0.0f, 0.5f),   // Vertex 5: Middle Top
+    VT(-0.5f, 0.0f, 0.0f),  // Vertex 6: Middle Left
+    VT(0.5f, 0.0f, 0.0f),   // Vertex 7: Middle Right
+    VT(0.0f, 0.0f, 0.0f)    // Vertex 8: Center
+};
+
+unsigned int GRID_INDICES[]  = {
+        // Outer Square
+    0, 1,
+    1, 3,
+    3, 2,
+    2, 0,
+    // Inner Squares Dividing Lines
+    4, 5, // Vertical middle line
+    6, 7, // Horizontal middle line
+    // No need to draw from center to corners for a grid outline
+};
+
+unsigned int NV_SQ = sizeof(SQUARE_VERTICES) / sizeof(SQUARE_VERTICES[0]);
+unsigned int NI_SQ = sizeof(SQUARE_INDICES) / sizeof(SQUARE_INDICES[0]);
+
 
 unsigned int NV_PYRAMID3 = sizeof(PYRAMID3_VERTICES) / sizeof(PYRAMID3_VERTICES[0]);
 unsigned int NI_PYRAMID3 = sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]);
 unsigned int NV_CUBE= sizeof(CUBE_VERTICES) / sizeof(CUBE_VERTICES[0]);
 unsigned int NI_CUBE = sizeof(CUBE_INDICES) / sizeof(CUBE_INDICES[0]);
-unsigned int NV_SQ = sizeof(SQUARE_VERTICES) / sizeof(SQUARE_VERTICES[0]);
-unsigned int NI_SQ = sizeof(SQUARE_INDICES) / sizeof(SQUARE_INDICES[0]);
 
 
 const int GRID_SIZE = 10; // The total size of the grid

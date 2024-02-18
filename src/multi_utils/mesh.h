@@ -20,7 +20,7 @@ public:
     void translate(float x, float y, float z);
     void rotate(float rx, float ry, float rz);
     void Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
-    void DrawLines(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
+    void DrawLine(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
 
     void SetShaderProgram(GLuint programID);
 
@@ -35,5 +35,13 @@ private:
     
 };
 
-void draw_all(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation);
+void draw_triangles(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation);
+void draw_lines(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation);
+
+VT* generateSquareVertices(float sideLength);
+unsigned int* generateSquareIndices();
+
+// VT* generateGridVertices(float sideLength);
+// VT* generateGridIndices(float sideLength);
+
 #endif

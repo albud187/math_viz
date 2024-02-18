@@ -56,13 +56,13 @@ void Mesh::Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLoc
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(3 * sizeof(float)));
 
-    glDrawElements(GL_LINES,8, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES,numIndices, GL_UNSIGNED_INT, 0);
 
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
 }
 
-void Mesh::DrawLines(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation) {
+void Mesh::DrawLine(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation) {
     glUseProgram(shaderProgramID);
     Matrix4f world_pose = transform.GetMatrix();
     Matrix4f wvp = projection * view * world_pose;
@@ -77,7 +77,7 @@ void Mesh::DrawLines(const Matrix4f& projection, const Matrix4f& view, GLuint gW
     glEnableVertexAttribArray(1);
     glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, sizeof(float) * 6, (void*)(3 * sizeof(float)));
 
-    glDrawElements(GL_LINES, 12, GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_LINES, numIndices, GL_UNSIGNED_INT, 0);
 
     glDisableVertexAttribArray(0);
     glDisableVertexAttribArray(1);
@@ -88,10 +88,46 @@ void Mesh::SetShaderProgram(GLuint programID) {
     shaderProgramID = programID;
 }
 
-void draw_all(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation) {
+void draw_triangles(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation) {
     for (const auto& meshPtr : game_objects) {
         if (meshPtr) { // Check if the shared_ptr is not null
             meshPtr->Draw(Projection, View, gWVPLocation);
         }
     }
+}
+
+void draw_lines(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation) {
+    for (const auto& meshPtr : game_objects) {
+        if (meshPtr) { // Check if the shared_ptr is not null
+            meshPtr->DrawLine(Projection, View, gWVPLocation);
+        }
+    }
+}
+
+VT* generateSquareVertices(float sideLength) {
+    int numVertices = 4; // A square has four vertices
+    VT* vertices = new VT[numVertices];
+
+    vertices[0] = VT(0.0f, 0.0f, 0.0f);            // Bottom Left
+    vertices[1] = VT(0.0f, 0.0f, sideLength);      // Bottom Right
+    vertices[2] = VT(sideLength, 0.0f, sideLength); // Top Right
+    vertices[3] = VT(sideLength, 0.0f, 0.0f);      // Top Left
+
+    return vertices;
+}
+
+unsigned int* generateSquareIndices() {
+    // For a square outline, we need 8 indices (2 per edge)
+    int numIndices = 8;
+    unsigned int* indices = new unsigned int[numIndices];
+
+    // Assuming vertices are ordered as follows:
+    // 0: bottom left, 1: bottom right, 2: top right, 3: top left
+    // Outline of the square
+    indices[0] = 0; indices[1] = 1; // Bottom edge
+    indices[2] = 1; indices[3] = 2; // Right edge
+    indices[4] = 2; indices[5] = 3; // Top edge
+    indices[6] = 3; indices[7] = 0; // Left edge
+
+    return indices;
 }
