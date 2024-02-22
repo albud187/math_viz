@@ -1,4 +1,5 @@
 #include "mesh.h"
+#include <iostream>
 //    unsigned int n_v = numVertices;
 //     unsigned int n_i = numIndices;
 
@@ -105,13 +106,14 @@ void draw_lines(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f
 }
 
 VT* generateSquareVertices(float sideLength) {
+
     int numVertices = 4; // A square has four vertices
     VT* vertices = new VT[numVertices];
 
-    vertices[0] = VT(0.0f, 0.0f, 0.0f);            // Bottom Left
-    vertices[1] = VT(0.0f, 0.0f, sideLength);      // Bottom Right
-    vertices[2] = VT(sideLength, 0.0f, sideLength); // Top Right
-    vertices[3] = VT(sideLength, 0.0f, 0.0f);      // Top Left
+    vertices[0] = VT(0.0f, 0.0f, 0.0f, 0.95, 0.95, 0.95);            // Bottom Left
+    vertices[1] = VT(0.0f, 0.0f, sideLength, 0.95, 0.95, 0.95);      // Bottom Right
+    vertices[2] = VT(sideLength, 0.0f, sideLength, 0.95, 0.95, 0.95); // Top Right
+    vertices[3] = VT(sideLength, 0.0f, 0.0f, 0.95, 0.95, 0.95);      // Top Left
 
     return vertices;
 }
@@ -128,6 +130,67 @@ unsigned int* generateSquareIndices() {
     indices[2] = 1; indices[3] = 2; // Right edge
     indices[4] = 2; indices[5] = 3; // Top edge
     indices[6] = 3; indices[7] = 0; // Left edge
+
+    return indices;
+}
+
+VT* generateGridVertices(int sideLength) {
+   
+    if (sideLength < 2) {
+        //sideLength must be atleast 3
+        std::cout<<"side length must be atleast 3, rendering 3"<<std::endl;
+        sideLength = 2;
+        
+    }
+
+    int numVertices = (sideLength - 1) * 4; // Number of vertices for the grid perimeter
+    VT* vertices = new VT[numVertices];
+
+    int index = 0;
+
+    // Bottom side
+    for (int x = 0; x < sideLength - 1; x++) {
+        vertices[index++] = VT(x, 0, 0, 0.95, 0.95, 0.95);
+    }
+
+    // Right side
+    for (int z = 0; z < sideLength - 1; ++z) {
+        vertices[index++] = VT(sideLength - 1, 0, z, 0.95, 0.95, 0.95);
+    }
+
+    // Top side (going backwards on x)
+    for (int x = sideLength - 1; x > 0; --x) {
+        vertices[index++] = VT(x, 0, sideLength - 1, 0.95, 0.95, 0.95);
+    }
+
+    // Left side (going backwards on z)
+    for (int z = sideLength - 1; z > 0; --z) {
+        vertices[index++] = VT(0, 0, z, 0.95, 0.95, 0.95);
+    }
+
+    return vertices;
+}
+
+unsigned int* generateGridIndices(int sideLength) {
+    // Each cell of the grid will have 2 lines (horizontal and vertical),
+    // and there are (sideLength - 1) squares along each side of the grid.
+    int numLines = 2 * (sideLength - 1);
+    // Each line is defined by 2 indices (start and end), hence * 2.
+    int numIndices = numLines * 2;
+    unsigned int* indices = new unsigned int[numIndices];
+
+    // Calculate horizontal lines' indices
+    for (int i = 0; i < sideLength - 1; ++i) {
+        indices[i * 2] = i;
+        indices[i * 2 + 1] = i + (sideLength - 1) * 3;
+    }
+
+    // Calculate vertical lines' indices
+    int offset = (sideLength - 1) * 2; // Offset to start of vertical lines in indices array
+    for (int i = 0; i < sideLength - 1; ++i) {
+        indices[offset + i * 2] = (sideLength - 1) * 2 - i;
+        indices[offset + i * 2 + 1] = (sideLength - 1) * 4 - i - 1;
+    }
 
     return indices;
 }

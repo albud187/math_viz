@@ -10,5 +10,5 @@ out vec4 Color;
 void main()
 {
     gl_Position = gWVP * vec4(Position, 2.0);
-    Color = vec4(VertexColor * vec3(0.5, 0.5, 1.0), 1.0); // Use the vertex color
+    Color = vec4(VertexColor * vec3(0.0, 0.5, 0.5), 1.0); // Use the vertex color
 }

@@ -85,55 +85,40 @@ void Camera::SetPosition(float x, float y, float z)
 
 void Camera::OnKeyboard(unsigned char Key)
 {
+    std::cout<<Key<<std::endl;
     switch (Key) {
+
     case 'Q':
     case 'q':
-
-        m_up.Normalize();
-        m_up *= m_speed;
-        m_pos += m_up;
-         //m_pos.y += m_speed;
+        m_pos.y += m_speed;
         break;
     case 'Z':
     case 'z':
-
-        m_up.Normalize();
-        m_up *= m_speed;
-        m_pos -= m_up;
-       
-        //m_pos.y -= m_speed;
+        m_pos.y -= m_speed;
         break;
 
     case 'W':
     case 'w':
-        m_pos += (m_target * m_speed);
+        m_pos.z += m_speed;
         break;
 
     case 'S':
     case 's':
-        m_pos -= (m_target * m_speed);
-        break;
-
-    case 'A':
-    case 'a':
-        {
-            Vector3f Left = m_target.Cross(m_up);
-            Left.Normalize();
-            Left *= m_speed;
-            m_pos += Left;
-        }
+        m_pos.z -= m_speed;
         break;
 
     case 'D':
     case 'd':
-        {
-            Vector3f Right = m_up.Cross(m_target);
-            Right.Normalize();
-            Right *= m_speed;
-            m_pos += Right;
-        }
+        m_pos.x += m_speed;
         break;
+
+    case 'A':
+    case 'a':
+        m_pos.x -= m_speed;
+        break;
+
     case '+':
+    case '=':
         m_speed += 0.1f;
         printf("Speed changed to %f\n", m_speed);
         break;
@@ -148,10 +133,25 @@ void Camera::OnKeyboard(unsigned char Key)
     }
 }
 
+
 void Camera::OnMouseDown(int button, int x, int y) {
-    m_LeftButtonDown = true;
-    X0 = x;
-    Y0 = y;
+    std::cout<<button<<std::endl;
+    switch (button) {
+    case 0:
+        m_LeftButtonDown = true;
+        X0 = x;
+        Y0 = y;
+        break;
+    case 3:
+        m_pos += (m_target * m_speed);
+        break;
+    case 4:
+        m_pos -= (m_target * m_speed);
+        break;
+    }
+
+
+
 }
 void Camera::OnMouseUp(int button) {
    

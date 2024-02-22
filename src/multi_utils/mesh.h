@@ -41,6 +41,8 @@ void draw_lines(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f
 VT* generateSquareVertices(float sideLength);
 unsigned int* generateSquareIndices();
 
+VT* generateGridVertices(int sideLength);
+unsigned int* generateGridIndices(int sideLength);
 // VT* generateGridVertices(float sideLength);
 // VT* generateGridIndices(float sideLength);
 

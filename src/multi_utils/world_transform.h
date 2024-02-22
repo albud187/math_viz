@@ -25,7 +25,7 @@ struct VT {
     Vector3f color;
 
     VT(); // Default constructor
-    VT(float x, float y, float z); // Parameterized constructor
+    VT(float x, float y, float z, float red, float green, float blue); // Parameterized constructor
 };
 
 #endif

@@ -24,8 +24,6 @@ std::vector<std::shared_ptr<Mesh>> game_objects;
 std::vector<GLuint> shaders; 
 std::vector<std::shared_ptr<Mesh>> grid_objects;
 
-GLuint gridVAO, gridVBO;
-
 void init_shaders(){
     GLuint shader1 = CompileShaders(VS_FILE_NAME, FS_FILE_NAME);
     GLuint shader2 = CompileShaders(VS2_FILE_NAME, FS2_FILE_NAME);
@@ -40,11 +38,11 @@ void init_game_objects() {
     auto s3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
     
     s1->SetShaderProgram(shaders[0]);
-    s2->SetShaderProgram(shaders[1]);
-    s3->SetShaderProgram(shaders[1]);
-    s1->SetPosition(-1.0f, 0.0f, 3.0f);
-    s2->SetPosition(1.0f, 0.0f, 3.0f);
-    s3->SetPosition(2.0f, 0.0f, 3.0f);
+    s2->SetShaderProgram(shaders[0]);
+    s3->SetShaderProgram(shaders[0]);
+    s1->SetPosition(-1.0f, 1.0f, 3.0f);
+    s2->SetPosition(1.0f, 1.0f, 3.0f);
+    s3->SetPosition(2.0f, 1.0f, 3.0f);
 
     s1->setRotation(0, 0, 0);
     s2->setRotation(0, 0, 0);
@@ -53,6 +51,16 @@ void init_game_objects() {
     game_objects.push_back(s1);
     game_objects.push_back(s2);
     game_objects.push_back(s3);
+
+    for (int k = 0; k<GRID_L; k++){
+        for (int i = 0; i<GRID_W; i++){
+            auto grid_square = std::make_shared<Mesh>(SQUARE_VERTICES, NV_SQ, SQUARE_INDICES, NI_SQ);
+            grid_square->SetShaderProgram(shaders[0]);
+            grid_square->SetPosition(k-GRID_L/2, 0, i-GRID_W/2);
+            grid_square->setRotation(0,0,0);
+            grid_objects.push_back(grid_square);
+        }
+    }
 }
 
 static void RenderSceneCB()
@@ -93,15 +101,12 @@ static void RenderSceneCB()
 float pos = 0;
 static void spawn_object(){
 
-    //auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, NV_CUBE, CUBE_INDICES, NI_CUBE);
-    VT* custom_vertices = generateSquareVertices(1.0);
-    unsigned int* square_indices = generateSquareIndices();
-    auto c_obj = std::make_shared<Mesh>(custom_vertices, NV_SQ, square_indices, NI_SQ);
-
+    auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, NV_CUBE, CUBE_INDICES, NI_CUBE);
+       
     c_obj->SetShaderProgram(shaders[0]);
-    c_obj->SetPosition(pos,0,0);
+    c_obj->SetPosition(0,pos,0);
     c_obj->setRotation(0,0,0);
-    grid_objects.push_back(c_obj);
+    game_objects.push_back(c_obj);
     pos = pos+1;
 }
 
@@ -122,7 +127,7 @@ static void MotionCB(int x, int y) {
 
 static void MouseCB(int button, int state, int x, int y) {
     if (state == GLUT_DOWN) {
-        GameCamera.OnMouseDown(button, x, y); // Pass x and y coordinates
+        GameCamera.OnMouseDown(button, x, y); 
     } else if (state == GLUT_UP) {
         GameCamera.OnMouseUp(button);
     }
@@ -144,6 +149,8 @@ int main(int argc, char** argv)
     GLclampf Red = 0.025f, Green = 0.025f, Blue = 0.025f, Alpha = 0.0f;
     glClearColor(Red, Green, Blue, Alpha);
 
+    glEnable(GL_DEPTH_TEST); // Enable depth testing
+    glDepthFunc(GL_LESS); // Specify depth comparison functio
     glEnable(GL_CULL_FACE);
     glFrontFace(GL_CW);
     glCullFace(GL_BACK);

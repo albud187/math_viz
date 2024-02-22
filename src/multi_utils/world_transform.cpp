@@ -55,13 +55,16 @@ VT::VT () {
 
 }
 
-VT::VT(float x, float y, float z) {
+VT::VT(float x, float y, float z, float red, float green, float blue) {
     pos = Vector3f(x, y, z);
 
-    float red   = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-    float green = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-    float blue  = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
-    std::cout<<red<<endl;
+    // float red   = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+    // float green = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+    // float blue  = static_cast<float>(rand()) / static_cast<float>(RAND_MAX);
+    // float red  = 1;
+    // float green = 1;
+    // float blue = 1;
+    //std::cout<<red<<endl;
     //float red   = 1.0;
     // float green = 0;
     // float blue  = 0.15;

@@ -28,14 +28,14 @@ const char* VS2_FILE_NAME= "/home/alfab/experiments/math_viz/src/shaders/shader2
 const char* FS2_FILE_NAME = "/home/alfab/experiments/math_viz/src/shaders/shader2.fs";
 
 VT CUBE_VERTICES[] = {
-    VT(0.1f, 0.1f, 0.1f),
-    VT(-0.1f, 0.1f, -0.1f),
-    VT(-0.1f, 0.1f, 0.1f),
-    VT(0.1f, -0.1f, -0.1f),
-    VT(-0.1f, -0.1f, -0.1f),
-    VT(0.1f, 0.1f, -0.1f),
-    VT(0.1f, -0.1f, 0.1f),
-    VT(-0.1f, -0.1f, 0.1f)
+    VT(0.1f, 0.1f, 0.1f, 0.95, 0.35, 0.35),
+    VT(-0.1f, 0.1f, -0.1f, 0.95, 0.35, 0.35),
+    VT(-0.1f, 0.1f, 0.1f, 0.95, 0.35, 0.35),
+    VT(0.1f, -0.1f, -0.1f, 0.95, 0.35, 0.35),
+    VT(-0.1f, -0.1f, -0.1f, 0.95, 0.35, 0.35),
+    VT(0.1f, 0.1f, -0.1f, 0.95, 0.35, 0.35),
+    VT(0.1f, -0.1f, 0.1f, 0.95, 0.35, 0.35),
+    VT(-0.1f, -0.1f, 0.1f, 0.95, 0.35, 0.35)
     };
     
 unsigned int CUBE_INDICES[] = {
@@ -54,10 +54,10 @@ unsigned int CUBE_INDICES[] = {
 
 // Define the vertices for a triangular-based pyramid
 VT PYRAMID3_VERTICES[] = {
-    VT(0.0f, 0.18f, -0.15f),    // Tip of the pyramid
-    VT(-0.2f, -0.2f, 0.22f),  // Base vertex 1
-    VT(0.18f, -0.18f, 0.18f),   // Base vertex 2
-    VT(0.0f, -0.18f, -0.3f)   // Base vertex 3
+    VT(0.0f, 0.18f, -0.15f, 0.95, 0.35, 0.35),    // Tip of the pyramid
+    VT(-0.2f, -0.2f, 0.22f, 0.35, 0.35, 0.95),  // Base vertex 1
+    VT(0.18f, -0.18f, 0.18f, 0.45, 0.75, 0.35),   // Base vertex 2
+    VT(0.0f, -0.18f, -0.3f, 0.55, 0.55, 0.35)   // Base vertex 3
 };
 
 // Define the indices for the faces of the pyramid
@@ -79,10 +79,10 @@ unsigned int PYRAMID3_INDICES[] = {
 
 VT SQUARE_VERTICES[] ={
     
-    VT(0.0, 0.0, 0.0),  // Vertex 0: Bottom Left
-    VT(0.0, 0.0, 1.0),   // Vertex 1: Bottom Right
-    VT(1.0, 0.0, 1.0),   // Vertex 2: Top Right
-    VT(1.0, 0.0, 0.0), // Vertex 3: Top Left
+    VT(0.0, 0.0, 0.0, 0.95, 0.95, 0.95),  // Vertex 0: Bottom Left
+    VT(0.0, 0.0, 1.0, 0.95, 0.95, 0.95),   // Vertex 1: Bottom Right
+    VT(1.0, 0.0, 1.0, 0.95, 0.95, 0.95),   // Vertex 2: Top Right
+    VT(1.0, 0.0, 0.0, 0.95, 0.95, 0.95), // Vertex 3: Top Left
    
 };
 
@@ -96,16 +96,16 @@ unsigned int SQUARE_INDICES[] = {
 
 VT GRID_VERTICES[] = {
      // Outer Square
-    VT(-0.5f, 0.0f, -0.5f), // Vertex 0: Bottom Left
-    VT(-0.5f, 0.0f, 0.5f),  // Vertex 1: Top Left
-    VT(0.5f, 0.0f, -0.5f),  // Vertex 2: Bottom Right
-    VT(0.5f, 0.0f, 0.5f),   // Vertex 3: Top Right
+    VT(-0.5f, 0.0f, -0.5f, 0.5, 0.5, 1), // Vertex 0: Bottom Left
+    VT(-0.5f, 0.0f, 0.5f, 0.5, 0.5, 1),  // Vertex 1: Top Left
+    VT(0.5f, 0.0f, -0.5f, 0.5, 0.5, 1),  // Vertex 2: Bottom Right
+    VT(0.5f, 0.0f, 0.5f, 0.5, 0.5, 1),   // Vertex 3: Top Right
     // Inner Squares Dividing Lines
-    VT(0.0f, 0.0f, -0.5f),  // Vertex 4: Middle Bottom
-    VT(0.0f, 0.0f, 0.5f),   // Vertex 5: Middle Top
-    VT(-0.5f, 0.0f, 0.0f),  // Vertex 6: Middle Left
-    VT(0.5f, 0.0f, 0.0f),   // Vertex 7: Middle Right
-    VT(0.0f, 0.0f, 0.0f)    // Vertex 8: Center
+    VT(0.0f, 0.0f, -0.5f, 0.5, 0.5, 1),  // Vertex 4: Middle Bottom
+    VT(0.0f, 0.0f, 0.5f, 0.5, 0.5, 1),   // Vertex 5: Middle Top
+    VT(-0.5f, 0.0f, 0.0f, 0.5, 0.5, 1),  // Vertex 6: Middle Left
+    VT(0.5f, 0.0f, 0.0f, 0.5, 0.5, 1),   // Vertex 7: Middle Right
+    VT(0.0f, 0.0f, 0.0f, 0.5, 0.5, 1)    // Vertex 8: Center
 };
 
 unsigned int GRID_INDICES[]  = {
@@ -133,4 +133,7 @@ unsigned int NI_CUBE = sizeof(CUBE_INDICES) / sizeof(CUBE_INDICES[0]);
 const int GRID_SIZE = 10; // The total size of the grid
 const int GRID_LINES_SPACING = 1; // Spacing between lines
 const Vector3f GRID_COLOR = Vector3f(0.9f, 0.9f, 0.9f); // Grey color
+
+int GRID_L = 10;
+int GRID_W = 10;
 #endif
