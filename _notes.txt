@@ -16,3 +16,4 @@ working tutorials:
 
 to do
 - render origin
+- select object

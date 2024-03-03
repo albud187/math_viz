@@ -31,44 +31,6 @@ void init_shaders(){
     shaders.push_back(shader2);
 }
 
-void move_mesh(std::shared_ptr<Mesh> mesh_ptr, unsigned char key){
-    
-    switch (key){
-        case 'i':
-        case 'I':
-        {
-            std::cout<<"z +0.25"<<std::endl;
-            mesh_ptr->translate(0,0,0.25);
-            break;
-        }
-
-        case 'k':
-        case 'K':
-        {
-            std::cout<<"z -0.25"<<std::endl;
-            mesh_ptr->translate(0,0,-0.25);
-            break;
-        }
-
-        case 'j':
-        case 'J':
-        {
-            std::cout<<"x -0.25"<<std::endl;
-            mesh_ptr->translate(-0.25,0,0);
-            break;
-        }
-
-        case 'l':
-        case 'L':
-        {
-            std::cout<<"x +0.25"<<std::endl;
-            mesh_ptr->translate(0.25,0,0);
-            break;
-        }
-
-    }
-}
-
 void init_game_objects() {
 
     auto s1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
