@@ -39,4 +39,9 @@ sudo apt-get install -y libglfw3 libglfw3-dev
 - while on `math_viz/build` execute:
 `./math_viz`
 
- You should see somehting that looks like this:
+ You should see something that looks like this:
+
+
+<p float="center">
+    <img src="./repo_images/demo_1.JPG" width="55%">
+</p>
