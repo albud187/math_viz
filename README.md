@@ -22,12 +22,16 @@ sudo apt-get install -y libglfw3 libglfw3-dev
 ```
 
 2 - Build the project. 
-- Change to project directory:
+- Change to project directory and create `build` directory :
 `cd math_viz`
+`mkdir build`
+
 - Navigate to build folder `math_viz/build`:
 `cd build`
+
 - Initialize cmake. On  `math_viz/build` execute:
 `cmake ..`
+
 - Build project. On `math_viz/build` execute:
 `cmake --build .`
 
