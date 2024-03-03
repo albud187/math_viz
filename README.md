@@ -33,6 +33,6 @@ sudo apt-get install -y libglfw3 libglfw3-dev
 
 3 - Run the project.
 - while on `math_viz/build` execute:
-`cmake --build .`
+`./math_viz`
 
- 
+ You should see somehting that looks like this:
