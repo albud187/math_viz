@@ -117,48 +117,48 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named multi_3d
+# Target rules for targets named math_viz
 
 # Build rule for target.
-multi_3d: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 multi_3d
-.PHONY : multi_3d
+math_viz: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 math_viz
+.PHONY : math_viz
 
 # fast build rule for target.
-multi_3d/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/build
-.PHONY : multi_3d/fast
+math_viz/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/build
+.PHONY : math_viz/fast
 
-src/multi_3d.o: src/multi_3d.cpp.o
-.PHONY : src/multi_3d.o
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
 
 # target to build an object file
-src/multi_3d.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_3d.cpp.o
-.PHONY : src/multi_3d.cpp.o
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
 
-src/multi_3d.i: src/multi_3d.cpp.i
-.PHONY : src/multi_3d.i
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
 
 # target to preprocess a source file
-src/multi_3d.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_3d.cpp.i
-.PHONY : src/multi_3d.cpp.i
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
 
-src/multi_3d.s: src/multi_3d.cpp.s
-.PHONY : src/multi_3d.s
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
 
 # target to generate assembly for a file
-src/multi_3d.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_3d.cpp.s
-.PHONY : src/multi_3d.cpp.s
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 src/multi_utils/camera.o: src/multi_utils/camera.cpp.o
 .PHONY : src/multi_utils/camera.o
 
 # target to build an object file
 src/multi_utils/camera.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/camera.cpp.o
 .PHONY : src/multi_utils/camera.cpp.o
 
 src/multi_utils/camera.i: src/multi_utils/camera.cpp.i
@@ -166,7 +166,7 @@ src/multi_utils/camera.i: src/multi_utils/camera.cpp.i
 
 # target to preprocess a source file
 src/multi_utils/camera.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/camera.cpp.i
 .PHONY : src/multi_utils/camera.cpp.i
 
 src/multi_utils/camera.s: src/multi_utils/camera.cpp.s
@@ -174,7 +174,7 @@ src/multi_utils/camera.s: src/multi_utils/camera.cpp.s
 
 # target to generate assembly for a file
 src/multi_utils/camera.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/camera.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/camera.cpp.s
 .PHONY : src/multi_utils/camera.cpp.s
 
 src/multi_utils/mesh.o: src/multi_utils/mesh.cpp.o
@@ -182,7 +182,7 @@ src/multi_utils/mesh.o: src/multi_utils/mesh.cpp.o
 
 # target to build an object file
 src/multi_utils/mesh.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/mesh.cpp.o
 .PHONY : src/multi_utils/mesh.cpp.o
 
 src/multi_utils/mesh.i: src/multi_utils/mesh.cpp.i
@@ -190,7 +190,7 @@ src/multi_utils/mesh.i: src/multi_utils/mesh.cpp.i
 
 # target to preprocess a source file
 src/multi_utils/mesh.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/mesh.cpp.i
 .PHONY : src/multi_utils/mesh.cpp.i
 
 src/multi_utils/mesh.s: src/multi_utils/mesh.cpp.s
@@ -198,7 +198,7 @@ src/multi_utils/mesh.s: src/multi_utils/mesh.cpp.s
 
 # target to generate assembly for a file
 src/multi_utils/mesh.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/mesh.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/mesh.cpp.s
 .PHONY : src/multi_utils/mesh.cpp.s
 
 src/multi_utils/shaders.o: src/multi_utils/shaders.cpp.o
@@ -206,7 +206,7 @@ src/multi_utils/shaders.o: src/multi_utils/shaders.cpp.o
 
 # target to build an object file
 src/multi_utils/shaders.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/shaders.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/shaders.cpp.o
 .PHONY : src/multi_utils/shaders.cpp.o
 
 src/multi_utils/shaders.i: src/multi_utils/shaders.cpp.i
@@ -214,7 +214,7 @@ src/multi_utils/shaders.i: src/multi_utils/shaders.cpp.i
 
 # target to preprocess a source file
 src/multi_utils/shaders.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/shaders.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/shaders.cpp.i
 .PHONY : src/multi_utils/shaders.cpp.i
 
 src/multi_utils/shaders.s: src/multi_utils/shaders.cpp.s
@@ -222,7 +222,7 @@ src/multi_utils/shaders.s: src/multi_utils/shaders.cpp.s
 
 # target to generate assembly for a file
 src/multi_utils/shaders.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/shaders.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/shaders.cpp.s
 .PHONY : src/multi_utils/shaders.cpp.s
 
 src/multi_utils/world_transform.o: src/multi_utils/world_transform.cpp.o
@@ -230,7 +230,7 @@ src/multi_utils/world_transform.o: src/multi_utils/world_transform.cpp.o
 
 # target to build an object file
 src/multi_utils/world_transform.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/world_transform.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/world_transform.cpp.o
 .PHONY : src/multi_utils/world_transform.cpp.o
 
 src/multi_utils/world_transform.i: src/multi_utils/world_transform.cpp.i
@@ -238,7 +238,7 @@ src/multi_utils/world_transform.i: src/multi_utils/world_transform.cpp.i
 
 # target to preprocess a source file
 src/multi_utils/world_transform.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/world_transform.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/world_transform.cpp.i
 .PHONY : src/multi_utils/world_transform.cpp.i
 
 src/multi_utils/world_transform.s: src/multi_utils/world_transform.cpp.s
@@ -246,7 +246,7 @@ src/multi_utils/world_transform.s: src/multi_utils/world_transform.cpp.s
 
 # target to generate assembly for a file
 src/multi_utils/world_transform.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/multi_utils/world_transform.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/multi_utils/world_transform.cpp.s
 .PHONY : src/multi_utils/world_transform.cpp.s
 
 src/ogl_utils/ogldev_math_3d.o: src/ogl_utils/ogldev_math_3d.cpp.o
@@ -254,7 +254,7 @@ src/ogl_utils/ogldev_math_3d.o: src/ogl_utils/ogldev_math_3d.cpp.o
 
 # target to build an object file
 src/ogl_utils/ogldev_math_3d.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/ogl_utils/ogldev_math_3d.cpp.o
 .PHONY : src/ogl_utils/ogldev_math_3d.cpp.o
 
 src/ogl_utils/ogldev_math_3d.i: src/ogl_utils/ogldev_math_3d.cpp.i
@@ -262,7 +262,7 @@ src/ogl_utils/ogldev_math_3d.i: src/ogl_utils/ogldev_math_3d.cpp.i
 
 # target to preprocess a source file
 src/ogl_utils/ogldev_math_3d.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/ogl_utils/ogldev_math_3d.cpp.i
 .PHONY : src/ogl_utils/ogldev_math_3d.cpp.i
 
 src/ogl_utils/ogldev_math_3d.s: src/ogl_utils/ogldev_math_3d.cpp.s
@@ -270,7 +270,7 @@ src/ogl_utils/ogldev_math_3d.s: src/ogl_utils/ogldev_math_3d.cpp.s
 
 # target to generate assembly for a file
 src/ogl_utils/ogldev_math_3d.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_math_3d.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/ogl_utils/ogldev_math_3d.cpp.s
 .PHONY : src/ogl_utils/ogldev_math_3d.cpp.s
 
 src/ogl_utils/ogldev_util.o: src/ogl_utils/ogldev_util.cpp.o
@@ -278,7 +278,7 @@ src/ogl_utils/ogldev_util.o: src/ogl_utils/ogldev_util.cpp.o
 
 # target to build an object file
 src/ogl_utils/ogldev_util.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.o
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/ogl_utils/ogldev_util.cpp.o
 .PHONY : src/ogl_utils/ogldev_util.cpp.o
 
 src/ogl_utils/ogldev_util.i: src/ogl_utils/ogldev_util.cpp.i
@@ -286,7 +286,7 @@ src/ogl_utils/ogldev_util.i: src/ogl_utils/ogldev_util.cpp.i
 
 # target to preprocess a source file
 src/ogl_utils/ogldev_util.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/ogl_utils/ogldev_util.cpp.i
 .PHONY : src/ogl_utils/ogldev_util.cpp.i
 
 src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
@@ -294,7 +294,7 @@ src/ogl_utils/ogldev_util.s: src/ogl_utils/ogldev_util.cpp.s
 
 # target to generate assembly for a file
 src/ogl_utils/ogldev_util.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/src/ogl_utils/ogldev_util.cpp.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/src/ogl_utils/ogldev_util.cpp.s
 .PHONY : src/ogl_utils/ogldev_util.cpp.s
 
 # Help Target
@@ -305,10 +305,10 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... multi_3d"
-	@echo "... src/multi_3d.o"
-	@echo "... src/multi_3d.i"
-	@echo "... src/multi_3d.s"
+	@echo "... math_viz"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 	@echo "... src/multi_utils/camera.o"
 	@echo "... src/multi_utils/camera.i"
 	@echo "... src/multi_utils/camera.s"

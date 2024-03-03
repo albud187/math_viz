@@ -13,7 +13,7 @@ find_package(GLEW REQUIRED)
 
 include_directories(${OPENGL_INCLUDE_DIRS} ${GLUT_INCLUDE_DIRS})
 
-add_executable(multi_3d src/multi_3d.cpp 
+add_executable(math_viz src/main.cpp 
     src/ogl_utils/ogldev_util.cpp
     src/ogl_utils/ogldev_math_3d.cpp
     src/multi_utils/camera.cpp 
@@ -22,4 +22,4 @@ add_executable(multi_3d src/multi_3d.cpp
     src/multi_utils/mesh.cpp
     )
     
-target_link_libraries(multi_3d ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)
+target_link_libraries(math_viz ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)

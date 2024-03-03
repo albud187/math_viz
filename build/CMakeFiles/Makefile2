@@ -63,7 +63,7 @@ CMAKE_BINARY_DIR = /home/alfab/experiments/math_viz/build
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/multi_3d.dir/all
+all: CMakeFiles/math_viz.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,34 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/multi_3d.dir/clean
+clean: CMakeFiles/math_viz.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/multi_3d.dir
+# Target rules for target CMakeFiles/math_viz.dir
 
 # All Build rule for target.
-CMakeFiles/multi_3d.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target multi_3d"
-.PHONY : CMakeFiles/multi_3d.dir/all
+CMakeFiles/math_viz.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/home/alfab/experiments/math_viz/build/CMakeFiles --progress-num=1,2,3,4,5,6,7,8 "Built target math_viz"
+.PHONY : CMakeFiles/math_viz.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/multi_3d.dir/rule: cmake_check_build_system
+CMakeFiles/math_viz.dir/rule: cmake_check_build_system
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alfab/experiments/math_viz/build/CMakeFiles 8
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/multi_3d.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/math_viz.dir/all
 	$(CMAKE_COMMAND) -E cmake_progress_start /home/alfab/experiments/math_viz/build/CMakeFiles 0
-.PHONY : CMakeFiles/multi_3d.dir/rule
+.PHONY : CMakeFiles/math_viz.dir/rule
 
 # Convenience name for target.
-multi_3d: CMakeFiles/multi_3d.dir/rule
-.PHONY : multi_3d
+math_viz: CMakeFiles/math_viz.dir/rule
+.PHONY : math_viz
 
 # clean rule for target.
-CMakeFiles/multi_3d.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/multi_3d.dir/build.make CMakeFiles/multi_3d.dir/clean
-.PHONY : CMakeFiles/multi_3d.dir/clean
+CMakeFiles/math_viz.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/math_viz.dir/build.make CMakeFiles/math_viz.dir/clean
+.PHONY : CMakeFiles/math_viz.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.
