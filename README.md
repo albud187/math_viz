@@ -1,5 +1,8 @@
-Visualization and movement of primitive objects and camera in 3D space. Made with OpenGL
+Visualization and movement of primitive objects and camera in 3D space. Made with OpenGL.
 
+A lot of the code came from ogldev tutorials: https://github.com/emeiri/ogldev
+
+Tested on ubuntu 22.04.
 
 ## Setup and Configuration
 
