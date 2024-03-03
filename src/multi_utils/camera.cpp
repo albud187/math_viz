@@ -88,35 +88,46 @@ void Camera::OnKeyboard(unsigned char Key)
     std::cout<<Key<<std::endl;
     switch (Key) {
 
-    case 'Q':
-    case 'q':
-        m_pos.y += m_speed;
-        break;
-    case 'Z':
-    case 'z':
-        m_pos.y -= m_speed;
-        break;
-
     case 'W':
     case 'w':
-        m_pos.z += m_speed;
+    {
+        m_up.Normalize();
+        m_up *= m_speed;
+        m_pos += m_up;
         break;
+
+    }
 
     case 'S':
     case 's':
-        m_pos.z -= m_speed;
+    {
+        m_up.Normalize();
+        m_up *= m_speed;
+        m_pos -= m_up;
         break;
+    }
+
 
     case 'D':
     case 'd':
-        m_pos.x += m_speed;
+    {
+        Vector3f Right = m_up.Cross(m_target);
+        Right.Normalize();
+        Right *= m_speed;
+        m_pos += Right;
         break;
+    }
+
 
     case 'A':
     case 'a':
-        m_pos.x -= m_speed;
+    {
+        Vector3f Left = m_target.Cross(m_up);
+        Left.Normalize();
+        Left *= m_speed;
+        m_pos += Left;
         break;
-
+    }
     case '+':
     case '=':
         m_speed += 0.1f;

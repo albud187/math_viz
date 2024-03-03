@@ -15,6 +15,6 @@ working tutorials:
 19 to 28
 
 to do
-- put shaders in constructor
-
-- create surface (grid)
+- revise movement
+- move object
+- render origin

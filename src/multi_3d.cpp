@@ -112,7 +112,7 @@ static void spawn_object(){
 
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 {
-    std::cout<<key<<std::endl;
+    //std::cout<<key<<std::endl;
     if (std::find(CAM_KEYS.begin(), CAM_KEYS.end(), key)!=CAM_KEYS.end()){
         GameCamera.OnKeyboard(key);
     }
