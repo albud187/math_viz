@@ -43,7 +43,5 @@ unsigned int* generateSquareIndices();
 
 VT* generateGridVertices(int sideLength);
 unsigned int* generateGridIndices(int sideLength);
-// VT* generateGridVertices(float sideLength);
-// VT* generateGridIndices(float sideLength);
 
 #endif

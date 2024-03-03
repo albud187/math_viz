@@ -31,6 +31,44 @@ void init_shaders(){
     shaders.push_back(shader2);
 }
 
+void move_mesh(std::shared_ptr<Mesh> mesh_ptr, unsigned char key){
+    
+    switch (key){
+        case 'i':
+        case 'I':
+        {
+            std::cout<<"z +0.25"<<std::endl;
+            mesh_ptr->translate(0,0,0.25);
+            break;
+        }
+
+        case 'k':
+        case 'K':
+        {
+            std::cout<<"z -0.25"<<std::endl;
+            mesh_ptr->translate(0,0,-0.25);
+            break;
+        }
+
+        case 'j':
+        case 'J':
+        {
+            std::cout<<"x -0.25"<<std::endl;
+            mesh_ptr->translate(-0.25,0,0);
+            break;
+        }
+
+        case 'l':
+        case 'L':
+        {
+            std::cout<<"x +0.25"<<std::endl;
+            mesh_ptr->translate(0.25,0,0);
+            break;
+        }
+
+    }
+}
+
 void init_game_objects() {
 
     auto s1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
@@ -78,11 +116,12 @@ static void RenderSceneCB()
 
     draw_triangles(game_objects, Projection, View, gWVPLocation);
     draw_lines(grid_objects, Projection, View, gWVPLocation);
-
+    
     game_objects[0]->Draw(Projection, View, gWVPLocation);
-    for (auto &game_obj : game_objects){
-        game_obj->rotate(180.0/TARGET_FPS_DELAY_MS,0.0,0.0);
-    }
+   
+    // for (auto &game_obj : game_objects){
+    //     game_obj->rotate(180.0/TARGET_FPS_DELAY_MS,0.0,0.0);
+    // }
     glutPostRedisplay();
     glutSwapBuffers();
 
@@ -112,12 +151,16 @@ static void spawn_object(){
 
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 {
-    //std::cout<<key<<std::endl;
+    std::cout<<key<<std::endl;
     if (std::find(CAM_KEYS.begin(), CAM_KEYS.end(), key)!=CAM_KEYS.end()){
         GameCamera.OnKeyboard(key);
     }
     if (std::find(WORK_KEYS.begin(), WORK_KEYS.end(), key)!=WORK_KEYS.end()){
         spawn_object();
+    }
+    
+    if(std::find(MESH_MOVE_KEYS.begin(), MESH_MOVE_KEYS.end(), key)!=MESH_MOVE_KEYS.end()){
+        move_mesh(game_objects[0], key);
     }
 }
 

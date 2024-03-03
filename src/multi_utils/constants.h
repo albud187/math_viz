@@ -6,7 +6,7 @@
 
 std::vector<unsigned char> CAM_KEYS ={'a', 'A', 's', 'S', 'd', 'D', 'w', 'W', 'q', 'Q', 'z','Z','-','='};
 std::vector<unsigned char> WORK_KEYS ={'e', 'E'};
-
+std::vector<unsigned char> MESH_MOVE_KEYS={'i', 'I', 'k', 'K', 'j','J','l','L'};
 float WINDOW_WIDTH = 1500;
 float WINDOW_HEIGHT = 900;
 
@@ -67,15 +67,6 @@ unsigned int PYRAMID3_INDICES[] = {
     0, 3, 1,  // Side 3
     1, 3, 2   // Base
 };
-
-// VT SQUARE_VERTICES[] ={
-    
-//     VT(0.0, 0.0, 0.0),  // Vertex 0: Bottom Left
-//     VT(0.0, 0.0f, 1.0),   // Vertex 1: Bottom Right
-//     VT(1.0, 0.0f, 0.0), // Vertex 2: Top Left
-//     VT(1.0, 0.0f, 1.0)   // Vertex 3: Top Right
-
-// };
 
 VT SQUARE_VERTICES[] ={
     
