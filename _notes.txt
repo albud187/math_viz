@@ -10,10 +10,7 @@ https://ogldev.org/
 #check GLEW web page
 #https://glew.sourceforge.net/basic.html
 
-working tutorials:
-0 to 18
-19 to 28
-
 to do
 - render origin
-- select object
+- select object to move: https://www.youtube.com/watch?v=lj5hx6pa_jE
+- imgui integration

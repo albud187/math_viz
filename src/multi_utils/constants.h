@@ -7,8 +7,8 @@
 std::vector<unsigned char> CAM_KEYS ={'a', 'A', 's', 'S', 'd', 'D', 'w', 'W', 'q', 'Q', 'z','Z','-','='};
 std::vector<unsigned char> WORK_KEYS ={'e', 'E'};
 std::vector<unsigned char> MESH_MOVE_KEYS={'i', 'I', 'k', 'K', 'j','J','l','L'};
-float WINDOW_WIDTH = 1500;
-float WINDOW_HEIGHT = 900;
+float WINDOW_WIDTH = 1000;
+float WINDOW_HEIGHT = 1000;
 
 float TARGET_FPS = 30;
 int TARGET_FPS_DELAY_MS = 1000*(1/TARGET_FPS);

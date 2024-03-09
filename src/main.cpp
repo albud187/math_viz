@@ -15,10 +15,14 @@
 #include "multi_utils/constants.h"
 #include "multi_utils/shaders.h"
 #include "multi_utils/mesh.h"
-
+#include "multi_utils/picking_texture.h"
+#include "multi_utils/picking_technique.h"
 GLuint gWVPLocation;
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
+
+PickingTexture m_pickingTexture;
+PickingTechnique m_pickingEffect;
 
 std::vector<std::shared_ptr<Mesh>> game_objects;
 std::vector<GLuint> shaders; 
@@ -68,9 +72,15 @@ static void RenderSceneCB()
 
     static auto lastFrameTime = std::chrono::high_resolution_clock::now();
     auto startFrameTime = std::chrono::high_resolution_clock::now();
-   
+    //picking phase
+    m_pickingTexture.EnableWriting();
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
     
+    
+    
+    //m_pickingTexture.EnableWriting();
+
+
     GameCamera.OnRender();
     Matrix4f Projection;
     Matrix4f View = GameCamera.GetMatrix();
