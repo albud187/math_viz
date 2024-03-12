@@ -21,8 +21,6 @@ add_executable(math_viz src/main.cpp
     src/multi_utils/world_transform.cpp
     src/multi_utils/shaders.cpp
     src/multi_utils/mesh.cpp
-    src/multi_utils/picking_texture.cpp
-    src/multi_utils/picking_technique.cpp
     )
     
 target_link_libraries(math_viz ${OPENGL_LIBRARIES} ${GLUT_LIBRARY} ${GLEW_LIBRARIES} glfw)

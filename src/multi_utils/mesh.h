@@ -1,7 +1,6 @@
 #ifndef MESH_H
 #define MESH_H
 
-
 #include <GL/glew.h>
 #include <GL/freeglut.h>
 #include "../ogl_utils/ogldev_math_3d.h" 
@@ -12,6 +11,8 @@ class Mesh {
 public:
     WorldTrans transform; // Transformation data for the mesh
     GLuint shaderProgramID;
+    Vector3f uniqueColor;
+    int obj_id;
     Mesh(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices);
     ~Mesh();
     
@@ -21,9 +22,8 @@ public:
     void rotate(float rx, float ry, float rz);
     void Draw(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
     void DrawLine(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
-
     void SetShaderProgram(GLuint programID);
-
+    void setID(int id_num);
 private:
     GLuint vbo; // Vertex Buffer Object
     GLuint ibo; // Index Buffer Object

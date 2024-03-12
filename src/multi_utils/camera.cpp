@@ -1,6 +1,7 @@
 
 
 #include "camera.h"
+#include "mesh.h"
 #include <GL/freeglut.h>
 #include <iostream>
 static int MARGIN = 10;
@@ -244,11 +245,58 @@ void Camera::Update()
 }
 
 
-
 Matrix4f Camera::GetMatrix()
 {
     Matrix4f CameraTransformation;
     CameraTransformation.InitCameraTransform(m_pos, m_target, m_up);
 
     return CameraTransformation;
+}
+
+Vector2f getNormalizedDeviceCoords(int mouseX, int mouseY, int screenWidth, int screenHeight) {
+    float x = (2.0f * mouseX) / screenWidth - 1.0f;
+    float y = 1.0f - (2.0f * mouseY) / screenHeight;
+    return Vector2f(x, y);
+}
+
+Vector4f getHomogeneousClipCoords(Vector2f ndc) {
+    return Vector4f(ndc.x, ndc.y, -1.0f, 1.0f);
+}
+
+
+Vector4f toEyeCoords(Vector4f clipCoords, Matrix4f projectionMatrix) {
+    Matrix4f invProjection = projectionMatrix.Inverse();
+    Vector4f eyeCoords = invProjection * clipCoords;
+    return Vector4f(eyeCoords.x, eyeCoords.y, -1.0f, 0.0f);
+}
+
+Vector3f toWorldCoords(Vector4f eyeCoords, Matrix4f viewMatrix) {
+    Matrix4f invView = viewMatrix.Inverse();
+    Vector4f rayWorld = invView * eyeCoords;
+    Vector3f mouseRay = Vector3f(rayWorld.x, rayWorld.y, rayWorld.z);
+    mouseRay = mouseRay.Normalize();
+    return mouseRay;
+}
+
+Vector3f cameraRay(int mouseX, int mouseY, int screenWidth, int screenHeight, Matrix4f projectionMatrix, Matrix4f viewMatrix){
+    float x = (2.0f * mouseX) / screenWidth - 1.0f;
+    float y = 1.0f - (2.0f * mouseY) / screenHeight;
+    Vector4f clipCoords = Vector4f(x,y,-1.0,1.0);
+    Matrix4f invProjection = projectionMatrix.Inverse();
+    Vector4f eyeCoords = invProjection * clipCoords;
+    
+    Matrix4f invView = viewMatrix.Inverse();
+    Vector4f rayWorld = invView * eyeCoords;
+    Vector3f mouseRay = Vector3f(rayWorld.x, rayWorld.y, rayWorld.z);
+    mouseRay = mouseRay.Normalize();
+    return mouseRay;
+}
+
+Mesh* rayIntersectTest(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camera_ray){
+
+    
+    Mesh* closestMesh = nullptr;
+    for (const auto& mesh: game_objects){
+
+    }
 }

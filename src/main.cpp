@@ -15,18 +15,36 @@
 #include "multi_utils/constants.h"
 #include "multi_utils/shaders.h"
 #include "multi_utils/mesh.h"
-#include "multi_utils/picking_texture.h"
-#include "multi_utils/picking_technique.h"
+
 GLuint gWVPLocation;
 Camera GameCamera(WINDOW_WIDTH, WINDOW_HEIGHT, CAMERA_POS, CAMERA_TARGET, CAMERA_UP);
 PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 
-PickingTexture m_pickingTexture;
-PickingTechnique m_pickingEffect;
-
 std::vector<std::shared_ptr<Mesh>> game_objects;
 std::vector<GLuint> shaders; 
 std::vector<std::shared_ptr<Mesh>> grid_objects;
+
+GLuint pickingFramebuffer = 0;
+GLuint pickingTexture = 0;
+
+void initPickingFramebuffer() {
+    glGenFramebuffers(1, &pickingFramebuffer);
+    glBindFramebuffer(GL_FRAMEBUFFER, pickingFramebuffer);
+
+    glGenTextures(1, &pickingTexture);
+    glBindTexture(GL_TEXTURE_2D, pickingTexture);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, WINDOW_WIDTH, WINDOW_HEIGHT, 0, GL_RGB, GL_UNSIGNED_BYTE, NULL);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+
+    glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, GL_TEXTURE_2D, pickingTexture, 0);
+
+    if(glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+        std::cerr << "Framebuffer not complete!" << std::endl;
+
+    glBindFramebuffer(GL_FRAMEBUFFER, 0);
+}
+
 
 void init_shaders(){
     GLuint shader1 = CompileShaders(VS_FILE_NAME, FS_FILE_NAME);
@@ -44,6 +62,11 @@ void init_game_objects() {
     s1->SetShaderProgram(shaders[0]);
     s2->SetShaderProgram(shaders[0]);
     s3->SetShaderProgram(shaders[0]);
+
+    s1->setID(11);
+    s2->setID(22);
+    s3->setID(33);
+
     s1->SetPosition(-1.0f, 1.0f, 3.0f);
     s2->SetPosition(1.0f, 1.0f, 3.0f);
     s3->SetPosition(2.0f, 1.0f, 3.0f);
@@ -73,12 +96,9 @@ static void RenderSceneCB()
     static auto lastFrameTime = std::chrono::high_resolution_clock::now();
     auto startFrameTime = std::chrono::high_resolution_clock::now();
     //picking phase
-    m_pickingTexture.EnableWriting();
+   
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
     
-    
-    
-    //m_pickingTexture.EnableWriting();
 
 
     GameCamera.OnRender();
@@ -91,15 +111,13 @@ static void RenderSceneCB()
     
     game_objects[0]->Draw(Projection, View, gWVPLocation);
    
-    // for (auto &game_obj : game_objects){
-    //     game_obj->rotate(180.0/TARGET_FPS_DELAY_MS,0.0,0.0);
-    // }
+ 
     glutPostRedisplay();
     glutSwapBuffers();
 
     auto endFrameTime = std::chrono::high_resolution_clock::now();
     auto frameDuration = std::chrono::duration_cast<std::chrono::milliseconds>(endFrameTime - startFrameTime);
-    auto targetFrameTime = std::chrono::milliseconds(TARGET_FPS_DELAY_MS); // Approximately for 30 FPS
+    auto targetFrameTime = std::chrono::milliseconds(TARGET_FPS_DELAY_MS);
 
     if (frameDuration < targetFrameTime) {
         auto sleepDuration = targetFrameTime - frameDuration;
@@ -139,9 +157,14 @@ static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 static void MotionCB(int x, int y) {
     GameCamera.OnMouse(x, y);
 }
-
+std::vector<std::shared_ptr<Mesh>> game_objects;
 static void MouseCB(int button, int state, int x, int y) {
+    Matrix4f Projection;
+    Projection.InitPersProjTransform(persProjInfo);
+    Matrix4f ViewMat = GameCamera.GetMatrix();
     if (state == GLUT_DOWN) {
+        Vector3f camray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
+  
         GameCamera.OnMouseDown(button, x, y); 
     } else if (state == GLUT_UP) {
         GameCamera.OnMouseUp(button);

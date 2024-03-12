@@ -1,11 +1,8 @@
-#version 330                                                                        
-                                                                                                                                                                                                                                                        
-uniform uint gDrawIndex;                                                            
-uniform uint gObjectIndex;                                                          
-                                                                                    
-out vec3 FragColor;
+#version 330
 
-void main()                                                                         
-{                                                                                   
-   FragColor = vec3(float(gObjectIndex), float(gDrawIndex),float(gl_PrimitiveID + 1));                 
+uniform vec3 uniColor; // The unique color for the object
+out vec4 fragColor;
+
+void main() {
+    fragColor = vec4(uniColor, 1.0); // Use the unique color directly
 }
