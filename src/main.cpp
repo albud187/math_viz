@@ -70,7 +70,6 @@ void init_game_objects() {
     s1->SetPosition(-1.0f, 1.0f, 3.0f);
     s2->SetPosition(1.0f, 1.0f, 3.0f);
     s3->SetPosition(2.0f, 1.0f, 3.0f);
-
     s1->setRotation(0, 0, 0);
     s2->setRotation(0, 0, 0);
     s3->setRotation(0, 0, 0);
@@ -98,8 +97,6 @@ static void RenderSceneCB()
     //picking phase
    
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT); 
-    
-
 
     GameCamera.OnRender();
     Matrix4f Projection;
@@ -151,20 +148,25 @@ static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
     
     if(std::find(MESH_MOVE_KEYS.begin(), MESH_MOVE_KEYS.end(), key)!=MESH_MOVE_KEYS.end()){
         move_mesh(game_objects[0], key);
+        VT* newvertices = game_objects[0]->generate3DVerticies(PYRAMID3_VERTICES, game_objects[0]->transform);
+
     }
 }
 
 static void MotionCB(int x, int y) {
     GameCamera.OnMouse(x, y);
 }
-std::vector<std::shared_ptr<Mesh>> game_objects;
 static void MouseCB(int button, int state, int x, int y) {
     Matrix4f Projection;
     Projection.InitPersProjTransform(persProjInfo);
     Matrix4f ViewMat = GameCamera.GetMatrix();
     if (state == GLUT_DOWN) {
         Vector3f camray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
-  
+        std::cout<<camray.x<<std::endl;
+        std::cout<<camray.y<<std::endl;
+        std::cout<<camray.z<<std::endl;
+
+
         GameCamera.OnMouseDown(button, x, y); 
     } else if (state == GLUT_UP) {
         GameCamera.OnMouseUp(button);

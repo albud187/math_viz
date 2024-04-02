@@ -1,5 +1,6 @@
 #include "mesh.h"
 #include <iostream>
+#include <limits>
 
 Mesh::Mesh(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices)
     : numIndices(numIndices) {
@@ -90,6 +91,8 @@ void Mesh::SetShaderProgram(GLuint programID) {
     shaderProgramID = programID;
 }
 
+
+
 void draw_triangles(const std::vector<std::shared_ptr<Mesh>>& game_objects, Matrix4f Projection, Matrix4f View, GLuint gWVPLocation) {
     for (const auto& meshPtr : game_objects) {
         if (meshPtr) { // Check if the shared_ptr is not null
@@ -166,5 +169,117 @@ void move_mesh(std::shared_ptr<Mesh> mesh_ptr, unsigned char key){
             mesh_ptr->translate(0.25,0,0);
             break;
         }
+    }
+}
+
+
+
+meshTriangle::meshTriangle(Vector3f p1, Vector3f p2, Vector3f p3) {
+    a = p1;
+    b = p2;
+    c = p3;
+}
+
+
+VT* Mesh::generate3DVerticies(VT* verticies, WorldTrans transform) {
+    Matrix4f world_pose = transform.GetMatrix();
+
+    float dx = transform.GetMatrix().m[0][3];
+    float dy = transform.GetMatrix().m[1][3];
+    float dz = transform.GetMatrix().m[2][3];
+
+    // Assuming other initialization remains the same
+    int size = 4;
+    // Loop through each vertex using a traditional for loop
+    for (int i = 0; i < size; ++i) {
+        VT& v = verticies[i]; // Reference to the current vertex
+        float sample_x = v.pos.x;
+        std::cout << sample_x + dx << std::endl;
+        // Apply transformation here
+        // For example, if you want to add some displacements:
+        // v.pos.x += dx;
+        // v.pos.y += dy;
+        // v.pos.z += dz;
+    }
+
+    return verticies;
+}
+//gets all triangles in mesh
+std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int size){
+    std::vector<meshTriangle> result;
+    Matrix4f world_pose = transform.GetMatrix();
+
+    float dx = transform.GetMatrix().m[0][3];
+    float dy = transform.GetMatrix().m[1][3];
+    float dz = transform.GetMatrix().m[2][3];
+    Vector3f ds(dx,dy,dz);
+    for (int i =0; i < size-2; i++){
+        int k1 = i;
+        int k2 = i+1;
+        int k3 = i+2;
+        Vector3f p1 = verticies[k1].pos + ds;
+        Vector3f p2 = verticies[k2].pos + ds;
+        Vector3f p3 = verticies[k3].pos + ds;
+        result.push_back(meshTriangle(p1, p2, p3));
+    }
+    //2nd last
+
+    Vector3f p2f1 = verticies[size-1].pos + ds;
+    Vector3f p2f2 = verticies[size].pos + ds;
+    Vector3f p2f3 = verticies[0].pos + ds;
+    result.push_back(meshTriangle(p2f1, p2f2, p2f3));
+    
+    //last
+    Vector3f pf1 = verticies[size].pos + ds;
+    Vector3f pf2 = verticies[0].pos + ds;
+    Vector3f pf3 = verticies[1].pos +ds;
+    result.push_back(meshTriangle(pf1, pf2, pf3));
+
+    return result;
+    
+}
+
+bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
+    constexpr float epsilon = std::numeric_limits<float>::epsilon();
+
+    Vector3f edge1 = triangle.b - triangle.a;
+    Vector3f edge2 = triangle.c - triangle.a;
+    Vector3f ray_cross_e2 = camray.Cross(edge2);
+    float det = edge1.Dot(ray_cross_e2);
+
+    // Parallel check
+    if (det > -epsilon && det < epsilon) {
+        return false;    
+    }
+
+    float inv_det = 1.0f / det;
+    Vector3f s = rayOrigin - triangle.a; 
+    float u = inv_det * s.Dot(ray_cross_e2);
+
+    // Bounds check for U parameter
+    if (u < 0.0f || u > 1.0f) {
+        return false;
+    }
+
+    Vector3f s_cross_e1 = s.Cross(edge1);
+    float v = inv_det * camray.Dot(s_cross_e1);
+
+    // Bounds check for V parameter, and combined U+V <= 1 for inside triangle
+    if (v < 0.0f || u + v > 1.0f) {
+        return false;
+    }
+
+    // Calculate t to find the intersection point
+    float t = inv_det * edge2.Dot(s_cross_e1);
+
+    // Check if t is within the acceptable range (> epsilon)
+    if (t > epsilon) {
+        // Calculate the exact intersection point
+        Vector3f out_intersection_point = rayOrigin + camray * t;
+        
+        return true;
+    } else {
+        // Line intersects, but not in the ray's direction
+        return false;
     }
 }

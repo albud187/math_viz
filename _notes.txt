@@ -14,3 +14,7 @@ to do
 - render origin
 - select object to move: https://www.youtube.com/watch?v=lj5hx6pa_jE
 - imgui integration
+
+
+mesh.h / mesh.cpp : 3D triangles object as property of mesh
+camera.h / camera.cpp ray intersection test
