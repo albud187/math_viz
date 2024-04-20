@@ -148,7 +148,7 @@ static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
     
     if(std::find(MESH_MOVE_KEYS.begin(), MESH_MOVE_KEYS.end(), key)!=MESH_MOVE_KEYS.end()){
         move_mesh(game_objects[0], key);
-        VT* newvertices = game_objects[0]->generate3DVerticies(PYRAMID3_VERTICES, game_objects[0]->transform);
+        //VT* newvertices = game_objects[0]->generate3DVerticies(PYRAMID3_VERTICES, game_objects[0]->transform);
 
     }
 }
@@ -161,10 +161,33 @@ static void MouseCB(int button, int state, int x, int y) {
     Projection.InitPersProjTransform(persProjInfo);
     Matrix4f ViewMat = GameCamera.GetMatrix();
     if (state == GLUT_DOWN) {
-        Vector3f camray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
-        std::cout<<camray.x<<std::endl;
-        std::cout<<camray.y<<std::endl;
-        std::cout<<camray.z<<std::endl;
+        Vector3f cam_ray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
+        Vector3f cam_pos = Vector3f(GameCamera.m_pos.x, GameCamera.m_pos.y, GameCamera.m_pos.z);
+        // std::cout<<cam_ray.x<<std::endl;
+        // std::cout<<cam_ray.y<<std::endl;
+        // std::cout<<cam_ray.z<<std::endl;
+        // std::cout<<cam_pos.x<<std::endl;
+        // std::cout<<cam_pos.y<<std::endl;
+        // std::cout<<cam_pos.z<<std::endl;
+
+        //loop thru objects
+        //std::vector<std::shared_ptr<Mesh>> game_objects;
+        for (auto obj : game_objects){
+            //get vector<meshtriangle>
+            VT* verticies = PYRAMID3_VERTICES;
+            std::vector<meshTriangle> object_triangles = get3DTriangle(verticies, obj->transform, 4);
+            int size = 4;
+            for (auto triangle : object_triangles){
+                bool does_intersect = intersectTest(cam_ray, cam_pos, triangle);
+                std::cout<<does_intersect<<std::endl;
+            }
+        }
+
+        
+
+        //loop thru each vector<meshtriangl>
+
+        //bool does_intersect = intersectTest(cam_ray, cam_pos, triangle)
 
 
         GameCamera.OnMouseDown(button, x, y); 

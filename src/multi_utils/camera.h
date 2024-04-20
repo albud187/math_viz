@@ -20,7 +20,7 @@ public:
     void OnMouse(int x, int y);
 
     void OnRender();
-
+    Vector3f m_pos;
     Matrix4f GetMatrix();
     bool m_LeftButtonDown = false;
     int X0;
@@ -32,7 +32,7 @@ private:
     void Init();
     void Update();
 
-    Vector3f m_pos;
+    
     Vector3f m_target;
     Vector3f m_up;
     float m_speed = 1.0f;
