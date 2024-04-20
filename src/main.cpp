@@ -56,27 +56,25 @@ void init_shaders(){
 void init_game_objects() {
 
     auto s1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
-    auto s2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
-    auto s3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
-    
     s1->SetShaderProgram(shaders[0]);
-    s2->SetShaderProgram(shaders[0]);
-    s3->SetShaderProgram(shaders[0]);
-
     s1->setID(11);
-    s2->setID(22);
-    s3->setID(33);
-
     s1->SetPosition(-1.0f, 1.0f, 3.0f);
-    s2->SetPosition(1.0f, 1.0f, 3.0f);
-    s3->SetPosition(2.0f, 1.0f, 3.0f);
     s1->setRotation(0, 0, 0);
-    s2->setRotation(0, 0, 0);
-    s3->setRotation(0, 0, 0);
-
     game_objects.push_back(s1);
-    game_objects.push_back(s2);
-    game_objects.push_back(s3);
+
+    // auto s2 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
+    // s2->SetShaderProgram(shaders[0]);
+    // s2->setID(22);
+    // s2->SetPosition(1.0f, 1.0f, 3.0f);
+    // s2->setRotation(0, 0, 0);
+    // game_objects.push_back(s2);
+
+    // auto s3 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
+    // s3->SetShaderProgram(shaders[0]);
+    // s3->setID(33);
+    // s3->SetPosition(2.0f, 1.0f, 3.0f);
+    // s3->setRotation(0, 0, 0);
+    // game_objects.push_back(s3);
 
     for (int k = 0; k<GRID_L; k++){
         for (int i = 0; i<GRID_W; i++){
@@ -179,7 +177,7 @@ static void MouseCB(int button, int state, int x, int y) {
             int size = 4;
             for (auto triangle : object_triangles){
                 bool does_intersect = intersectTest(cam_ray, cam_pos, triangle);
-                std::cout<<does_intersect<<std::endl;
+                //std::cout<<does_intersect<<std::endl;
             }
         }
 

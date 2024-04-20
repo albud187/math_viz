@@ -212,9 +212,30 @@ std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int
     Vector3f pf2 = verticies[0].pos + ds;
     Vector3f pf3 = verticies[1].pos +ds;
     result.push_back(meshTriangle(pf1, pf2, pf3));
+    int triangle_count = 1;
+    for (auto triangle : result){
+        Vector3f p1 = triangle.a;
+        Vector3f p2 = triangle.b;
+        Vector3f p3 = triangle.c;
+        std::cout<<"triangle "<<triangle_count<<std::endl;
+        printTrianglePoint(p1);
+        printTrianglePoint(p2);
+        printTrianglePoint(p3);
+        triangle_count +=1;
+        std::cout<<" "<<std::endl;
+
+    }
 
     return result;
     
+}
+void printTrianglePoint(Vector3f p){
+    std::cout<<p.x;
+    std::cout<<" ,";
+    std::cout<<p.y;
+    std::cout<<" ,";
+    std::cout<<p.z<<std::endl;
+   
 }
 
 bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
