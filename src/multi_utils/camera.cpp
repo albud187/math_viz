@@ -37,7 +37,7 @@ Camera::Camera(int WindowWidth, int WindowHeight, const Vector3f& Pos, const Vec
 
 void Camera::Init()
 {
-    Vector3f HTarget(m_target.x, 0.0, m_target.z);
+    Vector3f HTarget(m_target.x, m_target.y, m_target.z);
     HTarget.Normalize();
 
     float Angle = ToDegree(asin(abs(HTarget.z)));
@@ -161,8 +161,6 @@ void Camera::OnMouseDown(int button, int x, int y) {
         m_pos -= (m_target * m_speed);
         break;
     }
-
-
 
 }
 void Camera::OnMouseUp(int button) {
@@ -291,58 +289,3 @@ Vector3f cameraRay(int mouseX, int mouseY, int screenWidth, int screenHeight, Ma
     mouseRay = mouseRay.Normalize();
     return mouseRay;
 }
-
-// Mesh* rayIntersectTest(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camera_ray){
-
-    
-//     Mesh* closestMesh = nullptr;
-//     for (const auto& mesh: game_objects){
-
-//     }
-// }
-
-//orig = camera location
-//dir = camray
-//v0, v1, v2 are verticies
-//t = distance
-//u = 
-
-// bool ray_intersects_triangle(vec3 ray_origin, 
-//                              vec3 ray_vector, 
-//                              const triangle3& triangle,
-//                              vec3& out_intersection_point)
-// {
-//     constexpr float epsilon = std::numeric_limits<float>::epsilon();
-
-//     vec3 edge1 = triangle.b - triangle.a;
-//     vec3 edge2 = triangle.c - triangle.a;
-//     vec3 ray_cross_e2 = cross(ray_vector, edge2);
-//     float det = dot(edge1, ray_cross_e2);
-
-//     if (det > -epsilon && det < epsilon)
-//         return false;    // This ray is parallel to this triangle.
-
-//     float inv_det = 1.0 / det;
-//     vec3 s = ray_origin - triangle.a;
-//     float u = inv_det * dot(s, ray_cross_e2);
-
-//     if (u < 0 || u > 1)
-//         return false;
-
-//     vec3 s_cross_e1 = cross(s, edge1);
-//     float v = inv_det * dot(ray_vector, s_cross_e1);
-
-//     if (v < 0 || u + v > 1)
-//         return false;
-
-//     // At this stage we can compute t to find out where the intersection point is on the line.
-//     float t = inv_det * dot(edge2, s_cross_e1);
-
-//     if (t > epsilon) // ray intersection
-//     {
-//         out_intersection_point = ray_origin + ray_vector * t;
-//         return true;
-//     }
-//     else // This means that there is a line intersection but not a ray intersection.
-//         return false;
-// }

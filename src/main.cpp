@@ -58,7 +58,7 @@ void init_game_objects() {
     auto s1 = std::make_shared<Mesh>(PYRAMID3_VERTICES, NV_PYRAMID3, PYRAMID3_INDICES, NI_PYRAMID3);
     s1->SetShaderProgram(shaders[0]);
     s1->setID(11);
-    s1->SetPosition(-1.0f, 1.0f, 3.0f);
+    s1->SetPosition(0, 0, 0);
     s1->setRotation(0, 0, 0);
     game_objects.push_back(s1);
 

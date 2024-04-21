@@ -14,7 +14,9 @@ float TARGET_FPS = 30;
 int TARGET_FPS_DELAY_MS = 1000*(1/TARGET_FPS);
 
 Vector3f CAMERA_POS(1.0f, 1.0f, -2.0f);
-Vector3f CAMERA_TARGET(-0.15f, -0.25f, 1.0f);
+Vector3f CAMERA_TARGET(-1.0f, -1.0f, 2.0f);
+//Vector3f CAMERA_TARGET(0.01, 0.01, 0.01);
+
 Vector3f CAMERA_UP(0.0f, 1.0f, 0.0f);
 
 float FOV = 45.0f;
