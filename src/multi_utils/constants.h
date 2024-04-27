@@ -13,9 +13,9 @@ float WINDOW_HEIGHT = 1000;
 float TARGET_FPS = 30;
 int TARGET_FPS_DELAY_MS = 1000*(1/TARGET_FPS);
 
-Vector3f CAMERA_POS(2.0f, 2.0f, -4.0f);
-Vector3f CAMERA_TARGET(-2.0f, -2.0f, 4.0f);
-Vector3f CAMERA_UP(0.0f, 1.0f, 0.0f);
+Vector3f CAMERA_POS(0.0f, 8.0f, -0.0f);
+Vector3f CAMERA_TARGET(-0.0001f, -2.0f, 0.0001f);
+Vector3f CAMERA_UP(0.0f, 0.0f, 1.0f);
 
 float FOV = 45.0f;
 float Z_NEAR= 0.25f;

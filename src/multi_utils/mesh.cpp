@@ -182,55 +182,12 @@ meshTriangle::meshTriangle(Vector3f p1, Vector3f p2, Vector3f p3) {
 //gets all triangles in mesh
 //size is number of triangles in mesh
 //get3D triangle needs to take in indices and vertices
-std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int size){
-    std::vector<meshTriangle> result;
-    Matrix4f world_pose = transform.GetMatrix();
-
-    float dx = transform.GetMatrix().m[0][3];
-    float dy = transform.GetMatrix().m[1][3];
-    float dz = transform.GetMatrix().m[2][3];
-    Vector3f ds(dx,dy,dz);
-    for (int i =0; i < size-2; i++){
-        int k1 = i;
-        int k2 = i+1;
-        int k3 = i+2;
-        Vector3f p1 = verticies[k1].pos + ds;
-        Vector3f p2 = verticies[k2].pos + ds;
-        Vector3f p3 = verticies[k3].pos + ds;
-        result.push_back(meshTriangle(p1, p2, p3));
-        
-    }
-    //2nd last
-
-    Vector3f p2f1 = verticies[size-1].pos + ds;
-    Vector3f p2f2 = verticies[size].pos + ds;
-    Vector3f p2f3 = verticies[0].pos + ds;
-    result.push_back(meshTriangle(p2f1, p2f2, p2f3));
-    
-    //last
-    Vector3f pf1 = verticies[size].pos + ds;
-    Vector3f pf2 = verticies[0].pos + ds;
-    Vector3f pf3 = verticies[1].pos +ds;
-    result.push_back(meshTriangle(pf1, pf2, pf3));
-    int triangle_count = 1;
-    for (auto triangle : result){
-        Vector3f p1 = triangle.a;
-        Vector3f p2 = triangle.b;
-        Vector3f p3 = triangle.c;
-        std::cout<<"triangle "<<triangle_count<<std::endl;
-        printTrianglePoint(p1);
-        printTrianglePoint(p2);
-        printTrianglePoint(p3);
-        triangle_count +=1;
-        std::cout<<" "<<std::endl;
-    }
-    return result;
-}
 
 std::vector<meshTriangle> get3DTriangles(VT* verticies, unsigned int* indices, int n_indices, WorldTrans transform){
     std::vector<meshTriangle> result;
     Matrix4f world_pose = transform.GetMatrix();
 
+    //will have to apply rotations as well
     float dx = transform.GetMatrix().m[0][3];
     float dy = transform.GetMatrix().m[1][3];
     float dz = transform.GetMatrix().m[2][3];
@@ -247,19 +204,20 @@ std::vector<meshTriangle> get3DTriangles(VT* verticies, unsigned int* indices, i
         int p2_idx = indices[i*3 + 1];
         int p3_idx = indices[i*3 + 2];
 
+        //will have to apply rotations as well 
         Vector3f p1 = verticies[p1_idx].pos + ds;
         Vector3f p2 = verticies[p2_idx].pos + ds;
         Vector3f p3 = verticies[p3_idx].pos + ds;
         result.push_back(meshTriangle(p1, p2, p3));
 
-        std::cout<<"triangle "<<triangle_count<<std::endl;
-        std::cout<<"triangle indices: "<<p1_idx<<", "<<p2_idx<<", "<<p3_idx<<std::endl;
+        // std::cout<<"triangle "<<triangle_count<<std::endl;
+        // std::cout<<"triangle indices: "<<p1_idx<<", "<<p2_idx<<", "<<p3_idx<<std::endl;
 
-        printTrianglePoint(p1);
-        printTrianglePoint(p2);
-        printTrianglePoint(p3);
-        triangle_count +=1;
-        std::cout<<" "<<std::endl;
+        // printTrianglePoint(p1);
+        // printTrianglePoint(p2);
+        // printTrianglePoint(p3);
+        // triangle_count +=1;
+        // std::cout<<" "<<std::endl;
 
     }
    
@@ -287,6 +245,7 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
 
     // Parallel check
     if (det > -epsilon && det < epsilon) {
+        //std::cout<<"failed parallel check"<<std::endl;
         return false;    
     }
 
@@ -296,6 +255,8 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
 
     // Bounds check for U parameter
     if (u < 0.0f || u > 1.0f) {
+
+        //std::cout<<"failed bounds check - V"<<std::endl;
         return false;
     }
 
@@ -304,6 +265,8 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
 
     // Bounds check for V parameter, and combined U+V <= 1 for inside triangle
     if (v < 0.0f || u + v > 1.0f) {
+
+        //std::cout<<"failed bounds check - U"<<std::endl;
         return false;
     }
 
@@ -314,10 +277,12 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
     if (t > epsilon) {
         // Calculate the exact intersection point
         Vector3f out_intersection_point = rayOrigin + camray * t;
-        
+        //std::cout<<"intersects"<<std::endl;
         return true;
     } else {
         // Line intersects, but not in the ray's direction
+
+        //std::cout<<"failed direction check"<<std::endl;
         return false;
     }
 }
