@@ -43,7 +43,9 @@ VT* generateSquareVertices(float sideLength);
 unsigned int* generateSquareIndices();
 
 void move_mesh(std::shared_ptr<Mesh> mesh_ptr, unsigned char key);
+
 void printTrianglePoint(Vector3f p);
+
 struct meshTriangle {
     Vector3f a;
     Vector3f b;

@@ -15,7 +15,6 @@ int TARGET_FPS_DELAY_MS = 1000*(1/TARGET_FPS);
 
 Vector3f CAMERA_POS(2.0f, 2.0f, -4.0f);
 Vector3f CAMERA_TARGET(-2.0f, -2.0f, 4.0f);
-
 Vector3f CAMERA_UP(0.0f, 1.0f, 0.0f);
 
 float FOV = 45.0f;
@@ -60,6 +59,20 @@ VT PYRAMID3_VERTICES[] = {
     VT(0.18f, -0.18f, 0.18f, 0.45, 0.75, 0.35),   // Base vertex 2
     VT(0.0f, -0.18f, -0.3f, 0.55, 0.55, 0.35)   // Base vertex 3
 };
+
+// std::vector<VT> pv = {
+//     VT(0.0f, 0.18f, -0.15f, 0.95, 0.35, 0.35),    // Tip of the pyramid
+//     VT(-0.2f, -0.2f, 0.22f, 0.35, 0.35, 0.95),  // Base vertex 1
+//     VT(0.18f, -0.18f, 0.18f, 0.45, 0.75, 0.35),   // Base vertex 2
+//     VT(0.0f, -0.18f, -0.3f, 0.55, 0.55, 0.35) // Base vertex 3
+// };
+
+// std::vector<std::vector<int>> pyr_i = {
+//     {0,1,2},
+//     {0,2,3},
+//     {0,3,1},
+//     {1,3,2},
+// };
 
 // VT PYRAMID3_VERTICES[] = {
 //     VT(0.0f, 0.0f, -0.95f, 0.95, 0.35, 0.35),    // Tip of the pyramid

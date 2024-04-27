@@ -173,7 +173,7 @@ static void MouseCB(int button, int state, int x, int y) {
         for (auto obj : game_objects){
             //get vector<meshtriangle>
             VT* verticies = PYRAMID3_VERTICES;
-            int size = 9;
+            int size = 4;
             std::vector<meshTriangle> object_triangles = get3DTriangle(verticies, obj->transform, size);
             
             for (auto triangle : object_triangles){
