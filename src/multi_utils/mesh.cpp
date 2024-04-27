@@ -21,6 +21,7 @@ void Mesh::createVertexBuffer(const VT* vertices, unsigned int numVertices) {
     glGenBuffers(1, &vbo);
     glBindBuffer(GL_ARRAY_BUFFER, vbo);
     glBufferData(GL_ARRAY_BUFFER, numVertices * sizeof(VT), vertices, GL_STATIC_DRAW);
+
 }
 
 void Mesh::createIndexBuffer(const unsigned int* indices, unsigned int numIndices) {
@@ -172,8 +173,6 @@ void move_mesh(std::shared_ptr<Mesh> mesh_ptr, unsigned char key){
     }
 }
 
-
-
 meshTriangle::meshTriangle(Vector3f p1, Vector3f p2, Vector3f p3) {
     a = p1;
     b = p2;
@@ -181,7 +180,8 @@ meshTriangle::meshTriangle(Vector3f p1, Vector3f p2, Vector3f p3) {
 }
 
 //gets all triangles in mesh
-//size is numbr of triangles in mesh
+//size is number of triangles in mesh
+//get3D triangle needs to take in indices and vertices
 std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int size){
     std::vector<meshTriangle> result;
     Matrix4f world_pose = transform.GetMatrix();
@@ -223,12 +223,51 @@ std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int
         printTrianglePoint(p3);
         triangle_count +=1;
         std::cout<<" "<<std::endl;
+    }
+    return result;
+}
+
+std::vector<meshTriangle> get3DTriangles(VT* verticies, unsigned int* indices, int n_indices, WorldTrans transform){
+    std::vector<meshTriangle> result;
+    Matrix4f world_pose = transform.GetMatrix();
+
+    float dx = transform.GetMatrix().m[0][3];
+    float dy = transform.GetMatrix().m[1][3];
+    float dz = transform.GetMatrix().m[2][3];
+    Vector3f ds(dx,dy,dz);
+
+    //loop thru indices
+    unsigned int n_triangles = n_indices/3;
+    std::cout<<"n triangles: "<<n_triangles<<std::endl;
+
+    int triangle_count = 1;
+    for (int i = 0; i<n_triangles; i++){
+        //multiply by 3 because 3 verticles per triangle
+        int p1_idx = indices[i*3];
+        int p2_idx = indices[i*3 + 1];
+        int p3_idx = indices[i*3 + 2];
+
+        Vector3f p1 = verticies[p1_idx].pos + ds;
+        Vector3f p2 = verticies[p2_idx].pos + ds;
+        Vector3f p3 = verticies[p3_idx].pos + ds;
+        result.push_back(meshTriangle(p1, p2, p3));
+
+        std::cout<<"triangle "<<triangle_count<<std::endl;
+        std::cout<<"triangle indices: "<<p1_idx<<", "<<p2_idx<<", "<<p3_idx<<std::endl;
+
+        printTrianglePoint(p1);
+        printTrianglePoint(p2);
+        printTrianglePoint(p3);
+        triangle_count +=1;
+        std::cout<<" "<<std::endl;
 
     }
-
+   
     return result;
-    
 }
+
+
+
 void printTrianglePoint(Vector3f p){
     std::cout<<p.x;
     std::cout<<" ,";

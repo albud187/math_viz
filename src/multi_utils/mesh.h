@@ -24,7 +24,6 @@ public:
     void DrawLine(const Matrix4f& projection, const Matrix4f& view, GLuint gWVPLocation);
     void SetShaderProgram(GLuint programID);
     void setID(int id_num);
-    VT* generate3DVerticies(VT* verticies, WorldTrans transform);
 private:
     GLuint vbo; // Vertex Buffer Object
     GLuint ibo; // Index Buffer Object
@@ -55,6 +54,7 @@ struct meshTriangle {
 };
 
 std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int size);
+std::vector<meshTriangle> get3DTriangles(VT* verticies, unsigned int* indices, int n_indices, WorldTrans transform);
 
 bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle);
 

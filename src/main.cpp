@@ -161,25 +161,24 @@ static void MouseCB(int button, int state, int x, int y) {
     if (state == GLUT_DOWN) {
         Vector3f cam_ray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
         Vector3f cam_pos = Vector3f(GameCamera.m_pos.x, GameCamera.m_pos.y, GameCamera.m_pos.z);
-        std::cout<<cam_ray.x<<std::endl;
-        std::cout<<cam_ray.y<<std::endl;
-        std::cout<<cam_ray.z<<std::endl;
+        std::cout<<"camray: "<<cam_ray.x<<", "<<cam_ray.y<<", "<<cam_ray.z<<std::endl;
         // std::cout<<cam_pos.x<<std::endl;
         // std::cout<<cam_pos.y<<std::endl;
         // std::cout<<cam_pos.z<<std::endl;
 
         //loop thru objects
-        //std::vector<std::shared_ptr<Mesh>> game_objects;
+        ///std::vector<std::shared_ptr<Mesh>> game_objects;
         for (auto obj : game_objects){
             //get vector<meshtriangle>
-            VT* verticies = PYRAMID3_VERTICES;
-            int size = 4;
-            std::vector<meshTriangle> object_triangles = get3DTriangle(verticies, obj->transform, size);
+            std::cout<<"getting 3D triangles"<<std::endl;
+            int n_indices = static_cast<int>(sizeof(PYRAMID3_INDICES) / sizeof(PYRAMID3_INDICES[0]));
             
-            for (auto triangle : object_triangles){
-                bool does_intersect = intersectTest(cam_ray, cam_pos, triangle);
-                //std::cout<<does_intersect<<std::endl;
-            }
+            std::vector<meshTriangle> object_triangles = get3DTriangles(PYRAMID3_VERTICES, PYRAMID3_INDICES, n_indices, obj->transform);
+            
+            // for (auto triangle : object_triangles){
+            //     bool does_intersect = intersectTest(cam_ray, cam_pos, triangle);
+            //     std::cout<<does_intersect<<std::endl;
+            // }
         }
 
         

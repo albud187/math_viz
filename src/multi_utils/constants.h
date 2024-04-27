@@ -60,27 +60,6 @@ VT PYRAMID3_VERTICES[] = {
     VT(0.0f, -0.18f, -0.3f, 0.55, 0.55, 0.35)   // Base vertex 3
 };
 
-// std::vector<VT> pv = {
-//     VT(0.0f, 0.18f, -0.15f, 0.95, 0.35, 0.35),    // Tip of the pyramid
-//     VT(-0.2f, -0.2f, 0.22f, 0.35, 0.35, 0.95),  // Base vertex 1
-//     VT(0.18f, -0.18f, 0.18f, 0.45, 0.75, 0.35),   // Base vertex 2
-//     VT(0.0f, -0.18f, -0.3f, 0.55, 0.55, 0.35) // Base vertex 3
-// };
-
-// std::vector<std::vector<int>> pyr_i = {
-//     {0,1,2},
-//     {0,2,3},
-//     {0,3,1},
-//     {1,3,2},
-// };
-
-// VT PYRAMID3_VERTICES[] = {
-//     VT(0.0f, 0.0f, -0.95f, 0.95, 0.35, 0.35),    // Tip of the pyramid
-//     VT(-0.2f, -0.2f, 0.22f, 0.35, 0.35, 0.95),  // Base vertex 1
-//     VT(0.18f, -0.18f, 0.18f, 0.45, 0.75, 0.35),   // Base vertex 2
-//     VT(0.0f, -0.18f, -0.3f, 0.55, 0.55, 0.35)   // Base vertex 3
-// };
-
 // Define the indices for the faces of the pyramid
 unsigned int PYRAMID3_INDICES[] = {
     0, 1, 2,  // Side 1
@@ -88,6 +67,11 @@ unsigned int PYRAMID3_INDICES[] = {
     0, 3, 1,  // Side 3
     1, 3, 2   // Base
 };
+
+// 0,1,2
+// 3,4,5
+// 6,7,8
+// 9,10,11
 
 VT SQUARE_VERTICES[] ={
     
@@ -122,4 +106,37 @@ const Vector3f GRID_COLOR = Vector3f(0.9f, 0.9f, 0.9f); // Grey color
 
 int GRID_L = 10;
 int GRID_W = 10;
+
+
+// std::vector<VT> P_V = {
+//     VT(0.0f, 0.18f, -0.15f, 0.95, 0.35, 0.35),    // Tip of the pyramid
+//     VT(-0.2f, -0.2f, 0.22f, 0.35, 0.35, 0.95),  // Base vertex 1
+//     VT(0.18f, -0.18f, 0.18f, 0.45, 0.75, 0.35),   // Base vertex 2
+//     VT(0.0f, -0.18f, -0.3f, 0.55, 0.55, 0.35) // Base vertex 3
+// };
+
+// std::vector<std::vector<int>> P_I = {
+//     {0,1,2},
+//     {0,2,3},
+//     {0,3,1},
+//     {1,3,2},
+// };
+
+
+// std::vector<VT> S_V ={
+    
+//     VT(0.0, 0.0, 0.0, 0.75, 0.75, 0.75),  // Vertex 0: Bottom Left
+//     VT(0.0, 0.0, 1.0, 0.75, 0.75, 0.75),   // Vertex 1: Bottom Right
+//     VT(1.0, 0.0, 1.0, 0.75, 0.75, 0.75),   // Vertex 2: Top Right
+//     VT(1.0, 0.0, 0.0, 0.75, 0.75, 0.75), // Vertex 3: Top Left
+   
+// };
+
+// std::vector<std::vector<int>> S_I = {
+//     {0, 1},
+//     {1, 2},
+//     {2, 3},
+//     {3, 0}
+
+// };
 #endif
