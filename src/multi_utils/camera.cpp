@@ -276,11 +276,13 @@ Vector3f toWorldCoords(Vector4f eyeCoords, Matrix4f viewMatrix) {
     return mouseRay;
 }
 
-Vector3f cameraRay(int mouseX, int mouseY, int screenWidth, int screenHeight, Matrix4f projectionMatrix, Matrix4f viewMatrix){
+Vector3f cameraRay(int mouseX, int mouseY, int screenWidth, int screenHeight, 
+                   Matrix4f projectionMatrix, Matrix4f viewMatrix, int FOV){
+    
     std::cout<<"mouse coords: "<<mouseX<<", "<<mouseY<<std::endl;
     float x = (2.0f * mouseX) / screenWidth - 1.0f;
     float y = 1.0f - (2.0f * mouseY) / screenHeight;
-    Vector4f clipCoords = Vector4f(x,y,-1.0,1.0);
+    Vector4f clipCoords = Vector4f(x,y,1.0,1.0);
     Matrix4f invProjection = projectionMatrix.Inverse();
     Vector4f eyeCoords = invProjection * clipCoords;
     

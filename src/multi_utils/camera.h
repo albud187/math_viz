@@ -60,7 +60,8 @@ Vector4f toEyeCoords(Vector4f clipCoords, Matrix4f projectionMatrix);
 
 Vector3f toWorldCoords(Vector4f eyeCoords, Matrix4f viewMatrix);
 
-Vector3f cameraRay(int mouseX, int mouseY, int screenWidth, int screenHeight, Matrix4f projectionMatrix, Matrix4f viewMatrix);
+Vector3f cameraRay(int mouseX, int mouseY, int screenWidth, int screenHeight, 
+                   Matrix4f projectionMatrix, Matrix4f viewMatrix, int FOV);
 
 // Mesh* rayIntersectTest(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camera_ray);
 

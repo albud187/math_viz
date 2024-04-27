@@ -159,7 +159,7 @@ static void MouseCB(int button, int state, int x, int y) {
     Projection.InitPersProjTransform(persProjInfo);
     Matrix4f ViewMat = GameCamera.GetMatrix();
     if (state == GLUT_DOWN) {
-        Vector3f cam_ray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
+        Vector3f cam_ray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat, FOV);
         Vector3f cam_pos = Vector3f(GameCamera.m_pos.x, GameCamera.m_pos.y, GameCamera.m_pos.z);
         std::cout<<"camray: "<<cam_ray.x<<", "<<cam_ray.y<<", "<<cam_ray.z<<std::endl;
         std::cout<<"campos: "<<cam_pos.x<<", "<<cam_pos.y<<", "<<cam_pos.z<<std::endl;
@@ -178,7 +178,7 @@ static void MouseCB(int button, int state, int x, int y) {
             
             for (auto triangle : object_triangles){
                 bool does_intersect = intersectTest(cam_ray, cam_pos, triangle);
-                
+                std::cout<<does_intersect<<std::endl;
             }
         }
 
