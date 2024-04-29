@@ -13,6 +13,9 @@ public:
     GLuint shaderProgramID;
     Vector3f uniqueColor;
     int obj_id;
+    const VT* mesh_vertices;
+    const unsigned int* mesh_indices;
+    unsigned int numIndices;
     Mesh(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices);
     ~Mesh();
     
@@ -27,7 +30,7 @@ public:
 private:
     GLuint vbo; // Vertex Buffer Object
     GLuint ibo; // Index Buffer Object
-    unsigned int numIndices; // Number of indices
+     // Number of indices
    
     void createVertexBuffer(const VT* vertices, unsigned int numVertices);
     void createIndexBuffer(const unsigned int* indices, unsigned int numIndices);
@@ -54,8 +57,8 @@ struct meshTriangle {
 };
 
 std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int size);
-std::vector<meshTriangle> get3DTriangles(VT* verticies, unsigned int* indices, int n_indices, WorldTrans transform);
+std::vector<meshTriangle> get3DTriangles(const VT* verticies, const unsigned int* indices, int n_indices, WorldTrans transform);
 
-bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle);
-
+float triangleIntersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle);
+float objectIntersectTest(Vector3f camray, Vector3f rayOrigin, std::shared_ptr<Mesh> obj);
 #endif

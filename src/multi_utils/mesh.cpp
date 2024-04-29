@@ -1,10 +1,12 @@
 #include "mesh.h"
 #include <iostream>
 #include <limits>
-
+#include <cmath>
 Mesh::Mesh(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices)
     : numIndices(numIndices) {
-
+    
+    mesh_vertices = vertices;
+    mesh_indices = indices;
     createVertexBuffer(vertices, numVertices);
     createIndexBuffer(indices, numIndices);
 }
@@ -183,7 +185,7 @@ meshTriangle::meshTriangle(Vector3f p1, Vector3f p2, Vector3f p3) {
 //size is number of triangles in mesh
 //get3D triangle needs to take in indices and vertices
 
-std::vector<meshTriangle> get3DTriangles(VT* verticies, unsigned int* indices, int n_indices, WorldTrans transform){
+std::vector<meshTriangle> get3DTriangles(const VT* verticies, const unsigned int* indices, int n_indices, WorldTrans transform){
     std::vector<meshTriangle> result;
     Matrix4f world_pose = transform.GetMatrix();
 
@@ -210,15 +212,6 @@ std::vector<meshTriangle> get3DTriangles(VT* verticies, unsigned int* indices, i
         Vector3f p3 = verticies[p3_idx].pos + ds;
         result.push_back(meshTriangle(p1, p2, p3));
 
-        // std::cout<<"triangle "<<triangle_count<<std::endl;
-        // std::cout<<"triangle indices: "<<p1_idx<<", "<<p2_idx<<", "<<p3_idx<<std::endl;
-
-        // printTrianglePoint(p1);
-        // printTrianglePoint(p2);
-        // printTrianglePoint(p3);
-        // triangle_count +=1;
-        // std::cout<<" "<<std::endl;
-
     }
    
     return result;
@@ -235,7 +228,7 @@ void printTrianglePoint(Vector3f p){
    
 }
 
-bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
+float triangleIntersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
     constexpr float epsilon = std::numeric_limits<float>::epsilon();
 
     Vector3f edge1 = triangle.b - triangle.a;
@@ -246,7 +239,7 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
     // Parallel check
     if (det > -epsilon && det < epsilon) {
         //std::cout<<"failed parallel check"<<std::endl;
-        return false;    
+        return (-1);    
     }
 
     float inv_det = 1.0f / det;
@@ -257,7 +250,7 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
     if (u < 0.0f || u > 1.0f) {
 
         //std::cout<<"failed bounds check - V"<<std::endl;
-        return false;
+        return (-1);
     }
 
     Vector3f s_cross_e1 = s.Cross(edge1);
@@ -267,7 +260,7 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
     if (v < 0.0f || u + v > 1.0f) {
 
         //std::cout<<"failed bounds check - U"<<std::endl;
-        return false;
+        return (-1);
     }
 
     // Calculate t to find the intersection point
@@ -277,12 +270,46 @@ bool intersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
     if (t > epsilon) {
         // Calculate the exact intersection point
         Vector3f out_intersection_point = rayOrigin + camray * t;
+        Vector3f intersect_vect = (out_intersection_point - rayOrigin);
+        float intersect_distance = pow(pow(intersect_vect.x,2) + pow(intersect_vect.y,2) + pow(intersect_vect.z,2),0.5);
         //std::cout<<"intersects"<<std::endl;
-        return true;
+        return intersect_distance;
     } else {
         // Line intersects, but not in the ray's direction
 
         //std::cout<<"failed direction check"<<std::endl;
-        return false;
+        return (-1);
     }
+}
+
+float objectIntersectTest(Vector3f camray, Vector3f rayOrigin, std::shared_ptr<Mesh> obj){
+    float result;
+    std::vector<float> intersections;
+
+    const VT* obj_vert = obj->mesh_vertices;
+    const unsigned int* obj_ind = obj->mesh_indices;
+    int n_indices = obj->numIndices;
+    WorldTrans transform = obj->transform;
+    
+    std::vector<meshTriangle> object_triangles = get3DTriangles(obj_vert, obj_ind, n_indices, transform);
+    
+    for (auto triangle : object_triangles){
+        
+        float intersect_dist = triangleIntersectTest(camray, rayOrigin, triangle);
+        std::cout<<"intersect_dist: "<<intersect_dist<<std::endl;
+        if (intersect_dist > 0){
+            intersections.push_back(intersect_dist);
+        }
+        
+    }
+
+    if (intersections.size()>0){
+        result = 11;
+    } else {
+        result = -11;
+    }
+
+    return result;
+
+
 }
