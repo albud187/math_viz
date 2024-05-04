@@ -163,14 +163,10 @@ static void MouseCB(int button, int state, int x, int y) {
         std::cout<<"camray: "<<cam_ray.x<<", "<<cam_ray.y<<", "<<cam_ray.z<<std::endl;
         std::cout<<"campos: "<<cam_pos.x<<", "<<cam_pos.y<<", "<<cam_pos.z<<std::endl;
 
-        ///std::vector<std::shared_ptr<Mesh>> game_objects;
-        for (auto obj : game_objects){
-            //get vector<meshtriangle>
-            // std::cout<<"getting 3D triangles"<<std::endl;
-            float intersect = objectIntersectTest(cam_ray, cam_pos, obj);
-           
-        }
-
+        std::vector<std::pair<std::shared_ptr<Mesh>, float>> all_intersections = ObjectDistances(game_objects, cam_ray, cam_pos);
+        float inter_dist = all_intersections[0].second;
+        std::cout<<"intersections: "<<inter_dist<<std::endl;
+        std::cout<<" n obj: "<<all_intersections.size()<<std::endl;
         GameCamera.OnMouseDown(button, x, y); 
     } else if (state == GLUT_UP) {
         GameCamera.OnMouseUp(button);

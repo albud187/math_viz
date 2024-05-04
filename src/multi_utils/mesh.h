@@ -61,4 +61,6 @@ std::vector<meshTriangle> get3DTriangles(const VT* verticies, const unsigned int
 
 float triangleIntersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle);
 float objectIntersectTest(Vector3f camray, Vector3f rayOrigin, std::shared_ptr<Mesh> obj);
+std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camray, Vector3f rayOrigin);
+
 #endif

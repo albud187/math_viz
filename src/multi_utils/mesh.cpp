@@ -2,6 +2,7 @@
 #include <iostream>
 #include <limits>
 #include <cmath>
+#include <algorithm>
 Mesh::Mesh(const VT* vertices, unsigned int numVertices, const unsigned int* indices, unsigned int numIndices)
     : numIndices(numIndices) {
     
@@ -296,20 +297,40 @@ float objectIntersectTest(Vector3f camray, Vector3f rayOrigin, std::shared_ptr<M
     for (auto triangle : object_triangles){
         
         float intersect_dist = triangleIntersectTest(camray, rayOrigin, triangle);
-        std::cout<<"intersect_dist: "<<intersect_dist<<std::endl;
+        //std::cout<<"intersect_dist: "<<intersect_dist<<std::endl;
         if (intersect_dist > 0){
             intersections.push_back(intersect_dist);
         }
-        
     }
-
     if (intersections.size()>0){
-        result = 11;
+        result = *std::min_element(intersections.begin(), intersections.end());
+
     } else {
-        result = -11;
+        result = -1;
     }
 
     return result;
-
-
 }
+std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camray, Vector3f rayOrigin){
+    std::vector<std::pair<std::shared_ptr<Mesh>, float>> result;
+
+    for (auto obj : game_objects){
+        float intersect_check = objectIntersectTest(camray, rayOrigin, obj);
+        std::pair<std::shared_ptr<Mesh>, float> obj_dist = {obj, intersect_check};
+        result.push_back(obj_dist);
+    }
+    return result;
+}
+
+// std::shared_ptr<Mesh> pickObject(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camray, Vector3f rayOrigin){
+    
+//     std::vector<std::pair<std::shared_ptr<Mesh>, float>> result;
+//     for (auto obj : game_objects){
+
+//         float intersect_check = objectIntersectTest(camray, rayOrigin, obj);
+//         if (intersect_check > 0){
+
+//         }
+
+//     }
+// }
