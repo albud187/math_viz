@@ -23,7 +23,7 @@ PersProjInfo persProjInfo = { FOV, WINDOW_WIDTH, WINDOW_HEIGHT, Z_NEAR, Z_FAR };
 std::vector<std::shared_ptr<Mesh>> game_objects;
 std::vector<GLuint> shaders; 
 std::vector<std::shared_ptr<Mesh>> grid_objects;
-
+std::shared_ptr<Mesh> target_object = nullptr;
 GLuint pickingFramebuffer = 0;
 GLuint pickingTexture = 0;
 
@@ -145,9 +145,9 @@ static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
     }
     
     if(std::find(MESH_MOVE_KEYS.begin(), MESH_MOVE_KEYS.end(), key)!=MESH_MOVE_KEYS.end()){
-        move_mesh(game_objects[0], key);
-        //VT* newvertices = game_objects[0]->generate3DVerticies(PYRAMID3_VERTICES, game_objects[0]->transform);
-
+        if (target_object!=nullptr){
+            move_mesh(target_object, key);
+        }
     }
 }
 static void MotionCB(int x, int y) {
@@ -165,8 +165,14 @@ static void MouseCB(int button, int state, int x, int y) {
 
         std::vector<std::pair<std::shared_ptr<Mesh>, float>> all_intersections = ObjectDistances(game_objects, cam_ray, cam_pos);
         std::shared_ptr<Mesh> picked_object = pick_object(all_intersections);
-        std::cout<<"obj id: "<<picked_object->obj_id<<std::endl;
         
+        //seg fault if there is no object because of nullptr
+        
+        if (picked_object != nullptr){
+            target_object = picked_object;
+            std::cout<<"obj id: "<<target_object->obj_id<<std::endl;
+
+        }
         float inter_dist = all_intersections[0].second;
         std::cout<<"intersections: "<<inter_dist<<std::endl;
         std::cout<<" n obj: "<<all_intersections.size()<<std::endl;
