@@ -229,7 +229,7 @@ void printTrianglePoint(Vector3f p){
    
 }
 
-float triangleIntersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle triangle) {
+float triangleIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, const meshTriangle& triangle) {
     constexpr float epsilon = std::numeric_limits<float>::epsilon();
 
     Vector3f edge1 = triangle.b - triangle.a;
@@ -283,7 +283,7 @@ float triangleIntersectTest(Vector3f camray, Vector3f rayOrigin, meshTriangle tr
     }
 }
 
-float objectIntersectTest(Vector3f camray, Vector3f rayOrigin, std::shared_ptr<Mesh> obj){
+float objectIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, std::shared_ptr<Mesh> obj){
     float result;
     std::vector<float> intersections;
 
@@ -322,15 +322,18 @@ std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances(std::vector
     return result;
 }
 
-// std::shared_ptr<Mesh> pickObject(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camray, Vector3f rayOrigin){
+//get smallest
+std::shared_ptr<Mesh> pick_object(const std::vector<std::pair<std::shared_ptr<Mesh>, float>>& objects){
+    std::shared_ptr<Mesh> closestMesh = nullptr;
+    float minDistance = std::numeric_limits<float>::max();
+
+    for (const auto& obj :objects){
+        if (obj.second > 0 && obj.second < minDistance) {
+            minDistance = obj.second;
+            closestMesh = obj.first;
+        }
+    }
     
-//     std::vector<std::pair<std::shared_ptr<Mesh>, float>> result;
-//     for (auto obj : game_objects){
+    return closestMesh;
+}
 
-//         float intersect_check = objectIntersectTest(camray, rayOrigin, obj);
-//         if (intersect_check > 0){
-
-//         }
-
-//     }
-// }

@@ -164,6 +164,9 @@ static void MouseCB(int button, int state, int x, int y) {
         std::cout<<"campos: "<<cam_pos.x<<", "<<cam_pos.y<<", "<<cam_pos.z<<std::endl;
 
         std::vector<std::pair<std::shared_ptr<Mesh>, float>> all_intersections = ObjectDistances(game_objects, cam_ray, cam_pos);
+        std::shared_ptr<Mesh> picked_object = pick_object(all_intersections);
+        std::cout<<"obj id: "<<picked_object->obj_id<<std::endl;
+        
         float inter_dist = all_intersections[0].second;
         std::cout<<"intersections: "<<inter_dist<<std::endl;
         std::cout<<" n obj: "<<all_intersections.size()<<std::endl;
