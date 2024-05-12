@@ -145,32 +145,32 @@ void move_mesh(std::shared_ptr<Mesh> mesh_ptr, unsigned char key){
         case 'i':
         case 'I':
         {
-            std::cout<<"z +0.25"<<std::endl;
-            mesh_ptr->translate(0,0,0.25);
+            std::cout<<"z +0.1"<<std::endl;
+            mesh_ptr->translate(0,0,0.1);
             break;
         }
 
         case 'k':
         case 'K':
         {
-            std::cout<<"z -0.25"<<std::endl;
-            mesh_ptr->translate(0,0,-0.25);
+            std::cout<<"z -0.1"<<std::endl;
+            mesh_ptr->translate(0,0,-0.1);
             break;
         }
 
         case 'j':
         case 'J':
         {
-            std::cout<<"x -0.25"<<std::endl;
-            mesh_ptr->translate(-0.25,0,0);
+            std::cout<<"x -0.1"<<std::endl;
+            mesh_ptr->translate(-0.1,0,0);
             break;
         }
 
         case 'l':
         case 'L':
         {
-            std::cout<<"x +0.25"<<std::endl;
-            mesh_ptr->translate(0.25,0,0);
+            std::cout<<"x +0.1"<<std::endl;
+            mesh_ptr->translate(0.1,0,0);
             break;
         }
     }
@@ -198,7 +198,6 @@ std::vector<meshTriangle> get3DTriangles(const VT* verticies, const unsigned int
 
     //loop thru indices
     unsigned int n_triangles = n_indices/3;
-    std::cout<<"n triangles: "<<n_triangles<<std::endl;
 
     int triangle_count = 1;
     for (int i = 0; i<n_triangles; i++){
@@ -217,8 +216,6 @@ std::vector<meshTriangle> get3DTriangles(const VT* verticies, const unsigned int
    
     return result;
 }
-
-
 
 void printTrianglePoint(Vector3f p){
     std::cout<<p.x;
@@ -239,7 +236,6 @@ float triangleIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, c
 
     // Parallel check
     if (det > -epsilon && det < epsilon) {
-        //std::cout<<"failed parallel check"<<std::endl;
         return (-1);    
     }
 
@@ -249,18 +245,14 @@ float triangleIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, c
 
     // Bounds check for U parameter
     if (u < 0.0f || u > 1.0f) {
-
-        //std::cout<<"failed bounds check - V"<<std::endl;
         return (-1);
     }
 
     Vector3f s_cross_e1 = s.Cross(edge1);
     float v = inv_det * camray.Dot(s_cross_e1);
 
-    // Bounds check for V parameter, and combined U+V <= 1 for inside triangle
     if (v < 0.0f || u + v > 1.0f) {
 
-        //std::cout<<"failed bounds check - U"<<std::endl;
         return (-1);
     }
 
@@ -273,17 +265,17 @@ float triangleIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, c
         Vector3f out_intersection_point = rayOrigin + camray * t;
         Vector3f intersect_vect = (out_intersection_point - rayOrigin);
         float intersect_distance = pow(pow(intersect_vect.x,2) + pow(intersect_vect.y,2) + pow(intersect_vect.z,2),0.5);
-        //std::cout<<"intersects"<<std::endl;
+   
         return intersect_distance;
     } else {
         // Line intersects, but not in the ray's direction
-
-        //std::cout<<"failed direction check"<<std::endl;
         return (-1);
     }
 }
 
-float objectIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, std::shared_ptr<Mesh> obj){
+float objectIntersectTest
+(const Vector3f& camray, const Vector3f& rayOrigin, const std::shared_ptr<Mesh>& obj)
+{
     float result;
     std::vector<float> intersections;
 
@@ -311,7 +303,10 @@ float objectIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, std
 
     return result;
 }
-std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camray, Vector3f rayOrigin){
+
+std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances
+(const std::vector<std::shared_ptr<Mesh>>& game_objects, const Vector3f& camray, const Vector3f& rayOrigin)
+{
     std::vector<std::pair<std::shared_ptr<Mesh>, float>> result;
 
     for (auto obj : game_objects){
@@ -323,7 +318,9 @@ std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances(std::vector
 }
 
 //get smallest
-std::shared_ptr<Mesh> pick_object(const std::vector<std::pair<std::shared_ptr<Mesh>, float>>& objects){
+std::shared_ptr<Mesh> pick_object
+(const std::vector<std::pair<std::shared_ptr<Mesh>, float>>& objects)
+{
     std::shared_ptr<Mesh> closestMesh = nullptr;
     float minDistance = std::numeric_limits<float>::max();
 

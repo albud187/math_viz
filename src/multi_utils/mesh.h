@@ -59,8 +59,14 @@ struct meshTriangle {
 std::vector<meshTriangle> get3DTriangle(VT* verticies, WorldTrans transform, int size);
 std::vector<meshTriangle> get3DTriangles(const VT* verticies, const unsigned int* indices, int n_indices, WorldTrans transform);
 
-float triangleIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, const meshTriangle& triangle);
-float objectIntersectTest(const Vector3f& camray, const Vector3f& rayOrigin, std::shared_ptr<Mesh> obj);
-std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances(std::vector<std::shared_ptr<Mesh>> game_objects, Vector3f camray, Vector3f rayOrigin);
+float triangleIntersectTest
+(const Vector3f& camray, const Vector3f& rayOrigin, const meshTriangle& triangle);
+
+float objectIntersectTest
+(const Vector3f& camray, const Vector3f& rayOrigin, const std::shared_ptr<Mesh>& obj);
+
+std::vector<std::pair<std::shared_ptr<Mesh>, float>> ObjectDistances
+(const std::vector<std::shared_ptr<Mesh>>& game_objects, const Vector3f& camray, const Vector3f& rayOrigin);
+
 std::shared_ptr<Mesh> pick_object(const std::vector<std::pair<std::shared_ptr<Mesh>, float>>& objects);
 #endif

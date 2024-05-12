@@ -122,21 +122,20 @@ static void RenderSceneCB()
     
 }
 
-float pos = 0;
+float pos_y = 0;
 static void spawn_object(){
 
     auto c_obj = std::make_shared<Mesh>(CUBE_VERTICES, NV_CUBE, CUBE_INDICES, NI_CUBE);
        
     c_obj->SetShaderProgram(shaders[0]);
-    c_obj->SetPosition(0,pos,0);
+    c_obj->SetPosition(0,pos_y,0);
     c_obj->setRotation(0,0,0);
     game_objects.push_back(c_obj);
-    pos = pos+1;
+    pos_y = pos_y+1;
 }
 
 static void KeyboardCB(unsigned char key, int mouse_x, int mouse_y)
 {
-    std::cout<<key<<std::endl;
     if (std::find(CAM_KEYS.begin(), CAM_KEYS.end(), key)!=CAM_KEYS.end()){
         GameCamera.OnKeyboard(key);
     }
@@ -154,28 +153,22 @@ static void MotionCB(int x, int y) {
     GameCamera.OnMouse(x, y);
 }
 static void MouseCB(int button, int state, int x, int y) {
+    
     Matrix4f Projection;
     Projection.InitPersProjTransform(persProjInfo);
     Matrix4f ViewMat = GameCamera.GetMatrix();
+
     if (state == GLUT_DOWN) {
-        Vector3f cam_ray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
-        Vector3f cam_pos = Vector3f(GameCamera.m_pos.x, GameCamera.m_pos.y, GameCamera.m_pos.z);
-        std::cout<<"camray: "<<cam_ray.x<<", "<<cam_ray.y<<", "<<cam_ray.z<<std::endl;
-        std::cout<<"campos: "<<cam_pos.x<<", "<<cam_pos.y<<", "<<cam_pos.z<<std::endl;
-
-        std::vector<std::pair<std::shared_ptr<Mesh>, float>> all_intersections = ObjectDistances(game_objects, cam_ray, cam_pos);
-        std::shared_ptr<Mesh> picked_object = pick_object(all_intersections);
-        
-        //seg fault if there is no object because of nullptr
-        
-        if (picked_object != nullptr){
-            target_object = picked_object;
-            std::cout<<"obj id: "<<target_object->obj_id<<std::endl;
-
+        if (button == 0 ){
+            Vector3f cam_ray = cameraRay(x, y, WINDOW_WIDTH, WINDOW_HEIGHT, Projection, ViewMat);
+            Vector3f cam_pos = Vector3f(GameCamera.m_pos.x, GameCamera.m_pos.y, GameCamera.m_pos.z);
+            std::vector<std::pair<std::shared_ptr<Mesh>, float>> all_intersections = ObjectDistances(game_objects, cam_ray, cam_pos);
+            std::shared_ptr<Mesh> picked_object = pick_object(all_intersections);
+            if (picked_object != nullptr){
+                target_object = picked_object;
+                std::cout<<"object picked with ID: "<<target_object->obj_id<<std::endl;
+            }
         }
-        float inter_dist = all_intersections[0].second;
-        std::cout<<"intersections: "<<inter_dist<<std::endl;
-        std::cout<<" n obj: "<<all_intersections.size()<<std::endl;
         GameCamera.OnMouseDown(button, x, y); 
     } else if (state == GLUT_UP) {
         GameCamera.OnMouseUp(button);
